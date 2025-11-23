@@ -61,6 +61,8 @@ typedef struct
  */
 
 typedef struct
+{
+	ypedef struct
 	{
 		volatile uint32_t CR;            // RCC clock control register                    (0x00)
 	    volatile uint32_t PLLCFGR;       // RCC PLL configuration register                (0x04)
