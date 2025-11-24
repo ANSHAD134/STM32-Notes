@@ -1,0 +1,48 @@
+/*
+ * stm32f446xx_i2c.h
+ *
+ *  Created on: Nov 20, 2025
+ *      Author: HP
+ */
+
+#ifndef STM32F446XX_I2C_H_
+#define STM32F446XX_I2C_H_
+
+/*
+ * I2C BASE ADDRESS (APB1 Bus)
+ */
+
+#define I2C1_BASEADDR		0x40005400U
+#define I2C2_BASEADDR		0x40005800U
+#define I2C3_BASEADDR		0x40005C00U
+
+/*
+ * I2C REGISTER STRUCTURE
+ */
+
+typedef struct
+{
+	volatile uint32_t I2C_CR1;		//I2C CONTROL REGISTER 1 (0x00)
+	volatile uint32_t I2C_CR2;		//I2C CONTROL REGISTER 2 (0x04)
+	volatile uint32_t I2C_OAR1;		//I2C OWN ADDRESS REGISTER 1 (0x08)
+	volatile uint32_t I2C_OAR2;		//I2C OWN ADDRESS REGISTER 2 (0x0C)
+	volatile uint32_t I2C_DR;		//I2C DATA REGISTER 1 (0x10)
+	volatile uint32_t I2C_SR1;		//I2C STATUS REGISTER 1 (0x14)
+	volatile uint32_t I2C_SR2;		//I2C STATUS REGISTER 2 (0x18)
+	volatile uint32_t I2C_CCR;		//I2C CLOCK CONTROL REGISTER (0x1C)
+	volatile uint32_t I2C_TRISE;	//I2C TRISE REGISTER (0x20)
+	volatile uint32_t I2C_FLTR;		//I2C FLTR REGISTER (0x24)
+} I2C_RegDef_t;
+
+/*
+ * I2C POINTERS
+ */
+
+#define I2C1		((I2C_RegDef_t*)I2C1_BASEADDR)
+#define I2C2		((I2C_RegDef_t*)I2C2_BASEADDR)
+#define I2C3		((I2C_RegDef_t*)I2C3_BASEADDR)
+
+/*
+ *
+ */
+#endif /* STM32F446XX_I2C_H_ */
