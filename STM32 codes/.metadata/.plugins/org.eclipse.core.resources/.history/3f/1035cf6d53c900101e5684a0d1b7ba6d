@@ -1,0 +1,13 @@
+/*
+ * stm32_f446xx I2C.h
+ *
+ *  Created on: Nov 24, 2025
+ *      Author: HP
+ */
+
+#ifndef STM32_F446XX_I2C_H_
+#define STM32_F446XX_I2C_H_
+
+
+
+#endif /* STM32_F446XX_I2C_H_ */
