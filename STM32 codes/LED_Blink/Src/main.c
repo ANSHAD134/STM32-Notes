@@ -19,17 +19,30 @@
 #include <stdint.h>
 #include "stm32_f446xx.h"
 
+void delay_10ms(void)
+{
+    volatile uint32_t count = 270000;  // calibrated for ~1 second at 180 MHz
+    while(count--)
+    {
+        __asm__("nop"); // ensures stable timing
+    }
+}
+
 
 int main(void)
 {
-	GPIOA_CLK_EN();		//Enable GPIO Clock
-	GPIOA->MODER &= ~(0x3 << (5 * 2));
-	GPIOA->MODER |= (1<<10);
-	GPIOA->OTYPER &= ~(1<<5);
+	GPIOA_CLK_EN();						//Enable GPIOA Clock
+	GPIOA->MODER &= ~(0x3 << 10);		//Make 1011 Position Zero
+	GPIOA->MODER |= (1<<10);			//Set PA5 as output (10 == output mode)
+	GPIOA->OTYPER &= ~(1<<5);			//Clearing Bit 5 Makes Pin 5 Push-pull (standard LED Drive)
 	GPIOA->OSPEEDR &= ~(0x3 << 10);
-	GPIOA->OSPEEDR |= (1<<10);
-	GPIOA->PUPDR &= ~(0x3 << (10));
-	GPIOA->ODR |= (1<<5);
+	GPIOA->OSPEEDR |= (1<<10);			//Medium Speed
+	GPIOA->PUPDR &= ~(0x3 << 10);		//No Pull-up and Pull-down
 
-	//for(;;);
+
+	while(1)
+	{
+		GPIOA->ODR ^= (1<<5);			//Toggle LED
+		delay_10ms();					//Wait 10 ms
+	}
 }
