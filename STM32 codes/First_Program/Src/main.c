@@ -25,7 +25,7 @@
 int main(void)
 {
 	for(int i=1; i<=10; i++){
-		printf("Hello Stm\n");
+		printf("Hello Stm\n");			//print Hello stm
 		}
 
 }

@@ -26,24 +26,24 @@ int main(void)
 	GPIOA_CLK_EN();		//Enable GPIOA Clock
 	GPIOC_CLK_EN();		//Enable GPIOC Clock
 
-	GPIOA->MODER &= ~(0x3 << (LED_PIN * 2));
-	GPIOA->MODER |= (1<<(LED_PIN*2));
-	GPIOC->MODER &= ~(0x3 << (LED_PIN * 2));
-	GPIOA->OTYPER &= ~(1<<LED_PIN);
+	GPIOA->MODER &= ~(0x3 << (LED_PIN * 2));		// Clear mode bits for PA5
+	GPIOA->MODER |= (0x1<<(LED_PIN*2));				// Set PA5 as output mode
+	GPIOC->MODER &= ~(0x3 << (BUTTON_PIN * 2));		// Set the pin as input by clearing its MODER bits (00 = Input mode)
+	GPIOA->OTYPER &= ~(0x1<<LED_PIN);				// Set PA5 as push-pull output
 
-	GPIOA->OSPEEDR &= ~(0x3 << (LED_PIN*2));
-	GPIOA->OSPEEDR |= (1<<10);
+	GPIOA->OSPEEDR &= ~(0x3 << (LED_PIN*2));		// Clear speed bits
+	GPIOA->OSPEEDR |= (0x1<<(LED_PIN*2));			// Set medium speed for PA5
 
-	GPIOA->PUPDR &= ~(0x3 << (LED_PIN*2));
-	GPIOC->PUPDR &= ~(0x3 << (LED_PIN*2));
-	GPIOC->PUPDR |= (0x1 << (LED_PIN*2));
+	GPIOA->PUPDR &= ~(0x3 << (LED_PIN*2));			// No pull-up/pull-down for PA5
+	GPIOC->PUPDR &= ~(0x3 << (LED_PIN*2));			// Clear existing pull-up/pull-down configuration for the pin
+	GPIOC->PUPDR |= (0x1 << (LED_PIN*2));			// Enable pull-up resistor for the pin (01 = Pull-up)
 
 	while(1)
 	{
-		if(!(GPIOC->IDR & (1 << BUTTON_PIN))) {
-			GPIOA->ODR |= (1<<5);
+		if(!(GPIOC->IDR & (1 << BUTTON_PIN))) {		// Check if button is pressed (active low)
+			GPIOA->ODR |= (1<<LED_PIN);				// Turn ON LED at PA5
 		} else {
-			GPIOA->ODR &= ~(1<<5);
+			GPIOA->ODR &= ~(1<<LED_PIN);			// Turn OFF LED at PA5
 		}
 	}
 }

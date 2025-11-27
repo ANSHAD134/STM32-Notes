@@ -100,57 +100,57 @@ int main(void)
  800021a:	f043 0304 	orr.w	r3, r3, #4
  800021e:	6313      	str	r3, [r2, #48]	@ 0x30
 
-	GPIOA->MODER &= ~(0x3 << (LED_PIN * 2));
+	GPIOA->MODER &= ~(0x3 << (LED_PIN * 2));		// Clear mode bits for PA5
  8000220:	4b25      	ldr	r3, [pc, #148]	@ (80002b8 <main+0xb4>)
  8000222:	681b      	ldr	r3, [r3, #0]
  8000224:	4a24      	ldr	r2, [pc, #144]	@ (80002b8 <main+0xb4>)
  8000226:	f423 6340 	bic.w	r3, r3, #3072	@ 0xc00
  800022a:	6013      	str	r3, [r2, #0]
-	GPIOA->MODER |= (1<<(LED_PIN*2));
+	GPIOA->MODER |= (0x1<<(LED_PIN*2));				// Set PA5 as output mode
  800022c:	4b22      	ldr	r3, [pc, #136]	@ (80002b8 <main+0xb4>)
  800022e:	681b      	ldr	r3, [r3, #0]
  8000230:	4a21      	ldr	r2, [pc, #132]	@ (80002b8 <main+0xb4>)
  8000232:	f443 6380 	orr.w	r3, r3, #1024	@ 0x400
  8000236:	6013      	str	r3, [r2, #0]
-	GPIOC->MODER &= ~(0x3 << (LED_PIN * 2));
+	GPIOC->MODER &= ~(0x3 << (BUTTON_PIN * 2));		// Set the pin as input by clearing its MODER bits (00 = Input mode)
  8000238:	4b20      	ldr	r3, [pc, #128]	@ (80002bc <main+0xb8>)
  800023a:	681b      	ldr	r3, [r3, #0]
  800023c:	4a1f      	ldr	r2, [pc, #124]	@ (80002bc <main+0xb8>)
- 800023e:	f423 6340 	bic.w	r3, r3, #3072	@ 0xc00
+ 800023e:	f023 6340 	bic.w	r3, r3, #201326592	@ 0xc000000
  8000242:	6013      	str	r3, [r2, #0]
-	GPIOA->OTYPER &= ~(1<<LED_PIN);
+	GPIOA->OTYPER &= ~(0x1<<LED_PIN);				// Set PA5 as push-pull output
  8000244:	4b1c      	ldr	r3, [pc, #112]	@ (80002b8 <main+0xb4>)
  8000246:	685b      	ldr	r3, [r3, #4]
  8000248:	4a1b      	ldr	r2, [pc, #108]	@ (80002b8 <main+0xb4>)
  800024a:	f023 0320 	bic.w	r3, r3, #32
  800024e:	6053      	str	r3, [r2, #4]
 
-	GPIOA->OSPEEDR &= ~(0x3 << (LED_PIN*2));
+	GPIOA->OSPEEDR &= ~(0x3 << (LED_PIN*2));		// Clear speed bits
  8000250:	4b19      	ldr	r3, [pc, #100]	@ (80002b8 <main+0xb4>)
  8000252:	689b      	ldr	r3, [r3, #8]
  8000254:	4a18      	ldr	r2, [pc, #96]	@ (80002b8 <main+0xb4>)
  8000256:	f423 6340 	bic.w	r3, r3, #3072	@ 0xc00
  800025a:	6093      	str	r3, [r2, #8]
-	GPIOA->OSPEEDR |= (1<<10);
+	GPIOA->OSPEEDR |= (0x1<<(LED_PIN*2));			// Set medium speed for PA5
  800025c:	4b16      	ldr	r3, [pc, #88]	@ (80002b8 <main+0xb4>)
  800025e:	689b      	ldr	r3, [r3, #8]
  8000260:	4a15      	ldr	r2, [pc, #84]	@ (80002b8 <main+0xb4>)
  8000262:	f443 6380 	orr.w	r3, r3, #1024	@ 0x400
  8000266:	6093      	str	r3, [r2, #8]
 
-	GPIOA->PUPDR &= ~(0x3 << (LED_PIN*2));
+	GPIOA->PUPDR &= ~(0x3 << (LED_PIN*2));			// No pull-up/pull-down for PA5
  8000268:	4b13      	ldr	r3, [pc, #76]	@ (80002b8 <main+0xb4>)
  800026a:	68db      	ldr	r3, [r3, #12]
  800026c:	4a12      	ldr	r2, [pc, #72]	@ (80002b8 <main+0xb4>)
  800026e:	f423 6340 	bic.w	r3, r3, #3072	@ 0xc00
  8000272:	60d3      	str	r3, [r2, #12]
-	GPIOC->PUPDR &= ~(0x3 << (LED_PIN*2));
+	GPIOC->PUPDR &= ~(0x3 << (LED_PIN*2));			// Clear existing pull-up/pull-down configuration for the pin
  8000274:	4b11      	ldr	r3, [pc, #68]	@ (80002bc <main+0xb8>)
  8000276:	68db      	ldr	r3, [r3, #12]
  8000278:	4a10      	ldr	r2, [pc, #64]	@ (80002bc <main+0xb8>)
  800027a:	f423 6340 	bic.w	r3, r3, #3072	@ 0xc00
  800027e:	60d3      	str	r3, [r2, #12]
-	GPIOC->PUPDR |= (0x1 << (LED_PIN*2));
+	GPIOC->PUPDR |= (0x1 << (LED_PIN*2));			// Enable pull-up resistor for the pin (01 = Pull-up)
  8000280:	4b0e      	ldr	r3, [pc, #56]	@ (80002bc <main+0xb8>)
  8000282:	68db      	ldr	r3, [r3, #12]
  8000284:	4a0d      	ldr	r2, [pc, #52]	@ (80002bc <main+0xb8>)
@@ -159,13 +159,13 @@ int main(void)
 
 	while(1)
 	{
-		if(!(GPIOC->IDR & (1 << BUTTON_PIN))) {
+		if(!(GPIOC->IDR & (1 << BUTTON_PIN))) {		// Check if button is pressed (active low)
  800028c:	4b0b      	ldr	r3, [pc, #44]	@ (80002bc <main+0xb8>)
  800028e:	691b      	ldr	r3, [r3, #16]
  8000290:	f403 5300 	and.w	r3, r3, #8192	@ 0x2000
  8000294:	2b00      	cmp	r3, #0
  8000296:	d106      	bne.n	80002a6 <main+0xa2>
-			GPIOA->ODR |= (1<<5);
+			GPIOA->ODR |= (1<<LED_PIN);				// Turn ON LED at PA5
  8000298:	4b07      	ldr	r3, [pc, #28]	@ (80002b8 <main+0xb4>)
  800029a:	695b      	ldr	r3, [r3, #20]
  800029c:	4a06      	ldr	r2, [pc, #24]	@ (80002b8 <main+0xb4>)
@@ -173,13 +173,13 @@ int main(void)
  80002a2:	6153      	str	r3, [r2, #20]
  80002a4:	e7f2      	b.n	800028c <main+0x88>
 		} else {
-			GPIOA->ODR &= ~(1<<5);
+			GPIOA->ODR &= ~(1<<LED_PIN);			// Turn OFF LED at PA5
  80002a6:	4b04      	ldr	r3, [pc, #16]	@ (80002b8 <main+0xb4>)
  80002a8:	695b      	ldr	r3, [r3, #20]
  80002aa:	4a03      	ldr	r2, [pc, #12]	@ (80002b8 <main+0xb4>)
  80002ac:	f023 0320 	bic.w	r3, r3, #32
  80002b0:	6153      	str	r3, [r2, #20]
-		if(!(GPIOC->IDR & (1 << BUTTON_PIN))) {
+		if(!(GPIOC->IDR & (1 << BUTTON_PIN))) {		// Check if button is pressed (active low)
  80002b2:	e7eb      	b.n	800028c <main+0x88>
  80002b4:	40023800 	.word	0x40023800
  80002b8:	40020000 	.word	0x40020000
