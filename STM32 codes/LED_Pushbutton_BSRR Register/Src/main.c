@@ -39,7 +39,7 @@ int main(void)
 	GPIOA->OTYPER &= ~(0x1<<LED_PIN);				// Set PA5 as push-pull output
 
 	GPIOA->OSPEEDR &= ~(0x3 << (LED_PIN*2));		// Clear speed bits
-	GPIOA->OSPEEDR |= (0x1<<(LED_PIN*2));				// Set medium speed for PA5
+	GPIOA->OSPEEDR |= (0x1<<(LED_PIN*2));			// Set medium speed for PA5
 
 	GPIOA->PUPDR &= ~(0x3 << (LED_PIN*2));			// No pull-up/pull-down for PA5
 	GPIOC->PUPDR &= ~(0x3 << (LED_PIN*2));			// Clear existing pull-up/pull-down configuration for the pin

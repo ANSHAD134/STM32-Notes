@@ -1,0 +1,82 @@
+/*
+ * LM35_ADC.h
+ *
+ *  Created on: Nov 28, 2025
+ *      Author: HP
+ */
+
+#ifndef LM35_ADC_H_
+#define LM35_ADC_H_
+
+/*
+ * ADC BASE ADDRESS (APB2 Bus)
+ */
+
+#define ADC1_BASEADDR			0x40012000U
+#define ADC2_BASEADDR			0x40012100U
+#define ADC3_BASEADDR			0x40012200U
+#define ADC_COMMON_BASE		 (ADC1_BASEADDR + 0x300)
+
+/*
+ * ADC REGISTER STRUCTURE
+ */
+
+typedef struct
+{
+    volatile uint32_t SR;         // 0x00 Status register
+    volatile uint32_t CR1;        // 0x04 Control register 1
+    volatile uint32_t CR2;        // 0x08 Control register 2
+    volatile uint32_t SMPR1;      // 0x0C Sample time register 1
+    volatile uint32_t SMPR2;      // 0x10 Sample time register 2
+    volatile uint32_t JOFR1;      // 0x14 Injected channel offset 1
+    volatile uint32_t JOFR2;      // 0x18 Injected channel offset 2
+    volatile uint32_t JOFR3;      // 0x1C Injected channel offset 3
+    volatile uint32_t JOFR4;      // 0x20 Injected channel offset 4
+    volatile uint32_t HTR;        // 0x24 Higher threshold register
+    volatile uint32_t LTR;        // 0x28 Lower threshold register
+    volatile uint32_t SQR1;       // 0x2C Regular seq register 1
+    volatile uint32_t SQR2;       // 0x30 Regular seq register 2
+    volatile uint32_t SQR3;       // 0x34 Regular seq register 3
+    volatile uint32_t JSQR;       // 0x38 Injected seq register
+    volatile uint32_t JDR1;       // 0x3C Injected data 1
+    volatile uint32_t JDR2;       // 0x40 Injected data 2
+    volatile uint32_t JDR3;       // 0x44 Injected data 3
+    volatile uint32_t JDR4;       // 0x48 Injected data 4
+    volatile uint32_t DR;         // 0x4C Regular data register
+} ADC_RegDef_t;
+
+typedef struct
+{
+    volatile uint32_t CSR;    // 0x00
+    volatile uint32_t CCR;    // 0x04
+    volatile uint32_t CDR;    // 0x08
+} ADC_Common_RegDef_t;
+
+/*
+ * ADC POINTERS
+ */
+
+#define ADC1				((ADC_RegDef_t*)ADC1_BASEADDR)
+#define ADC2				((ADC_RegDef_t*)ADC2_BASEADDR)
+#define ADC3				((ADC_RegDef_t*)ADC3_BASEADDR)
+#define ADC_COMMON 			((ADC_Common_RegDef_t*)ADC_COMMON_BASE)
+
+/*
+ * CLOCK ENABLE MACROS (APB2 Bus for ADC)
+ */
+
+#define ADC1_CLK_EN()		(RCC->APB2ENR |= (1<<8))
+#define ADC2_CLK_EN()		(RCC->APB2ENR |= (1<<9))
+#define ADC3_CLK_EN()		(RCC->APB2ENR |= (1<<10))
+
+/*
+ * SET BIT
+ */
+
+#define ADC_CR2_SWSTART (1 << 30)
+#define ADC_CR2_ADON    (1 << 0)
+#define ADC_CR2_ALIGN   (1 << 11)
+#define ADC_CR2_CONT    (1 << 1)
+#define ADC_CR1_RES     (1 << 24)
+
+#endif /* LM35_ADC_H_ */

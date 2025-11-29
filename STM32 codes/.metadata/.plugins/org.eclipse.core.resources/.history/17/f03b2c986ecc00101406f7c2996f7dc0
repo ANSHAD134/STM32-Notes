@@ -1,0 +1,13 @@
+/*
+ * LM35_ADC.h
+ *
+ *  Created on: Nov 28, 2025
+ *      Author: HP
+ */
+
+#ifndef LM35_ADC_H_
+#define LM35_ADC_H_
+
+
+
+#endif /* LM35_ADC_H_ */
