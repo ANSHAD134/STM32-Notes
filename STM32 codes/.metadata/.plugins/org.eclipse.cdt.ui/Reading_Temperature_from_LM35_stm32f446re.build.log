@@ -1,4 +1,4 @@
-20:21:54 **** Incremental Build of configuration Debug for project Reading_Temperature_from_LM35_stm32f446re ****
+17:11:04 **** Incremental Build of configuration Debug for project Reading_Temperature_from_LM35_stm32f446re ****
 make -j4 all 
 arm-none-eabi-size  Reading_Temperature_from_LM35_stm32f446re.elf 
    text	   data	    bss	    dec	    hex	filename
@@ -6,5 +6,5 @@ arm-none-eabi-size  Reading_Temperature_from_LM35_stm32f446re.elf
 Finished building: default.size.stdout
  
 
-20:21:54 Build Finished. 0 errors, 0 warnings. (took 493ms)
+17:11:04 Build Finished. 0 errors, 0 warnings. (took 592ms)
 

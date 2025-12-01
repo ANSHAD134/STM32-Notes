@@ -40,22 +40,22 @@ int main(void)
 	ADC1->ADC_CR2 &= ~(1 << 0);								// Disable ADC conversion and go to power down mode
 	ADC1->ADC_CR1 &= ~(3 << 24);							// Set 12-bit (minimum 15 ADCCLK cycles)
 	ADC1->ADC_CR2 &= ~(1 << 11);							// Set Right alignment
-	ADC1->ADC_CR2 |= (1 << 1);								// Set Continuous conversion mode
+	ADC1->ADC_CR2 &= ~(1 << 1);								// Set Single conversion mode
 	ADC1->ADC_SQR1 = 0;										// Channel 0 is first conversion
 	ADC1->ADC_SQR3 = 0;										// Only 1 conversion
-	ADC1->ADC_SMPR2 |= (3 << 0);							// Channel 0 sampling time = 56 cycles
+	ADC1->ADC_SMPR2 |= (3 << 0);							// Channel 0 sampling time = 28 cycles
 	ADC1->ADC_CR2 |= (1 << 0);								// Enable ADC
 	delay(50000);               							// ADC stabilization delay
-	ADC1->ADC_CR2 |= (1 << 30);								// Start conversion
 
 	while(1)
 {
-	while(!(ADC1->ADC_SR & (1 << 1)));  					// Wait for End of conversion becomes 1
+	ADC1->ADC_CR2 |= (1 << 30);								// Start conversion
+	while(!(ADC1->ADC_SR & (1 << 1)));  					// Wait for End of conversion
 	uint16_t adc_value = ADC1->ADC_DR;						// Read ADC Value
 	float voltage = (adc_value * 3.3f) / 4095.0f;
 	float tempC = voltage * 100.0f;   						// 10mV per °C
 
-	printf("Temperature = %.2f degC\n", tempC);
+	printf("Temperature = %.2f C\n", tempC);
 	for (volatile int i = 0; i < 100000; i++);				// small delay
 }
 }

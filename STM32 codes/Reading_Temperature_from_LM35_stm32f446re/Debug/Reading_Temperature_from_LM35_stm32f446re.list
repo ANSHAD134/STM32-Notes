@@ -1436,11 +1436,11 @@ int main(void)
  8001122:	4a2e      	ldr	r2, [pc, #184]	@ (80011dc <main+0x118>)
  8001124:	f423 6300 	bic.w	r3, r3, #2048	@ 0x800
  8001128:	6093      	str	r3, [r2, #8]
-	ADC1->ADC_CR2 &= ~(1 << 1);								// Set Single conversion mode
+	ADC1->ADC_CR2 |= (1 << 1);								// Set Continuous conversion mode
  800112a:	4b2c      	ldr	r3, [pc, #176]	@ (80011dc <main+0x118>)
  800112c:	689b      	ldr	r3, [r3, #8]
  800112e:	4a2b      	ldr	r2, [pc, #172]	@ (80011dc <main+0x118>)
- 8001130:	f023 0302 	bic.w	r3, r3, #2
+ 8001130:	f043 0302 	orr.w	r3, r3, #2
  8001134:	6093      	str	r3, [r2, #8]
 	ADC1->ADC_SQR1 = 0;										// Channel 0 is first conversion
  8001136:	4b29      	ldr	r3, [pc, #164]	@ (80011dc <main+0x118>)
@@ -1450,7 +1450,7 @@ int main(void)
  800113c:	4b27      	ldr	r3, [pc, #156]	@ (80011dc <main+0x118>)
  800113e:	2200      	movs	r2, #0
  8001140:	635a      	str	r2, [r3, #52]	@ 0x34
-	ADC1->ADC_SMPR2 |= (3 << 0);							// Channel 0 sampling time = 28 cycles
+	ADC1->ADC_SMPR2 |= (3 << 0);							// Channel 0 sampling time = 56 cycles
  8001142:	4b26      	ldr	r3, [pc, #152]	@ (80011dc <main+0x118>)
  8001144:	691b      	ldr	r3, [r3, #16]
  8001146:	4a25      	ldr	r2, [pc, #148]	@ (80011dc <main+0x118>)
@@ -1465,16 +1465,16 @@ int main(void)
 	delay(50000);               							// ADC stabilization delay
  800115a:	f24c 3050 	movw	r0, #50000	@ 0xc350
  800115e:	f7ff ffa1 	bl	80010a4 <delay>
-
-	while(1)
-{
 	ADC1->ADC_CR2 |= (1 << 30);								// Start conversion
  8001162:	4b1e      	ldr	r3, [pc, #120]	@ (80011dc <main+0x118>)
  8001164:	689b      	ldr	r3, [r3, #8]
  8001166:	4a1d      	ldr	r2, [pc, #116]	@ (80011dc <main+0x118>)
  8001168:	f043 4380 	orr.w	r3, r3, #1073741824	@ 0x40000000
  800116c:	6093      	str	r3, [r2, #8]
-	while(!(ADC1->ADC_SR & (1 << 1)));  					// Wait for End of conversion
+
+	while(1)
+{
+	while(!(ADC1->ADC_SR & (1 << 1)));  					// Wait for End of conversion becomes 1
  800116e:	bf00      	nop
  8001170:	4b1a      	ldr	r3, [pc, #104]	@ (80011dc <main+0x118>)
  8001172:	681b      	ldr	r3, [r3, #0]
@@ -1506,7 +1506,7 @@ int main(void)
  80011aa:	4603      	mov	r3, r0
  80011ac:	607b      	str	r3, [r7, #4]
 
-	printf("Temperature = %.2f C\n", tempC);
+	printf("Temperature = %.2f degC\n", tempC);
  80011ae:	6878      	ldr	r0, [r7, #4]
  80011b0:	f7ff f9ea 	bl	8000588 <__aeabi_f2d>
  80011b4:	4602      	mov	r2, r0
@@ -1525,7 +1525,7 @@ int main(void)
  80011ce:	4293      	cmp	r3, r2
  80011d0:	ddf8      	ble.n	80011c4 <main+0x100>
 {
- 80011d2:	e7c6      	b.n	8001162 <main+0x9e>
+ 80011d2:	e7cc      	b.n	800116e <main+0xaa>
  80011d4:	40023800 	.word	0x40023800
  80011d8:	40020000 	.word	0x40020000
  80011dc:	40012000 	.word	0x40012000
@@ -2427,11 +2427,11 @@ Infinite_Loop:
  800181c:	e7ee      	b.n	80017fc <_printf_float+0x2a8>
  800181e:	bf00      	nop
  8001820:	7fefffff 	.word	0x7fefffff
- 8001824:	08003d6a 	.word	0x08003d6a
- 8001828:	08003d66 	.word	0x08003d66
- 800182c:	08003d72 	.word	0x08003d72
- 8001830:	08003d6e 	.word	0x08003d6e
- 8001834:	08003d76 	.word	0x08003d76
+ 8001824:	08003d6d 	.word	0x08003d6d
+ 8001828:	08003d69 	.word	0x08003d69
+ 800182c:	08003d75 	.word	0x08003d75
+ 8001830:	08003d71 	.word	0x08003d71
+ 8001834:	08003d79 	.word	0x08003d79
  8001838:	6da3      	ldr	r3, [r4, #88]	@ 0x58
  800183a:	f8dd a038 	ldr.w	sl, [sp, #56]	@ 0x38
  800183e:	4553      	cmp	r3, sl
@@ -2909,8 +2909,8 @@ Infinite_Loop:
  8001cb4:	2500      	movs	r5, #0
  8001cb6:	f104 0619 	add.w	r6, r4, #25
  8001cba:	e7f5      	b.n	8001ca8 <_printf_i+0x220>
- 8001cbc:	08003d78 	.word	0x08003d78
- 8001cc0:	08003d89 	.word	0x08003d89
+ 8001cbc:	08003d7b 	.word	0x08003d7b
+ 8001cc0:	08003d8c 	.word	0x08003d8c
 
 08001cc4 <std>:
  8001cc4:	2300      	movs	r3, #0
@@ -3668,15 +3668,15 @@ Infinite_Loop:
  80023cc:	3fc68a28 	.word	0x3fc68a28
  80023d0:	509f79fb 	.word	0x509f79fb
  80023d4:	3fd34413 	.word	0x3fd34413
- 80023d8:	08003da7 	.word	0x08003da7
- 80023dc:	08003dbe 	.word	0x08003dbe
+ 80023d8:	08003daa 	.word	0x08003daa
+ 80023dc:	08003dc1 	.word	0x08003dc1
  80023e0:	7ff00000 	.word	0x7ff00000
- 80023e4:	08003da3 	.word	0x08003da3
- 80023e8:	08003d77 	.word	0x08003d77
- 80023ec:	08003d76 	.word	0x08003d76
+ 80023e4:	08003da6 	.word	0x08003da6
+ 80023e8:	08003d7a 	.word	0x08003d7a
+ 80023ec:	08003d79 	.word	0x08003d79
  80023f0:	3ff80000 	.word	0x3ff80000
  80023f4:	08003f10 	.word	0x08003f10
- 80023f8:	08003e16 	.word	0x08003e16
+ 80023f8:	08003e19 	.word	0x08003e19
  80023fc:	f8d9 301c 	ldr.w	r3, [r9, #28]
  8002400:	6018      	str	r0, [r3, #0]
  8002402:	9b08      	ldr	r3, [sp, #32]
@@ -4534,8 +4534,8 @@ Infinite_Loop:
  8002c98:	f000 f968 	bl	8002f6c <__multadd>
  8002c9c:	9003      	str	r0, [sp, #12]
  8002c9e:	e7eb      	b.n	8002c78 <_dtoa_r+0xb70>
- 8002ca0:	08003e16 	.word	0x08003e16
- 8002ca4:	08003d9a 	.word	0x08003d9a
+ 8002ca0:	08003e19 	.word	0x08003e19
+ 8002ca4:	08003d9d 	.word	0x08003d9d
 
 08002ca8 <_free_r>:
  8002ca8:	b538      	push	{r3, r4, r5, lr}
@@ -4819,8 +4819,8 @@ Infinite_Loop:
  8002f18:	e9c0 3303 	strd	r3, r3, [r0, #12]
  8002f1c:	e7f7      	b.n	8002f0e <_Balloc+0x66>
  8002f1e:	bf00      	nop
- 8002f20:	08003da7 	.word	0x08003da7
- 8002f24:	08003e27 	.word	0x08003e27
+ 8002f20:	08003daa 	.word	0x08003daa
+ 8002f24:	08003e2a 	.word	0x08003e2a
 
 08002f28 <_Bfree>:
  8002f28:	b570      	push	{r4, r5, r6, lr}
@@ -4848,8 +4848,8 @@ Infinite_Loop:
  8002f5c:	6021      	str	r1, [r4, #0]
  8002f5e:	f843 4022 	str.w	r4, [r3, r2, lsl #2]
  8002f62:	bd70      	pop	{r4, r5, r6, pc}
- 8002f64:	08003da7 	.word	0x08003da7
- 8002f68:	08003e27 	.word	0x08003e27
+ 8002f64:	08003daa 	.word	0x08003daa
+ 8002f68:	08003e2a 	.word	0x08003e2a
 
 08002f6c <__multadd>:
  8002f6c:	e92d 41f0 	stmdb	sp!, {r4, r5, r6, r7, r8, lr}
@@ -4903,8 +4903,8 @@ Infinite_Loop:
  8002fe8:	6125      	str	r5, [r4, #16]
  8002fea:	4620      	mov	r0, r4
  8002fec:	e8bd 81f0 	ldmia.w	sp!, {r4, r5, r6, r7, r8, pc}
- 8002ff0:	08003e16 	.word	0x08003e16
- 8002ff4:	08003e27 	.word	0x08003e27
+ 8002ff0:	08003e19 	.word	0x08003e19
+ 8002ff4:	08003e2a 	.word	0x08003e2a
 
 08002ff8 <__hi0bits>:
  8002ff8:	f5b0 3f80 	cmp.w	r0, #65536	@ 0x10000
@@ -4994,8 +4994,8 @@ Infinite_Loop:
  80030ae:	6103      	str	r3, [r0, #16]
  80030b0:	bd10      	pop	{r4, pc}
  80030b2:	bf00      	nop
- 80030b4:	08003e16 	.word	0x08003e16
- 80030b8:	08003e27 	.word	0x08003e27
+ 80030b4:	08003e19 	.word	0x08003e19
+ 80030b8:	08003e2a 	.word	0x08003e2a
 
 080030bc <__multiply>:
  80030bc:	e92d 4ff0 	stmdb	sp!, {r4, r5, r6, r7, r8, r9, sl, fp, lr}
@@ -5114,8 +5114,8 @@ Infinite_Loop:
  80031f2:	e79f      	b.n	8003134 <__multiply+0x78>
  80031f4:	3e01      	subs	r6, #1
  80031f6:	e7a1      	b.n	800313c <__multiply+0x80>
- 80031f8:	08003e16 	.word	0x08003e16
- 80031fc:	08003e27 	.word	0x08003e27
+ 80031f8:	08003e19 	.word	0x08003e19
+ 80031fc:	08003e2a 	.word	0x08003e2a
 
 08003200 <__pow5mult>:
  8003200:	e92d 43f8 	stmdb	sp!, {r3, r4, r5, r6, r7, r8, r9, lr}
@@ -5183,9 +5183,9 @@ Infinite_Loop:
  80032a0:	4630      	mov	r0, r6
  80032a2:	e8bd 83f8 	ldmia.w	sp!, {r3, r4, r5, r6, r7, r8, r9, pc}
  80032a6:	bf00      	nop
- 80032a8:	08003ed8 	.word	0x08003ed8
- 80032ac:	08003da7 	.word	0x08003da7
- 80032b0:	08003e27 	.word	0x08003e27
+ 80032a8:	08003edc 	.word	0x08003edc
+ 80032ac:	08003daa 	.word	0x08003daa
+ 80032b0:	08003e2a 	.word	0x08003e2a
 
 080032b4 <__lshift>:
  80032b4:	e92d 47f0 	stmdb	sp!, {r4, r5, r6, r7, r8, r9, sl, lr}
@@ -5264,8 +5264,8 @@ Infinite_Loop:
  800337e:	d8f9      	bhi.n	8003374 <__lshift+0xc0>
  8003380:	e7ea      	b.n	8003358 <__lshift+0xa4>
  8003382:	bf00      	nop
- 8003384:	08003e16 	.word	0x08003e16
- 8003388:	08003e27 	.word	0x08003e27
+ 8003384:	08003e19 	.word	0x08003e19
+ 8003388:	08003e2a 	.word	0x08003e2a
 
 0800338c <__mcmp>:
  800338c:	690a      	ldr	r2, [r1, #16]
@@ -5399,8 +5399,8 @@ Infinite_Loop:
  80034da:	e7dd      	b.n	8003498 <__mdiff+0xd4>
  80034dc:	3f01      	subs	r7, #1
  80034de:	e7e7      	b.n	80034b0 <__mdiff+0xec>
- 80034e0:	08003e16 	.word	0x08003e16
- 80034e4:	08003e27 	.word	0x08003e27
+ 80034e0:	08003e19 	.word	0x08003e19
+ 80034e4:	08003e2a 	.word	0x08003e2a
 
 080034e8 <__d2b>:
  80034e8:	e92d 4373 	stmdb	sp!, {r0, r1, r4, r5, r6, r8, r9, lr}
@@ -5467,8 +5467,8 @@ Infinite_Loop:
  8003586:	f7ff fd37 	bl	8002ff8 <__hi0bits>
  800358a:	ebc0 1042 	rsb	r0, r0, r2, lsl #5
  800358e:	e7e4      	b.n	800355a <__d2b+0x72>
- 8003590:	08003e16 	.word	0x08003e16
- 8003594:	08003e27 	.word	0x08003e27
+ 8003590:	08003e19 	.word	0x08003e19
+ 8003594:	08003e2a 	.word	0x08003e2a
 
 08003598 <__sfputc_r>:
  8003598:	6893      	ldr	r3, [r2, #8]
@@ -5734,9 +5734,9 @@ Infinite_Loop:
  80037fc:	4630      	mov	r0, r6
  80037fe:	f7fe f943 	bl	8001a88 <_printf_i>
  8003802:	e7e4      	b.n	80037ce <_vfiprintf_r+0x1e6>
- 8003804:	08003e80 	.word	0x08003e80
- 8003808:	08003e86 	.word	0x08003e86
- 800380c:	08003e8a 	.word	0x08003e8a
+ 8003804:	08003e83 	.word	0x08003e83
+ 8003808:	08003e89 	.word	0x08003e89
+ 800380c:	08003e8d 	.word	0x08003e8d
  8003810:	08001555 	.word	0x08001555
  8003814:	080035c3 	.word	0x080035c3
 
@@ -6079,9 +6079,9 @@ Infinite_Loop:
  8003af4:	e7f3      	b.n	8003ade <__assert_func+0x12>
  8003af6:	bf00      	nop
  8003af8:	2000000c 	.word	0x2000000c
- 8003afc:	08003e9b 	.word	0x08003e9b
- 8003b00:	08003ea8 	.word	0x08003ea8
- 8003b04:	08003ed6 	.word	0x08003ed6
+ 8003afc:	08003e9e 	.word	0x08003e9e
+ 8003b00:	08003eab 	.word	0x08003eab
+ 8003b04:	08003ed9 	.word	0x08003ed9
 
 08003b08 <_calloc_r>:
  8003b08:	b570      	push	{r4, r5, r6, lr}

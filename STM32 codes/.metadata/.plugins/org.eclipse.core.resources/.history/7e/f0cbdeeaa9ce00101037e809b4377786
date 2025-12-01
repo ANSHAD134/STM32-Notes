@@ -55,7 +55,7 @@ int main(void)
 	float voltage = (adc_value * 3.3f) / 4095.0f;
 	float tempC = voltage * 100.0f;   						// 10mV per °C
 
-	printf("Temperature = %.2f degC\n", tempC);
+	printf("Temperature = %.2f °C\n", tempC);
 	for (volatile int i = 0; i < 100000; i++);				// small delay
 }
 }
