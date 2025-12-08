@@ -1,0 +1,14 @@
+/*
+ * LM35.h
+ *
+ *  Created on: 07-Dec-2025
+ *      Author: HP
+ */
+
+#ifndef INC_LM35_H_
+#define INC_LM35_H_
+
+#define LM35_init();
+
+
+#endif /* INC_LM35_H_ */
