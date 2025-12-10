@@ -1,0 +1,18 @@
+/*
+ * LM35.h
+ *
+ *  Created on: 10-Dec-2025
+ *      Author: HP
+ */
+#include "stm32_f446xx.h"
+#include <stdint.h>
+
+#ifndef INC_LM35_H_
+#define INC_LM35_H_
+
+#define ADC_PIN	    0
+
+void ADC_init(void);
+void Read_ADC(void);
+
+#endif /* INC_LM35_H_ */

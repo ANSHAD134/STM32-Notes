@@ -10,3 +10,5 @@
 1765208922886	Delete resource 'OLED_Program/Core/Src/LM35_Temp.c'
 1765208928788	Delete resource 'OLED_Program/Core/Src/LM35.c'
 1765209050340	Delete resource 'First_Program/Driver'
+1765352642601	Delete resource 'OLED_LM35_ADC_Program'
+1765365387327	Delete resource 'OLED_LM35_ADC_Program/Core/Src/LM35.c'
