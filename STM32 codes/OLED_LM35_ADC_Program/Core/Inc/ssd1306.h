@@ -8,6 +8,10 @@
 #ifndef INC_SSD1306_H_
 #define INC_SSD1306_H_
 
+#include "main.h"
+#include "stm32f4xx_hal.h"
+#include <stdint.h>
+
 /* C++ detection */
 #ifdef __cplusplus
 extern C {
@@ -36,7 +40,6 @@ SDA        |PB7          |Serial data line
 
 #include "stdlib.h"
 #include "string.h"
-
 
 /* I2C address */
 #ifndef SSD1306_I2C_ADDR

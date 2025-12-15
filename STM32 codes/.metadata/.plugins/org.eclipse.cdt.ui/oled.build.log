@@ -1,10 +1,10 @@
-12:04:26 **** Incremental Build of configuration Debug for project oled ****
+12:40:39 **** Incremental Build of configuration Debug for project oled ****
 make -j4 all 
 arm-none-eabi-size  oled.elf 
    text	   data	    bss	    dec	    hex	filename
-  23204	     28	   2756	  25988	   6584	oled.elf
+  32076	    476	   3116	  35668	   8b54	oled.elf
 Finished building: default.size.stdout
  
 
-12:04:26 Build Finished. 0 errors, 0 warnings. (took 575ms)
+12:40:40 Build Finished. 0 errors, 0 warnings. (took 499ms)
 

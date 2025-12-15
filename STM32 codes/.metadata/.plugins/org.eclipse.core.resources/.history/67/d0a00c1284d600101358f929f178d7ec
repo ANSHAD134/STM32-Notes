@@ -1,0 +1,19 @@
+/*
+ * LM35.c
+ *
+ *  Created on: 10-Dec-2025
+ *      Author: HP
+ */
+
+#include "LM35.h"
+#define ADC_PIN	    0
+
+void ADC_init(void)
+{
+		GPIOA_CLK_EN();											// Enable GPIOA Clock
+		ADC1_CLK_EN();											// Enable ADC1 Clock
+
+		GPIOA->MODER &= ~(0x3 << (ADC_PIN*2));					// Clear mode bits for PA0
+		GPIOA->MODER |= (0x3 << (ADC_PIN*2));					// Set PA0 as Analog Mode
+		GPIOA->PUPDR &= ~(0x3 << (ADC_PIN*2));					// No pull-up/pull-down for PA0
+}
