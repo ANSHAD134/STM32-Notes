@@ -11,3 +11,6 @@ compilation terminated.
 make: *** [Src/subdir.mk:25: Src/main.o] Error 1
 make: *** Waiting for unfinished jobs....
 "make -j4 all" terminated with exit code 2. Build might be incomplete.
+
+21:37:45 Build Failed. 3 errors, 0 warnings. (took 579ms)
+
