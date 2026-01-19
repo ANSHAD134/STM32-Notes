@@ -27,7 +27,7 @@
 #include "stm32f446xx_low_power.h"
 
 /*--------Global variables-------*/
-volatile uint8_t wake_flag = 0;
+volatile uint8_t wake_flag;
 
 /* USER CODE BEGIN PV */
 char msg[100];
@@ -90,7 +90,7 @@ int main(void)
         if (EXTI->PR & (1 << GPIO_PIN_NO_0))
         {
             // Clear by writing 1
-            EXTI->PR = (1 << GPIO_PIN_NO_0);							 // Clear pending bit
+            EXTI->PR |= (1 << GPIO_PIN_NO_0);							 // Clear pending bit
             wake_flag = 1;
         }
 
@@ -99,20 +99,18 @@ int main(void)
 while (1)
 {
 	char msg[] = "Entering STOP mode\r\n";
-	USART_SendData(&USART_Handle_t, (uint8_t *)msg, sizeof(msg) - 1);
+	USART_SendData(USART_Handle *pUSARTHandle, (uint8_t *)msg, sizeof(msg) - 1);
 
 	Enter_Stop_Mode();									// Enter low power mode
 
 	SystemClock_ReConfig();								// Restore clock after STOP
 
-	if (wake_flag == 1)
+	if (Wake_flag = 0)
 	{
-		wake_flag = 0;   								// Clear flag
-
 		GPIOD->ODR ^= (1 << 12);				 		// Toggle LED (PD12)
 
 		char msg[] = "Wake-up interrupt occurred\r\n";
-		USART_SendData(&USART_Handle_t,(uint8_t *)msg,sizeof(msg) - 1);
+		USART_SendData(USART_Handle *pUSARTHandle,(uint8_t *)msg,sizeof(msg) - 1);
 	}
 }
 }

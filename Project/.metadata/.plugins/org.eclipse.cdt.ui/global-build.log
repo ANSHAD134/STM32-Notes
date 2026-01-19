@@ -1,19 +1,35 @@
-21:24:37 **** Build of configuration Debug for project Power_Aware_Interrupt_System _Mini Project ****
+12:14:40 **** Build of configuration Debug for project Power_Aware_Interrupt_System _Mini Project ****
 make -j4 all 
 arm-none-eabi-gcc -mcpu=cortex-m4 -g3 -DDEBUG -c -x assembler-with-cpp -MMD -MP -MF"Startup/startup_stm32f446retx.d" -MT"Startup/startup_stm32f446retx.o" --specs=nano.specs -mfloat-abi=soft -mthumb -o "Startup/startup_stm32f446retx.o" "../Startup/startup_stm32f446retx.s"
 arm-none-eabi-gcc "../Src/main.c" -mcpu=cortex-m4 -std=gnu11 -g3 -DDEBUG -DSTM32 -DSTM32F4 -DSTM32F446RETx -DNUCLEO_F446RE -c -I"C:/Users/HP/Documents/C Programming/STM32/Project/Power_Aware_Interrupt_System _Mini Project/Driver/Inc" -I../Inc -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Src/main.d" -MT"Src/main.o" --specs=nano.specs -mfloat-abi=soft -mthumb -o "Src/main.o"
 arm-none-eabi-gcc "../Src/syscalls.c" -mcpu=cortex-m4 -std=gnu11 -g3 -DDEBUG -DSTM32 -DSTM32F4 -DSTM32F446RETx -DNUCLEO_F446RE -c -I"C:/Users/HP/Documents/C Programming/STM32/Project/Power_Aware_Interrupt_System _Mini Project/Driver/Inc" -I../Inc -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Src/syscalls.d" -MT"Src/syscalls.o" --specs=nano.specs -mfloat-abi=soft -mthumb -o "Src/syscalls.o"
 arm-none-eabi-gcc "../Src/sysmem.c" -mcpu=cortex-m4 -std=gnu11 -g3 -DDEBUG -DSTM32 -DSTM32F4 -DSTM32F446RETx -DNUCLEO_F446RE -c -I"C:/Users/HP/Documents/C Programming/STM32/Project/Power_Aware_Interrupt_System _Mini Project/Driver/Inc" -I../Inc -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Src/sysmem.d" -MT"Src/sysmem.o" --specs=nano.specs -mfloat-abi=soft -mthumb -o "Src/sysmem.o"
 ../Src/main.c: In function 'main':
-../Src/main.c:102:25: error: 'USART2_Handle' undeclared (first use in this function); did you mean 'USART_Handle_t'?
-  102 |         USART_SendData(&USART2_Handle, (uint8_t *)msg, sizeof(msg) - 1);
-      |                         ^~~~~~~~~~~~~
-      |                         USART_Handle_t
-../Src/main.c:102:25: note: each undeclared identifier is reported only once for each function it appears in
-../Src/main.c:108:13: error: 'Wake_flag' undeclared (first use in this function); did you mean 'wake_flag'?
-  108 |         if (Wake_flag = 0)
-      |             ^~~~~~~~~
-      |             wake_flag
+../Src/main.c:102:25: error: expected expression before 'USART_Handle_t'
+  102 |         USART_SendData(&USART_Handle_t, (uint8_t *)msg, sizeof(msg) - 1);
+      |                         ^~~~~~~~~~~~~~
+../Src/main.c:102:9: error: too few arguments to function 'USART_SendData'
+  102 |         USART_SendData(&USART_Handle_t, (uint8_t *)msg, sizeof(msg) - 1);
+      |         ^~~~~~~~~~~~~~
+In file included from ../Src/main.c:26:
+C:/Users/HP/Documents/C Programming/STM32/Project/Power_Aware_Interrupt_System _Mini Project/Driver/Inc/stm32f446xx_usart_driver.h:149:6: note: declared here
+  149 | void USART_SendData(USART_Handle_t *pUSARTHandle, uint8_t *pTxBuffer, uint32_t Len);
+      |      ^~~~~~~~~~~~~~
+../Src/main.c:115:33: error: expected expression before 'USART_Handle_t'
+  115 |                 USART_SendData(&USART_Handle_t,(uint8_t *)msg,sizeof(msg) - 1);
+      |                                 ^~~~~~~~~~~~~~
+../Src/main.c:115:17: error: too few arguments to function 'USART_SendData'
+  115 |                 USART_SendData(&USART_Handle_t,(uint8_t *)msg,sizeof(msg) - 1);
+      |                 ^~~~~~~~~~~~~~
+C:/Users/HP/Documents/C Programming/STM32/Project/Power_Aware_Interrupt_System _Mini Project/Driver/Inc/stm32f446xx_usart_driver.h:149:6: note: declared here
+  149 | void USART_SendData(USART_Handle_t *pUSARTHandle, uint8_t *pTxBuffer, uint32_t Len);
+      |      ^~~~~~~~~~~~~~
+../Src/main.c:114:22: warning: unused variable 'msg' [-Wunused-variable]
+  114 |                 char msg[] = "Wake-up interrupt occurred\r\n";
+      |                      ^~~
+../Src/main.c:101:14: warning: unused variable 'msg' [-Wunused-variable]
+  101 |         char msg[] = "Entering STOP mode\r\n";
+      |              ^~~
 make: *** [Src/subdir.mk:25: Src/main.o] Error 1
 make: *** Waiting for unfinished jobs....
 "make -j4 all" terminated with exit code 2. Build might be incomplete.

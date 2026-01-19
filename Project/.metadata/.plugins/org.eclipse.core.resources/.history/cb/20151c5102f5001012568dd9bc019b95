@@ -98,7 +98,7 @@ int main(void)
 
 while (1)
 {
-	char msg[] = "Entering STOP mode\r\n";
+	char msg = "Entering STOP mode\r\n";
 	USART_SendData(&USART_Handle_t, (uint8_t *)msg, sizeof(msg) - 1);
 
 	Enter_Stop_Mode();									// Enter low power mode
@@ -111,7 +111,7 @@ while (1)
 
 		GPIOD->ODR ^= (1 << 12);				 		// Toggle LED (PD12)
 
-		char msg[] = "Wake-up interrupt occurred\r\n";
+		char msg = "Wake-up interrupt occurred\r\n";
 		USART_SendData(&USART_Handle_t,(uint8_t *)msg,sizeof(msg) - 1);
 	}
 }
