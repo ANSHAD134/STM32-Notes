@@ -60,7 +60,7 @@ int main(void)
 
     /* -------- NVIC Configuration -------- */
     GPIO_IRQInterruptConfig(IRQ_NO_EXTI0,ENABLE);					// Enable EXTI0 interrupt
-    GPIO_IRQPriorityConfig(IRQ_NO_EXTI0, NVIC_IRQ_PRI5);			// Set EXTI0 interrupt priority to 5
+    GPIO_IRQPriorityConfig(IRQ_NO_EXTI0, 5);						// Set EXTI0 interrupt priority to 5
 
     /* -------- USART Debug Init (Optional) -------- */
     USART_Handle_t usart;

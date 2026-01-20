@@ -5,6 +5,9 @@
 
 #include "stm32f446xx.h"
 
+#define PWR_BASEADDR (APB1PERIPH_BASEADDR + 0x7000)
+
+
 /* Clock Enable Macro for PWR peripheral */
 #define PWR_PCLK_EN()   (RCC->APB1ENR |= (1 << 28))
 
