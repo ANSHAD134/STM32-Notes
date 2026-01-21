@@ -1,3 +1,7 @@
+"./Driver/Src/stm32f446xx_gpio_driver.o"
+"./Driver/Src/stm32f446xx_low_power.o"
+"./Driver/Src/stm32f446xx_rcc_driver.o"
+"./Driver/Src/stm32f446xx_usart_driver.o"
 "./Src/main.o"
 "./Src/syscalls.o"
 "./Src/sysmem.o"

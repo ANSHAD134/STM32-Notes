@@ -30,6 +30,7 @@
 volatile uint8_t wake_flag = 0;
 
 /* USER CODE BEGIN PV */
+USART_Handle_t USART2Handle;
 /* USER CODE END PV */
 
 int main(void)
@@ -41,14 +42,14 @@ int main(void)
 
     /* USER CODE BEGIN 1 */
     /* LED: PD12 OUTPUT */
-    GPIOD->MODER &= ~(0x3 << (GPIO_PIN_NO_12 * 2));		// Clear mode bits for pin 12
-    GPIOD->MODER |=  (1 << (GPIO_PIN_NO_12 * 2));		// Set pin 12 as output
+    GPIOD->MODER &= ~(0x3 << (GPIO_PIN_NO_12 * 2));					// Clear mode bits for pin 12
+    GPIOD->MODER |=  (1 << (GPIO_PIN_NO_12 * 2));					// Set pin 12 as output
 
     /* Button: PA0 INPUT */
-    GPIOA->MODER &= ~(0x3 << (GPIO_PIN_NO_0 * 2));		// Clear mode bits for pin 0 (set as input)
-    GPIOA->PUPDR &= ~(0x3 << (GPIO_PIN_NO_0 * 2)); 		// No pull
+    GPIOA->MODER &= ~(0x3 << (GPIO_PIN_NO_0 * 2));					// Clear mode bits for pin 0 (set as input)
+    GPIOA->PUPDR &= ~(0x3 << (GPIO_PIN_NO_0 * 2)); 					// No pull
 
-    SYSCFG->EXTICR[0] &= ~(0xF << 0);					// Clear EXTI0 bits
+    SYSCFG->EXTICR[0] &= ~(0xF << 0);								// Clear EXTI0 bits
 
     /* Enable EXTI0 interrupt */
     EXTI->IMR  |= (1 << GPIO_PIN_NO_0);								// Unmask EXTI line 0 to enable interrupt
@@ -97,19 +98,20 @@ int main(void)
 
 while (1)
 {
-	USART_SendData("Entering STOP mode\r\n");
+	USART_SendData(&USART2Handle,(uint8_t *)"Entering Sleep mode\r\n",strlen("Entering_Sleep_mode\r\n"));
 
 	Enter_Stop_Mode();									// Enter low power mode
 
 	SystemClock_ReConfig();								// Restore clock after STOP
 
-	if (wake_flag == 1)
+	if (wake_flag)
 	{
 		wake_flag = 0;   								// Clear flag
 
 		GPIOD->ODR ^= (1 << 12);				 		// Toggle LED (PD12)
 
-		USART_SendData("Wake-up interrupt occurred\r\n");
+		USART_SendData(&USART2Handle,(uint8_t *)"Wake-up interrupt occurred\r\n",strlen("Wake-up interrupt occurred\r\n"));
 	}
 }
 }
+

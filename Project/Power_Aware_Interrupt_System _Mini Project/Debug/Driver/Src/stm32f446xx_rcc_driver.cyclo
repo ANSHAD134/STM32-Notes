@@ -1,0 +1,3 @@
+../Driver/Src/stm32f446xx_rcc_driver.c:14:10:RCC_GetPCLK1Value	6
+../Driver/Src/stm32f446xx_rcc_driver.c:78:10:RCC_GetPCLK2Value	4
+../Driver/Src/stm32f446xx_rcc_driver.c:116:11:RCC_GetPLLOutputClock	1

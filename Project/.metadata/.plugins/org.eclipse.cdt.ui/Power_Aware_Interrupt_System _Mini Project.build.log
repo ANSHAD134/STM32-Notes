@@ -1,42 +1,28 @@
-18:11:32 **** Build of configuration Debug for project Power_Aware_Interrupt_System _Mini Project ****
+21:19:03 **** Build of configuration Debug for project Power_Aware_Interrupt_System _Mini Project ****
 make -j4 all 
 arm-none-eabi-gcc -mcpu=cortex-m4 -g3 -DDEBUG -c -x assembler-with-cpp -MMD -MP -MF"Startup/startup_stm32f446retx.d" -MT"Startup/startup_stm32f446retx.o" --specs=nano.specs -mfloat-abi=soft -mthumb -o "Startup/startup_stm32f446retx.o" "../Startup/startup_stm32f446retx.s"
 arm-none-eabi-gcc "../Src/main.c" -mcpu=cortex-m4 -std=gnu11 -g3 -DDEBUG -DSTM32 -DSTM32F4 -DSTM32F446RETx -DNUCLEO_F446RE -c -I"C:/Users/HP/Documents/C Programming/STM32/Project/Power_Aware_Interrupt_System _Mini Project/Driver/Inc" -I../Inc -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Src/main.d" -MT"Src/main.o" --specs=nano.specs -mfloat-abi=soft -mthumb -o "Src/main.o"
 arm-none-eabi-gcc "../Src/syscalls.c" -mcpu=cortex-m4 -std=gnu11 -g3 -DDEBUG -DSTM32 -DSTM32F4 -DSTM32F446RETx -DNUCLEO_F446RE -c -I"C:/Users/HP/Documents/C Programming/STM32/Project/Power_Aware_Interrupt_System _Mini Project/Driver/Inc" -I../Inc -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Src/syscalls.d" -MT"Src/syscalls.o" --specs=nano.specs -mfloat-abi=soft -mthumb -o "Src/syscalls.o"
 arm-none-eabi-gcc "../Src/sysmem.c" -mcpu=cortex-m4 -std=gnu11 -g3 -DDEBUG -DSTM32 -DSTM32F4 -DSTM32F446RETx -DNUCLEO_F446RE -c -I"C:/Users/HP/Documents/C Programming/STM32/Project/Power_Aware_Interrupt_System _Mini Project/Driver/Inc" -I../Inc -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Src/sysmem.d" -MT"Src/sysmem.o" --specs=nano.specs -mfloat-abi=soft -mthumb -o "Src/sysmem.o"
-../Src/main.c: In function 'main':
-../Src/main.c:100:24: warning: passing argument 1 of 'USART_SendData' from incompatible pointer type [-Wincompatible-pointer-types]
-  100 |         USART_SendData("Entering STOP mode\r\n");
-      |                        ^~~~~~~~~~~~~~~~~~~~~~~~
-      |                        |
-      |                        char *
-In file included from ../Src/main.c:26:
-C:/Users/HP/Documents/C Programming/STM32/Project/Power_Aware_Interrupt_System _Mini Project/Driver/Inc/stm32f446xx_usart_driver.h:149:37: note: expected 'USART_Handle_t *' but argument is of type 'char *'
-  149 | void USART_SendData(USART_Handle_t *pUSARTHandle, uint8_t *pTxBuffer, uint32_t Len);
-      |                     ~~~~~~~~~~~~~~~~^~~~~~~~~~~~
-../Src/main.c:100:9: error: too few arguments to function 'USART_SendData'
-  100 |         USART_SendData("Entering STOP mode\r\n");
-      |         ^~~~~~~~~~~~~~
-C:/Users/HP/Documents/C Programming/STM32/Project/Power_Aware_Interrupt_System _Mini Project/Driver/Inc/stm32f446xx_usart_driver.h:149:6: note: declared here
-  149 | void USART_SendData(USART_Handle_t *pUSARTHandle, uint8_t *pTxBuffer, uint32_t Len);
-      |      ^~~~~~~~~~~~~~
-../Src/main.c:112:32: warning: passing argument 1 of 'USART_SendData' from incompatible pointer type [-Wincompatible-pointer-types]
-  112 |                 USART_SendData("Wake-up interrupt occurred\r\n");
-      |                                ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-      |                                |
-      |                                char *
-C:/Users/HP/Documents/C Programming/STM32/Project/Power_Aware_Interrupt_System _Mini Project/Driver/Inc/stm32f446xx_usart_driver.h:149:37: note: expected 'USART_Handle_t *' but argument is of type 'char *'
-  149 | void USART_SendData(USART_Handle_t *pUSARTHandle, uint8_t *pTxBuffer, uint32_t Len);
-      |                     ~~~~~~~~~~~~~~~~^~~~~~~~~~~~
-../Src/main.c:112:17: error: too few arguments to function 'USART_SendData'
-  112 |                 USART_SendData("Wake-up interrupt occurred\r\n");
-      |                 ^~~~~~~~~~~~~~
-C:/Users/HP/Documents/C Programming/STM32/Project/Power_Aware_Interrupt_System _Mini Project/Driver/Inc/stm32f446xx_usart_driver.h:149:6: note: declared here
-  149 | void USART_SendData(USART_Handle_t *pUSARTHandle, uint8_t *pTxBuffer, uint32_t Len);
-      |      ^~~~~~~~~~~~~~
-make: *** [Src/subdir.mk:25: Src/main.o] Error 1
+arm-none-eabi-gcc "../Driver/Src/stm32f446xx_gpio_driver.c" -mcpu=cortex-m4 -std=gnu11 -g3 -DDEBUG -DSTM32 -DSTM32F4 -DSTM32F446RETx -DNUCLEO_F446RE -c -I"C:/Users/HP/Documents/C Programming/STM32/Project/Power_Aware_Interrupt_System _Mini Project/Driver/Inc" -I../Inc -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Driver/Src/stm32f446xx_gpio_driver.d" -MT"Driver/Src/stm32f446xx_gpio_driver.o" --specs=nano.specs -mfloat-abi=soft -mthumb -o "Driver/Src/stm32f446xx_gpio_driver.o"
+arm-none-eabi-gcc "../Driver/Src/stm32f446xx_low_power.c" -mcpu=cortex-m4 -std=gnu11 -g3 -DDEBUG -DSTM32 -DSTM32F4 -DSTM32F446RETx -DNUCLEO_F446RE -c -I"C:/Users/HP/Documents/C Programming/STM32/Project/Power_Aware_Interrupt_System _Mini Project/Driver/Inc" -I../Inc -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Driver/Src/stm32f446xx_low_power.d" -MT"Driver/Src/stm32f446xx_low_power.o" --specs=nano.specs -mfloat-abi=soft -mthumb -o "Driver/Src/stm32f446xx_low_power.o"
+arm-none-eabi-gcc "../Driver/Src/stm32f446xx_rcc_driver.c" -mcpu=cortex-m4 -std=gnu11 -g3 -DDEBUG -DSTM32 -DSTM32F4 -DSTM32F446RETx -DNUCLEO_F446RE -c -I"C:/Users/HP/Documents/C Programming/STM32/Project/Power_Aware_Interrupt_System _Mini Project/Driver/Inc" -I../Inc -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Driver/Src/stm32f446xx_rcc_driver.d" -MT"Driver/Src/stm32f446xx_rcc_driver.o" --specs=nano.specs -mfloat-abi=soft -mthumb -o "Driver/Src/stm32f446xx_rcc_driver.o"
+arm-none-eabi-gcc "../Driver/Src/stm32f446xx_usart_driver.c" -mcpu=cortex-m4 -std=gnu11 -g3 -DDEBUG -DSTM32 -DSTM32F4 -DSTM32F446RETx -DNUCLEO_F446RE -c -I"C:/Users/HP/Documents/C Programming/STM32/Project/Power_Aware_Interrupt_System _Mini Project/Driver/Inc" -I../Inc -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Driver/Src/stm32f446xx_usart_driver.d" -MT"Driver/Src/stm32f446xx_usart_driver.o" --specs=nano.specs -mfloat-abi=soft -mthumb -o "Driver/Src/stm32f446xx_usart_driver.o"
+../Driver/Src/stm32f446xx_low_power.c: In function 'Enter_Stop_Mode':
+../Driver/Src/stm32f446xx_low_power.c:10:9: error: 'SCB' undeclared (first use in this function)
+   10 |         SCB->SCR |= (1 << 2);
+      |         ^~~
+../Driver/Src/stm32f446xx_low_power.c:10:9: note: each undeclared identifier is reported only once for each function it appears in
+../Driver/Src/stm32f446xx_low_power.c:15:15: error: expected expression before ')' token
+   15 |         __WFI();   // Wait For Interrupt
+      |               ^
+make: *** [Driver/Src/subdir.mk:28: Driver/Src/stm32f446xx_low_power.o] Error 1
 make: *** Waiting for unfinished jobs....
+../Driver/Src/stm32f446xx_usart_driver.c: In function 'USART_IRQHandling':
+../Driver/Src/stm32f446xx_usart_driver.c:645:33: warning: variable 'temp3' set but not used [-Wunused-but-set-variable]
+  645 |         uint32_t temp1 , temp2, temp3;
+      |                                 ^~~~~
 "make -j4 all" terminated with exit code 2. Build might be incomplete.
 
-18:11:35 Build Failed. 4 errors, 2 warnings. (took 2s.546ms)
+21:19:04 Build Failed. 4 errors, 1 warnings. (took 987ms)
 
