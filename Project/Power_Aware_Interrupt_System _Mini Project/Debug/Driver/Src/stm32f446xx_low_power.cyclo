@@ -1,0 +1,5 @@
+../Driver/Src/stm32f446xx_low_power.c:7:6:Enter_Stop_Mode	1
+../Driver/Src/stm32f446xx_low_power.c:28:6:PWR_ControlLowPowerRegulator	2
+../Driver/Src/stm32f446xx_low_power.c:51:6:PWR_ClearWakeUpFlag	1
+../Driver/Src/stm32f446xx_low_power.c:57:6:SystemClock_ReConfig	2
+../Driver/Src/stm32f446xx_low_power.c:67:6:CPU_Enter_WFI	1

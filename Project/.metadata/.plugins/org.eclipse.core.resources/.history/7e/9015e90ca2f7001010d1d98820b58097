@@ -24,6 +24,5 @@ void Enter_Stop_Mode(void);
 void PWR_ControlLowPowerRegulator(uint8_t Enable);
 void PWR_ClearWakeUpFlag(void);
 void SystemClock_ReConfig(void);
-void CPU_Enter_WFI(void);
 
 #endif /* INC_STM32F446XX_LOWPOWER_DRIVER_H_ */

@@ -1,4 +1,4 @@
-21:19:03 **** Build of configuration Debug for project Power_Aware_Interrupt_System _Mini Project ****
+21:05:06 **** Build of configuration Debug for project Power_Aware_Interrupt_System _Mini Project ****
 make -j4 all 
 arm-none-eabi-gcc -mcpu=cortex-m4 -g3 -DDEBUG -c -x assembler-with-cpp -MMD -MP -MF"Startup/startup_stm32f446retx.d" -MT"Startup/startup_stm32f446retx.o" --specs=nano.specs -mfloat-abi=soft -mthumb -o "Startup/startup_stm32f446retx.o" "../Startup/startup_stm32f446retx.s"
 arm-none-eabi-gcc "../Src/main.c" -mcpu=cortex-m4 -std=gnu11 -g3 -DDEBUG -DSTM32 -DSTM32F4 -DSTM32F446RETx -DNUCLEO_F446RE -c -I"C:/Users/HP/Documents/C Programming/STM32/Project/Power_Aware_Interrupt_System _Mini Project/Driver/Inc" -I../Inc -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Src/main.d" -MT"Src/main.o" --specs=nano.specs -mfloat-abi=soft -mthumb -o "Src/main.o"
@@ -8,21 +8,21 @@ arm-none-eabi-gcc "../Driver/Src/stm32f446xx_gpio_driver.c" -mcpu=cortex-m4 -std
 arm-none-eabi-gcc "../Driver/Src/stm32f446xx_low_power.c" -mcpu=cortex-m4 -std=gnu11 -g3 -DDEBUG -DSTM32 -DSTM32F4 -DSTM32F446RETx -DNUCLEO_F446RE -c -I"C:/Users/HP/Documents/C Programming/STM32/Project/Power_Aware_Interrupt_System _Mini Project/Driver/Inc" -I../Inc -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Driver/Src/stm32f446xx_low_power.d" -MT"Driver/Src/stm32f446xx_low_power.o" --specs=nano.specs -mfloat-abi=soft -mthumb -o "Driver/Src/stm32f446xx_low_power.o"
 arm-none-eabi-gcc "../Driver/Src/stm32f446xx_rcc_driver.c" -mcpu=cortex-m4 -std=gnu11 -g3 -DDEBUG -DSTM32 -DSTM32F4 -DSTM32F446RETx -DNUCLEO_F446RE -c -I"C:/Users/HP/Documents/C Programming/STM32/Project/Power_Aware_Interrupt_System _Mini Project/Driver/Inc" -I../Inc -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Driver/Src/stm32f446xx_rcc_driver.d" -MT"Driver/Src/stm32f446xx_rcc_driver.o" --specs=nano.specs -mfloat-abi=soft -mthumb -o "Driver/Src/stm32f446xx_rcc_driver.o"
 arm-none-eabi-gcc "../Driver/Src/stm32f446xx_usart_driver.c" -mcpu=cortex-m4 -std=gnu11 -g3 -DDEBUG -DSTM32 -DSTM32F4 -DSTM32F446RETx -DNUCLEO_F446RE -c -I"C:/Users/HP/Documents/C Programming/STM32/Project/Power_Aware_Interrupt_System _Mini Project/Driver/Inc" -I../Inc -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Driver/Src/stm32f446xx_usart_driver.d" -MT"Driver/Src/stm32f446xx_usart_driver.o" --specs=nano.specs -mfloat-abi=soft -mthumb -o "Driver/Src/stm32f446xx_usart_driver.o"
-../Driver/Src/stm32f446xx_low_power.c: In function 'Enter_Stop_Mode':
-../Driver/Src/stm32f446xx_low_power.c:10:9: error: 'SCB' undeclared (first use in this function)
-   10 |         SCB->SCR |= (1 << 2);
-      |         ^~~
-../Driver/Src/stm32f446xx_low_power.c:10:9: note: each undeclared identifier is reported only once for each function it appears in
-../Driver/Src/stm32f446xx_low_power.c:15:15: error: expected expression before ')' token
-   15 |         __WFI();   // Wait For Interrupt
-      |               ^
-make: *** [Driver/Src/subdir.mk:28: Driver/Src/stm32f446xx_low_power.o] Error 1
-make: *** Waiting for unfinished jobs....
 ../Driver/Src/stm32f446xx_usart_driver.c: In function 'USART_IRQHandling':
 ../Driver/Src/stm32f446xx_usart_driver.c:645:33: warning: variable 'temp3' set but not used [-Wunused-but-set-variable]
   645 |         uint32_t temp1 , temp2, temp3;
       |                                 ^~~~~
-"make -j4 all" terminated with exit code 2. Build might be incomplete.
+arm-none-eabi-gcc -o "Power_Aware_Interrupt_System _Mini Project.elf" @"objects.list"   -mcpu=cortex-m4 -T"C:\Users\HP\Documents\C Programming\STM32\Project\Power_Aware_Interrupt_System _Mini Project\STM32F446RETX_FLASH.ld" --specs=nosys.specs -Wl,-Map="Power_Aware_Interrupt_System _Mini Project.map" -Wl,--gc-sections -static --specs=nano.specs -mfloat-abi=soft -mthumb -u _printf_float -Wl,--start-group -lc -lm -Wl,--end-group
+Finished building target: Power_Aware_Interrupt_System _Mini Project.elf
+ 
+arm-none-eabi-size  Power_Aware_Interrupt_System\ _Mini\ Project.elf 
+arm-none-eabi-objdump -h -S Power_Aware_Interrupt_System\ _Mini\ Project.elf  > "Power_Aware_Interrupt_System _Mini Project.list"
+   text	   data	    bss	    dec	    hex	filename
+  17192	    476	   1940	  19608	   4c98	Power_Aware_Interrupt_System _Mini Project.elf
+Finished building: default.size.stdout
+ 
+Finished building: Power_Aware_Interrupt_System _Mini Project.list
+ 
 
-21:19:04 Build Failed. 4 errors, 1 warnings. (took 987ms)
+21:05:09 Build Finished. 0 errors, 1 warnings. (took 2s.782ms)
 

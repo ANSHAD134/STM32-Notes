@@ -53,8 +53,8 @@ int main(void)
 
     /* Enable EXTI0 interrupt */
     EXTI->IMR  |= (1 << GPIO_PIN_NO_0);								// Unmask EXTI line 0 to enable interrupt
-    EXTI->RTSR |= (1 << GPIO_MODE_IT_RT);							// Enable rising edge trigger for EXTI line 0
-    EXTI->FTSR &= ~(1 << GPIO_MODE_IT_FT);							// Disable falling edge trigger for EXTI line 0
+    EXTI->RTSR |= (1 << GPIO_PIN_NO_0);								// Enable rising edge trigger for EXTI line 0
+    EXTI->FTSR &= ~(1 << GPIO_PIN_NO_0);							// Disable falling edge trigger for EXTI line 0
 
     /* Clear pending flag */
     EXTI->PR |= (1 << GPIO_PIN_NO_0);								// Clear pending flag for EXTI line 0
