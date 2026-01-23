@@ -47,15 +47,14 @@ int main(void)
 
     /* Button: PA0 INPUT */
     GPIOA->MODER &= ~(0x3 << (GPIO_PIN_NO_0 * 2));					// Clear mode bits for pin 0 (set as input)
-    GPIOA->PUPDR &= ~(0x3 << (GPIO_PIN_NO_0 * 2));   				// clear
     GPIOA->PUPDR |= (1 << (GPIO_PIN_NO_0 * 2)); 					// Pull-up
 
     SYSCFG->EXTICR[0] &= ~(0xF << 0);								// Clear EXTI0 bits
 
     /* Enable EXTI0 interrupt */
     EXTI->IMR  |= (1 << GPIO_PIN_NO_0);								// Unmask EXTI line 0 to enable interrupt
-    EXTI->RTSR &= ~(1 << GPIO_PIN_NO_0);							// Disable rising edge trigger for EXTI line 0
-    EXTI->FTSR |= (1 << GPIO_PIN_NO_0);								// Enable falling edge trigger for EXTI line 0
+    EXTI->RTSR |= (1 << GPIO_PIN_NO_0);							// Enable rising edge trigger for EXTI line 0
+    EXTI->FTSR &= ~(1 << GPIO_PIN_NO_0);							// Disable falling edge trigger for EXTI line 0
 
     /* Clear pending flag */
     EXTI->PR |= (1 << GPIO_PIN_NO_0);								// Clear pending flag for EXTI line 0
@@ -85,6 +84,15 @@ int main(void)
 
     /* Enable USART peripheral */
     USART_PeripheralControl(USART2, ENABLE);
+
+    /* -------- EXTI Interrupt Handler -------- */
+    // Clear the EXTI PR register corresponding to the pin number
+        if (EXTI->PR & (1 << GPIO_PIN_NO_0))
+        {
+            // Clear by writing 1
+            EXTI->PR = (1 << GPIO_PIN_NO_0);							 // Clear pending bit
+            wake_flag = 1;
+        }
 
     /* USER CODE END 1 */
 

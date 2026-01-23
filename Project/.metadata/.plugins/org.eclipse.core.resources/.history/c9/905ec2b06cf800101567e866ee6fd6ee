@@ -47,15 +47,14 @@ int main(void)
 
     /* Button: PA0 INPUT */
     GPIOA->MODER &= ~(0x3 << (GPIO_PIN_NO_0 * 2));					// Clear mode bits for pin 0 (set as input)
-    GPIOA->PUPDR &= ~(0x3 << (GPIO_PIN_NO_0 * 2));   				// clear
-    GPIOA->PUPDR |= (1 << (GPIO_PIN_NO_0 * 2)); 					// Pull-up
+    GPIOA->PUPDR &= ~(0x3 << (GPIO_PIN_NO_0 * 2)); 					// No pull
 
     SYSCFG->EXTICR[0] &= ~(0xF << 0);								// Clear EXTI0 bits
 
     /* Enable EXTI0 interrupt */
     EXTI->IMR  |= (1 << GPIO_PIN_NO_0);								// Unmask EXTI line 0 to enable interrupt
-    EXTI->RTSR &= ~(1 << GPIO_PIN_NO_0);							// Disable rising edge trigger for EXTI line 0
-    EXTI->FTSR |= (1 << GPIO_PIN_NO_0);								// Enable falling edge trigger for EXTI line 0
+    EXTI->RTSR |= (1 << GPIO_MODE_IT_RT);							// Enable rising edge trigger for EXTI line 0
+    EXTI->FTSR &= ~(1 << GPIO_MODE_IT_FT);							// Disable falling edge trigger for EXTI line 0
 
     /* Clear pending flag */
     EXTI->PR |= (1 << GPIO_PIN_NO_0);								// Clear pending flag for EXTI line 0
@@ -86,11 +85,19 @@ int main(void)
     /* Enable USART peripheral */
     USART_PeripheralControl(USART2, ENABLE);
 
+    /* -------- EXTI Interrupt Handler -------- */
+    // Clear the EXTI PR register corresponding to the pin number
+        //if (EXTI->PR & (1 << GPIO_PIN_NO_0))
+        //{
+        //    // Clear by writing 1
+           // EXTI->PR = (1 << GPIO_PIN_NO_0);							 // Clear pending bit
+           // wake_flag = 1;
+        //}
     /* USER CODE END 1 */
 
 while (1)
 {
-	USART_SendData(&USART2Handle,(uint8_t *)"Entering Stop mode\r\n",strlen("Entering_Stop_mode\r\n"));
+	USART_SendData(&USART2Handle,(uint8_t *)"Entering Sleep mode\r\n",strlen("Entering_Sleep_mode\r\n"));
 
 	Enter_Stop_Mode();									// Enter low power mode
 
@@ -98,23 +105,12 @@ while (1)
 
 	if (wake_flag)
 	{
-		wake_flag = 0;   								// Clear flag
+		wake_flag = 1;   								// Clear flag
 
-		GPIOD->ODR |= (1 << GPIO_PIN_NO_2);				//  LED ON (PD2)
+		GPIOD->ODR ^= (1 << GPIO_PIN_NO_2);				// Toggle LED (PD12)
 
 		USART_SendData(&USART2Handle,(uint8_t *)"Wake-up interrupt occurred\r\n",strlen("Wake-up interrupt occurred\r\n"));
 	}
 }
 }
 
-
-/* -------- EXTI Interrupt Handler -------- */
-void EXTI0_IRQHandler(void)
-{
-	// Clear the EXTI PR register corresponding to the pin number
-	if (EXTI->PR & (1 << GPIO_PIN_NO_0))
-	{
-		EXTI->PR = (1 << GPIO_PIN_NO_0);							 // Clear pending bit
-	    wake_flag = 1;
-	}
-}
