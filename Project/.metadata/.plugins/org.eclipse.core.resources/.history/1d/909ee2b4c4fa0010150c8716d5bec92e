@@ -41,9 +41,9 @@ int main(void)
     /* USER CODE BEGIN 1 */
     GPIO_Handle_t GpioLed, GpioBtn;
 
-    // Configure LED (PB0)
-    GpioLed.pGPIOx = GPIOB;
-    GpioLed.GPIO_PinConfig.GPIO_PinNumber = GPIO_PIN_NO_3;
+    // Configure LED (PD2)
+    GpioLed.pGPIOx = GPIOD;
+    GpioLed.GPIO_PinConfig.GPIO_PinNumber = GPIO_PIN_NO_2;
     GpioLed.GPIO_PinConfig.GPIO_PinMode = GPIO_MODE_OUT;
     GpioLed.GPIO_PinConfig.GPIO_PinSpeed = GPIO_SPEED_FAST;
     GpioLed.GPIO_PinConfig.GPIO_PinOPType = GPIO_OP_TYPE_PP;
@@ -57,7 +57,7 @@ int main(void)
     GpioBtn.GPIO_PinConfig.GPIO_PinPuPdControl = GPIO_PIN_PU;
 
     // Enable clocks
-    GPIO_PeriClockControl(GPIOB, ENABLE);
+    GPIO_PeriClockControl(GPIOD, ENABLE);
     GPIO_PeriClockControl(GPIOC, ENABLE);
 
     // Initialize pins
@@ -119,7 +119,7 @@ while (1)
 	{
 		wake_flag = 0;   								// Clear flag
 
-		GPIO_ToggleOutputPin(GPIOB, GPIO_PIN_NO_3);		//  LED ON (PB3)
+		GPIO_ToggleOutputPin(GPIOA, GPIO_PIN_NO_2);		//  LED ON (PD2)
 
 		USART_SendData(&USART2Handle,(uint8_t *)"Wake-up interrupt occurred\r\n",strlen("Wake-up interrupt occurred\r\n"));
 	}
@@ -128,4 +128,4 @@ while (1)
 
 
 /* -------- EXTI Interrupt Handler -------- */
-//void GPIO_IRQHandling(uint8_t GPIO_PIN_NO_0);
+void GPIO_IRQHandling(uint8_t GPIO_PIN_NO_0)

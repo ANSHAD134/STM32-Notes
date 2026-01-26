@@ -41,9 +41,9 @@ int main(void)
     /* USER CODE BEGIN 1 */
     GPIO_Handle_t GpioLed, GpioBtn;
 
-    // Configure LED (PB0)
-    GpioLed.pGPIOx = GPIOB;
-    GpioLed.GPIO_PinConfig.GPIO_PinNumber = GPIO_PIN_NO_3;
+    // Configure LED (PD2)
+    GpioLed.pGPIOx = GPIOD;
+    GpioLed.GPIO_PinConfig.GPIO_PinNumber = GPIO_PIN_NO_2;
     GpioLed.GPIO_PinConfig.GPIO_PinMode = GPIO_MODE_OUT;
     GpioLed.GPIO_PinConfig.GPIO_PinSpeed = GPIO_SPEED_FAST;
     GpioLed.GPIO_PinConfig.GPIO_PinOPType = GPIO_OP_TYPE_PP;
@@ -57,7 +57,7 @@ int main(void)
     GpioBtn.GPIO_PinConfig.GPIO_PinPuPdControl = GPIO_PIN_PU;
 
     // Enable clocks
-    GPIO_PeriClockControl(GPIOB, ENABLE);
+    GPIO_PeriClockControl(GPIOA, ENABLE);
     GPIO_PeriClockControl(GPIOC, ENABLE);
 
     // Initialize pins
@@ -65,16 +65,16 @@ int main(void)
     GPIO_Init(&GpioBtn);
 
     // Configure the GPIO port selection in SYSCFG_EXTICR
-    uint8_t temp1 = GpioBtn.GPIO_PinConfig.GPIO_PinNumber / 4;
-    uint8_t temp2 = GpioBtn.GPIO_PinConfig.GPIO_PinNumber % 4;
-    uint8_t portcode = GPIO_BASEADDR_TO_CODE(GPIOC);
+    uint8_t temp1 = pGPIO_Handle_t->GPIO_PinConfig.GpioBtn / 4;
+    uint8_t temp2 = pGPIO_Handle_t->GPIO_PinConfig.GpioBtn % 4;
+    uint8_t portcode = GPIO_BASEADDR_TO_CODE(pGPIOHandle->pGPIOC);
     SYSCFG_PCLK_EN();
     SYSCFG->EXTICR[temp1] = portcode << (temp2 * 4);
 
     /* Enable EXTI0 interrupt */
-    EXTI->IMR  |= (1 << GPIO_PIN_NO_0);								// Unmask EXTI line 0 to enable interrupt
-    EXTI->RTSR &= ~(1 << GPIO_PIN_NO_0);								// Disable rising edge trigger for EXTI line 0
-    EXTI->FTSR |= (1 << GPIO_PIN_NO_0);								// Enable falling edge trigger for EXTI line 0
+    EXTI->IMR  |= (1 << pGPIOHandle->GPIO_PinConfig.GpioBtn);								// Unmask EXTI line 0 to enable interrupt
+    EXTI->RTSR &= ~(1 << pGPIOHandle->GPIO_PinConfig.GpioBtn);								// Disable rising edge trigger for EXTI line 0
+    EXTI->FTSR |= (1 << pGPIOHandle->GPIO_PinConfig.GpioBtn);								// Enable falling edge trigger for EXTI line 0
 
     /* Clear pending flag */
     EXTI->PR |= (1 << GPIO_PIN_NO_0);														// Clear pending flag for EXTI line 0
@@ -115,11 +115,11 @@ while (1)
 
 	SystemClock_ReConfig();								// Restore clock after STOP
 
-	if (GPIO_ReadFromInputPin(GPIOC, GPIO_PIN_NO_0) == BTN_PRESSED)
+	if (GPIO_ReadFromInputPin(GPIOC, GPIO_PIN_NO_0) = BTN_PRESSED)
 	{
 		wake_flag = 0;   								// Clear flag
 
-		GPIO_ToggleOutputPin(GPIOB, GPIO_PIN_NO_3);		//  LED ON (PB3)
+		GPIO_ToggleOutputPin(GPIOA, GPIO_PIN_NO_2);		//  LED ON (PD2)
 
 		USART_SendData(&USART2Handle,(uint8_t *)"Wake-up interrupt occurred\r\n",strlen("Wake-up interrupt occurred\r\n"));
 	}
@@ -128,4 +128,12 @@ while (1)
 
 
 /* -------- EXTI Interrupt Handler -------- */
-//void GPIO_IRQHandling(uint8_t GPIO_PIN_NO_0);
+void GPIO_IRQHandling(void)
+{
+	// Clear the EXTI PR register corresponding to the pin number
+	if (EXTI->PR & (1 << GPIO_PIN_NO_0))
+	{
+		EXTI->PR = (1 << GPIO_PIN_NO_0);							 						// Clear pending bit
+	    wake_flag = 1;
+	}
+}
