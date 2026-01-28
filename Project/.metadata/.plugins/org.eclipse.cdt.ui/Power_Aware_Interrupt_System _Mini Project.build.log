@@ -1,10 +1,28 @@
-20:38:46 **** Incremental Build of configuration Debug for project Power_Aware_Interrupt_System _Mini Project ****
+13:29:48 **** Build of configuration Debug for project Power_Aware_Interrupt_System _Mini Project ****
 make -j4 all 
+arm-none-eabi-gcc -mcpu=cortex-m4 -g3 -DDEBUG -c -x assembler-with-cpp -MMD -MP -MF"Startup/startup_stm32f446retx.d" -MT"Startup/startup_stm32f446retx.o" --specs=nano.specs -mfloat-abi=soft -mthumb -o "Startup/startup_stm32f446retx.o" "../Startup/startup_stm32f446retx.s"
+arm-none-eabi-gcc "../Src/main.c" -mcpu=cortex-m4 -std=gnu11 -g3 -DDEBUG -DSTM32 -DSTM32F4 -DSTM32F446RETx -DNUCLEO_F446RE -c -I"C:/Users/HP/Documents/C Programming/STM32/Project/Power_Aware_Interrupt_System _Mini Project/Driver/Inc" -I../Inc -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Src/main.d" -MT"Src/main.o" --specs=nano.specs -mfloat-abi=soft -mthumb -o "Src/main.o"
+arm-none-eabi-gcc "../Src/syscalls.c" -mcpu=cortex-m4 -std=gnu11 -g3 -DDEBUG -DSTM32 -DSTM32F4 -DSTM32F446RETx -DNUCLEO_F446RE -c -I"C:/Users/HP/Documents/C Programming/STM32/Project/Power_Aware_Interrupt_System _Mini Project/Driver/Inc" -I../Inc -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Src/syscalls.d" -MT"Src/syscalls.o" --specs=nano.specs -mfloat-abi=soft -mthumb -o "Src/syscalls.o"
+arm-none-eabi-gcc "../Src/sysmem.c" -mcpu=cortex-m4 -std=gnu11 -g3 -DDEBUG -DSTM32 -DSTM32F4 -DSTM32F446RETx -DNUCLEO_F446RE -c -I"C:/Users/HP/Documents/C Programming/STM32/Project/Power_Aware_Interrupt_System _Mini Project/Driver/Inc" -I../Inc -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Src/sysmem.d" -MT"Src/sysmem.o" --specs=nano.specs -mfloat-abi=soft -mthumb -o "Src/sysmem.o"
+arm-none-eabi-gcc "../Driver/Src/stm32f446xx_gpio_driver.c" -mcpu=cortex-m4 -std=gnu11 -g3 -DDEBUG -DSTM32 -DSTM32F4 -DSTM32F446RETx -DNUCLEO_F446RE -c -I"C:/Users/HP/Documents/C Programming/STM32/Project/Power_Aware_Interrupt_System _Mini Project/Driver/Inc" -I../Inc -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Driver/Src/stm32f446xx_gpio_driver.d" -MT"Driver/Src/stm32f446xx_gpio_driver.o" --specs=nano.specs -mfloat-abi=soft -mthumb -o "Driver/Src/stm32f446xx_gpio_driver.o"
+arm-none-eabi-gcc "../Driver/Src/stm32f446xx_low_power.c" -mcpu=cortex-m4 -std=gnu11 -g3 -DDEBUG -DSTM32 -DSTM32F4 -DSTM32F446RETx -DNUCLEO_F446RE -c -I"C:/Users/HP/Documents/C Programming/STM32/Project/Power_Aware_Interrupt_System _Mini Project/Driver/Inc" -I../Inc -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Driver/Src/stm32f446xx_low_power.d" -MT"Driver/Src/stm32f446xx_low_power.o" --specs=nano.specs -mfloat-abi=soft -mthumb -o "Driver/Src/stm32f446xx_low_power.o"
+arm-none-eabi-gcc "../Driver/Src/stm32f446xx_rcc_driver.c" -mcpu=cortex-m4 -std=gnu11 -g3 -DDEBUG -DSTM32 -DSTM32F4 -DSTM32F446RETx -DNUCLEO_F446RE -c -I"C:/Users/HP/Documents/C Programming/STM32/Project/Power_Aware_Interrupt_System _Mini Project/Driver/Inc" -I../Inc -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Driver/Src/stm32f446xx_rcc_driver.d" -MT"Driver/Src/stm32f446xx_rcc_driver.o" --specs=nano.specs -mfloat-abi=soft -mthumb -o "Driver/Src/stm32f446xx_rcc_driver.o"
+arm-none-eabi-gcc "../Driver/Src/stm32f446xx_usart_driver.c" -mcpu=cortex-m4 -std=gnu11 -g3 -DDEBUG -DSTM32 -DSTM32F4 -DSTM32F446RETx -DNUCLEO_F446RE -c -I"C:/Users/HP/Documents/C Programming/STM32/Project/Power_Aware_Interrupt_System _Mini Project/Driver/Inc" -I../Inc -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Driver/Src/stm32f446xx_usart_driver.d" -MT"Driver/Src/stm32f446xx_usart_driver.o" --specs=nano.specs -mfloat-abi=soft -mthumb -o "Driver/Src/stm32f446xx_usart_driver.o"
+../Driver/Src/stm32f446xx_usart_driver.c: In function 'USART_IRQHandling':
+../Driver/Src/stm32f446xx_usart_driver.c:645:33: warning: variable 'temp3' set but not used [-Wunused-but-set-variable]
+  645 |         uint32_t temp1 , temp2, temp3;
+      |                                 ^~~~~
+arm-none-eabi-gcc -o "Power_Aware_Interrupt_System _Mini Project.elf" @"objects.list"   -mcpu=cortex-m4 -T"C:\Users\HP\Documents\C Programming\STM32\Project\Power_Aware_Interrupt_System _Mini Project\STM32F446RETX_FLASH.ld" --specs=nosys.specs -Wl,-Map="Power_Aware_Interrupt_System _Mini Project.map" -Wl,--gc-sections -static --specs=nano.specs -mfloat-abi=soft -mthumb -u _printf_float -Wl,--start-group -lc -lm -Wl,--end-group
+Finished building target: Power_Aware_Interrupt_System _Mini Project.elf
+ 
 arm-none-eabi-size  Power_Aware_Interrupt_System\ _Mini\ Project.elf 
+arm-none-eabi-objdump -h -S Power_Aware_Interrupt_System\ _Mini\ Project.elf  > "Power_Aware_Interrupt_System _Mini Project.list"
    text	   data	    bss	    dec	    hex	filename
-  18544	    476	   1940	  20960	   51e0	Power_Aware_Interrupt_System _Mini Project.elf
+  18672	    476	   1940	  21088	   5260	Power_Aware_Interrupt_System _Mini Project.elf
 Finished building: default.size.stdout
  
+Finished building: Power_Aware_Interrupt_System _Mini Project.list
+ 
 
-20:38:47 Build Finished. 0 errors, 0 warnings. (took 303ms)
+13:29:50 Build Finished. 0 errors, 1 warnings. (took 2s.192ms)
 

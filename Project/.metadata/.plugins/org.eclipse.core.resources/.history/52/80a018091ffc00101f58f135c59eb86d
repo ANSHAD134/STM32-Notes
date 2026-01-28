@@ -80,8 +80,8 @@ int main(void)
     EXTI->PR |= (1 << GPIO_PIN_NO_2);								// Clear pending flag for EXTI line 0
 
     /* -------- NVIC Configuration -------- */
-    GPIO_IRQInterruptConfig(IRQ_NO_EXTI2,ENABLE);					// Enable EXTI0 interrupt
-    GPIO_IRQPriorityConfig(IRQ_NO_EXTI2, NVIC_IRQ_PRI5);			// Set EXTI0 interrupt priority to 5
+    GPIO_IRQInterruptConfig(IRQ_NO_EXTI0,ENABLE);					// Enable EXTI0 interrupt
+    GPIO_IRQPriorityConfig(IRQ_NO_EXTI0, NVIC_IRQ_PRI5);			// Set EXTI0 interrupt priority to 5
 
     /* -------- USART Debug Init -------- */
 
@@ -132,11 +132,11 @@ while (1)
 
 
 /* -------- EXTI Interrupt Handler -------- */
-void EXTI2_IRQHandler(void)
+void EXTI0_IRQHandler(void)
 {
-    if (EXTI->PR & (1 << 2))
+    if (EXTI->PR & (1 << 0))
     {
-        EXTI->PR |= (1 << 2);   // Clear pending bit
+        EXTI->PR |= (1 << 0);   // Clear pending bit
         wake_flag = 1;
     }
 }

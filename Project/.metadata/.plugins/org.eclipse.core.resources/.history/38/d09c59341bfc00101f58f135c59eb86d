@@ -47,18 +47,18 @@ int main(void)
     GpioLed.GPIO_PinConfig.GPIO_PinMode = GPIO_MODE_OUT;
     GpioLed.GPIO_PinConfig.GPIO_PinSpeed = GPIO_SPEED_FAST;
     GpioLed.GPIO_PinConfig.GPIO_PinOPType = GPIO_OP_TYPE_PP;
-    GpioLed.GPIO_PinConfig.GPIO_PinPuPdControl = GPIO_NO_PUPD;
+    GpioLed.GPIO_PinConfig.GPIO_PinPuPdControl = GPIO_PIN_PU;
 
     // Configure Button (PC0 External)
-    GpioBtn.pGPIOx = GPIOA;
-    GpioBtn.GPIO_PinConfig.GPIO_PinNumber = GPIO_PIN_NO_2;
+    GpioBtn.pGPIOx = GPIOC;
+    GpioBtn.GPIO_PinConfig.GPIO_PinNumber = GPIO_PIN_NO_0;
     GpioBtn.GPIO_PinConfig.GPIO_PinMode = GPIO_MODE_IN;
     GpioBtn.GPIO_PinConfig.GPIO_PinSpeed = GPIO_SPEED_FAST;
     GpioBtn.GPIO_PinConfig.GPIO_PinPuPdControl = GPIO_PIN_PU;
 
     // Enable clocks
     GPIO_PeriClockControl(GPIOB, ENABLE);
-    GPIO_PeriClockControl(GPIOA, ENABLE);
+    GPIO_PeriClockControl(GPIOC, ENABLE);
 
     // Initialize pins
     GPIO_Init(&GpioLed);
@@ -67,21 +67,21 @@ int main(void)
     // Configure the GPIO port selection in SYSCFG_EXTICR
     uint8_t temp1 = GpioBtn.GPIO_PinConfig.GPIO_PinNumber / 4;
     uint8_t temp2 = GpioBtn.GPIO_PinConfig.GPIO_PinNumber % 4;
-    uint8_t portcode = GPIO_BASEADDR_TO_CODE(GPIOA);
+    uint8_t portcode = GPIO_BASEADDR_TO_CODE(GPIOC);
     SYSCFG_PCLK_EN();
     SYSCFG->EXTICR[temp1] = portcode << (temp2 * 4);
 
     /* Enable EXTI0 interrupt */
-    EXTI->IMR  |= (1 << GPIO_PIN_NO_2);								// Unmask EXTI line 0 to enable interrupt
-    EXTI->RTSR &= ~(1 << GPIO_PIN_NO_2);							// Disable rising edge trigger for EXTI line 0
-    EXTI->FTSR |= (1 << GPIO_PIN_NO_2);								// Enable falling edge trigger for EXTI line 0
+    EXTI->IMR  |= (1 << GPIO_PIN_NO_0);								// Unmask EXTI line 0 to enable interrupt
+    EXTI->RTSR &= ~(1 << GPIO_PIN_NO_0);							// Disable rising edge trigger for EXTI line 0
+    EXTI->FTSR |= (1 << GPIO_PIN_NO_0);								// Enable falling edge trigger for EXTI line 0
 
     /* Clear pending flag */
-    EXTI->PR |= (1 << GPIO_PIN_NO_2);								// Clear pending flag for EXTI line 0
+    EXTI->PR |= (1 << GPIO_PIN_NO_0);								// Clear pending flag for EXTI line 0
 
     /* -------- NVIC Configuration -------- */
-    GPIO_IRQInterruptConfig(IRQ_NO_EXTI2,ENABLE);					// Enable EXTI0 interrupt
-    GPIO_IRQPriorityConfig(IRQ_NO_EXTI2, NVIC_IRQ_PRI5);			// Set EXTI0 interrupt priority to 5
+    GPIO_IRQInterruptConfig(IRQ_NO_EXTI0,ENABLE);					// Enable EXTI0 interrupt
+    GPIO_IRQPriorityConfig(IRQ_NO_EXTI0, NVIC_IRQ_PRI5);			// Set EXTI0 interrupt priority to 5
 
     /* -------- USART Debug Init -------- */
 
@@ -115,28 +115,19 @@ while (1)
 
 	SystemClock_ReConfig();								// Restore clock after STOP
 
-	USART_PeriClockControl(USART2, ENABLE);
-	USART_PeripheralControl(USART2, ENABLE);
-
 	if (wake_flag)
 	{
 		wake_flag = 0;
 
-		GPIO_WriteToOutputPin(GPIOB, GPIO_PIN_NO_3, GPIO_PIN_SET);		//  LED ON (PB3)
+		GPIO_ToggleOutputPin(GPIOB, GPIO_PIN_NO_3);		//  LED ON (PB3)
 
-		uint8_t msg2[] = "Wake-up interrupt occurred\r\n";
-		USART_SendData(&USART2Handle, msg2, strlen((char *)msg2));
+		uint8_t pTxBuffer[] = "Wake-up interrupt occurred\r\n";
+		uint32_t len = strlen((char *)pTxBuffer);
+		USART_SendData(&USART2Handle, pTxBuffer, len);
 	}
 }
 }
 
 
 /* -------- EXTI Interrupt Handler -------- */
-void EXTI2_IRQHandler(void)
-{
-    if (EXTI->PR & (1 << 2))
-    {
-        EXTI->PR |= (1 << 2);   // Clear pending bit
-        wake_flag = 1;
-    }
-}
+
