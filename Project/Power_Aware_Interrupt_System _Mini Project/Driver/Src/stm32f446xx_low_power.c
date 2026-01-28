@@ -8,7 +8,7 @@ void Enter_Stop_Mode(void)
 {
 	PWR->CR &= ~(1 << 1);     						// Clear PDDS bit
 
-	PWR->CR |= (1 << 0);							// Low power regulator ON
+	PWR->CR &= ~(1 << 0);							// Main voltage regulator ON during Stop mode
 
 	CPU_Enter_WFI();   								// Wait For Interrupt
 }
