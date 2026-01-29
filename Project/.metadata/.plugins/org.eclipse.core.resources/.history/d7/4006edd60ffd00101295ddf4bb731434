@@ -41,18 +41,18 @@ int main(void)
     /* USER CODE BEGIN 1 */
     GPIO_Handle_t GpioLed, GpioBtn;
 
-    // Configure LED (PB5)
+    // Configure LED (PB3)
     GPIO_PeriClockControl(GPIOB, ENABLE);
 
     GpioLed.pGPIOx = GPIOB;
-    GpioLed.GPIO_PinConfig.GPIO_PinNumber = GPIO_PIN_NO_5;
+    GpioLed.GPIO_PinConfig.GPIO_PinNumber = GPIO_PIN_NO_3;
     GpioLed.GPIO_PinConfig.GPIO_PinMode = GPIO_MODE_OUT;
     GpioLed.GPIO_PinConfig.GPIO_PinSpeed = GPIO_SPEED_FAST;
     GpioLed.GPIO_PinConfig.GPIO_PinOPType = GPIO_OP_TYPE_PP;
     GpioLed.GPIO_PinConfig.GPIO_PinPuPdControl = GPIO_NO_PUPD;
 
     GPIO_Init(&GpioLed);
-    GPIO_WriteToOutputPin(GPIOB, GPIO_PIN_NO_5, GPIO_PIN_RESET);
+    GPIO_WriteToOutputPin(GPIOB, GPIO_PIN_NO_3, GPIO_PIN_RESET);
 
     // Configure Button (PA2 External)
     GPIO_PeriClockControl(GPIOA, ENABLE);
@@ -124,7 +124,7 @@ while (1)
 	{
 		wake_flag = 0;
 
-		GPIO_WriteToOutputPin(GPIOB, GPIO_PIN_NO_5, GPIO_PIN_SET);		//  LED ON (PB3)
+		GPIO_WriteToOutputPin(GPIOB, GPIO_PIN_NO_3, GPIO_PIN_SET);		//  LED ON (PB3)
 
 		uint8_t msg2[] = "Wake-up interrupt occurred\r\n";
 		USART_SendData(&USART2Handle, msg2, strlen((char *)msg2));
