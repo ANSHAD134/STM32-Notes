@@ -5,6 +5,23 @@
 
 #include "stm32f446xx.h"
 
+#define SCB_BASEADDR   						0xE000ED00UL
+
+typedef struct
+{
+    __vo uint32_t CPUID;
+    __vo uint32_t ICSR;
+    __vo uint32_t VTOR;
+    __vo uint32_t AIRCR;
+    __vo uint32_t SCR;
+    __vo uint32_t CCR;
+    __vo uint8_t  SHP[12];
+    __vo uint32_t SHCSR;
+} SCB_RegDef_t;
+
+#define SCB 								((SCB_RegDef_t*)SCB_BASEADDR)
+
+
 /* Clock Enable Macro for PWR peripheral */
 #define PWR_PCLK_EN()   (RCC->APB1ENR |= (1 << 28))
 
