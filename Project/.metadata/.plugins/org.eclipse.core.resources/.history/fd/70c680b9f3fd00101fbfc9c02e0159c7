@@ -27,9 +27,11 @@
 #include "stm32f446xx_low_power.h"
 
 /*--------Global variables-------*/
-volatile uint8_t enter_stop = 1;   									// Start by entering STOP
+volatile uint8_t wake_flag = 0;
+volatile uint8_t system_awake = 0;
 /* USER CODE BEGIN PV */
 USART_Handle_t USART2Handle;
+//#define BTN_PRESSED		 0 								// Button is active low on Nucleo
 /* USER CODE END PV */
 
 int main(void)
@@ -107,7 +109,7 @@ int main(void)
 
 while (1)
 {
-	if (enter_stop)
+	if (system_awake)
 	{
 	uint8_t msg1[] = "Entering Stop mode\r\n";
 	USART_SendData(&USART2Handle, msg1, strlen((char *)msg1));
@@ -115,20 +117,25 @@ while (1)
 	USART_PeripheralControl(USART2, DISABLE);
 	USART_PeriClockControl(USART2, DISABLE);
 
-	Enter_Stop_Mode();												// Enter low power mode
+	Enter_Stop_Mode();									// Enter low power mode
 
-	SystemClock_ReConfig();											// Restore clock after STOP
-	PWR_ClearWakeUpFlag();											// Clear WUF
+	SystemClock_ReConfig();								// Restore clock after STOP
+	PWR_ClearWakeUpFlag();								// Clear WUF
 
 	USART_PeriClockControl(USART2, ENABLE);
 	USART_PeripheralControl(USART2, ENABLE);
 
-	GPIO_WriteToOutputPin(GPIOB, GPIO_PIN_NO_5, GPIO_PIN_SET);		//  LED ON (PB3)
+	system_awake = 0;               					// Now system is awake
+	}
 
-	uint8_t msg2[] = "Wake-up interrupt occurred\r\n";
-	USART_SendData(&USART2Handle, msg2, strlen((char *)msg2));
+	if (wake_flag)
+	{
+		wake_flag = 0;
 
-	enter_stop = 0;   												// Stay awake
+		GPIO_WriteToOutputPin(GPIOB, GPIO_PIN_NO_5, GPIO_PIN_SET);		//  LED ON (PB3)
+
+		uint8_t msg2[] = "Wake-up interrupt occurred\r\n";
+		USART_SendData(&USART2Handle, msg2, strlen((char *)msg2));
 	}
 }
 }
@@ -140,6 +147,7 @@ void EXTI2_IRQHandler(void)
     if (EXTI->PR & (1 << 2))
     {
         EXTI->PR |= (1 << 2);   					// Clear pending bit
-        enter_stop = 1;        						// Next loop -> STOP
+        wake_flag = 1;
+        system_awake = 0;   						// Next press will re-enter STOP
     }
 }

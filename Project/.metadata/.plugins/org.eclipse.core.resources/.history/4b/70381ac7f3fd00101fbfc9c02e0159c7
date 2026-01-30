@@ -140,6 +140,7 @@ void EXTI2_IRQHandler(void)
     if (EXTI->PR & (1 << 2))
     {
         EXTI->PR |= (1 << 2);   					// Clear pending bit
+        wake_flag = 1;
         enter_stop = 1;        						// Next loop -> STOP
     }
 }
