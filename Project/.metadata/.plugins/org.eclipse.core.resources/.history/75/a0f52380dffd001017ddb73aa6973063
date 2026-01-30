@@ -109,8 +109,8 @@ int main(void)
 
 while (1)
 {
-	if (system_awake)
-	{
+	if (system_awake == 0)
+	    {
 	uint8_t msg1[] = "Entering Stop mode\r\n";
 	USART_SendData(&USART2Handle, msg1, strlen((char *)msg1));
 
@@ -125,8 +125,8 @@ while (1)
 	USART_PeriClockControl(USART2, ENABLE);
 	USART_PeripheralControl(USART2, ENABLE);
 
-	system_awake = 0;               					// Now system is awake
-	}
+	system_awake = 1;               					// Now system is awake
+	    }
 
 	if (wake_flag)
 	{

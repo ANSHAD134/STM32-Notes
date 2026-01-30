@@ -125,7 +125,7 @@ while (1)
 	USART_PeriClockControl(USART2, ENABLE);
 	USART_PeripheralControl(USART2, ENABLE);
 
-	system_awake = 0;               					// Now system is awake
+	system_awake = 1;               					// Now system is awake
 	}
 
 	if (wake_flag)

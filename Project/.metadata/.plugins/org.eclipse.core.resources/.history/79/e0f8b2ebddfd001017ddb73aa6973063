@@ -28,7 +28,7 @@
 
 /*--------Global variables-------*/
 volatile uint8_t wake_flag = 0;
-volatile uint8_t system_awake = 0;
+
 /* USER CODE BEGIN PV */
 USART_Handle_t USART2Handle;
 //#define BTN_PRESSED		 0 								// Button is active low on Nucleo
@@ -109,13 +109,8 @@ int main(void)
 
 while (1)
 {
-	if (system_awake)
-	{
 	uint8_t msg1[] = "Entering Stop mode\r\n";
 	USART_SendData(&USART2Handle, msg1, strlen((char *)msg1));
-
-	USART_PeripheralControl(USART2, DISABLE);
-	USART_PeriClockControl(USART2, DISABLE);
 
 	Enter_Stop_Mode();									// Enter low power mode
 
@@ -124,9 +119,6 @@ while (1)
 
 	USART_PeriClockControl(USART2, ENABLE);
 	USART_PeripheralControl(USART2, ENABLE);
-
-	system_awake = 0;               					// Now system is awake
-	}
 
 	if (wake_flag)
 	{
@@ -146,8 +138,7 @@ void EXTI2_IRQHandler(void)
 {
     if (EXTI->PR & (1 << 2))
     {
-        EXTI->PR |= (1 << 2);   					// Clear pending bit
+        EXTI->PR |= (1 << 2);   // Clear pending bit
         wake_flag = 1;
-        system_awake = 0;   						// Next press will re-enter STOP
     }
 }
