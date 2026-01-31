@@ -1,10 +1,4 @@
-20:20:07 **** Incremental Build of configuration Debug for project Power_Aware_Interrupt_System ****
-make -j4 all 
-arm-none-eabi-size  Power_Aware_Interrupt_System.elf 
-   text	   data	    bss	    dec	    hex	filename
-  28100	    468	   2116	  30684	   77dc	Power_Aware_Interrupt_System.elf
-Finished building: default.size.stdout
- 
 
-20:20:07 Build Finished. 0 errors, 0 warnings. (took 683ms)
+**** Build of configuration Debug for project Power_Aware_Interrupt_System ****
 
+Nothing to build for project Power_Aware_Interrupt_System

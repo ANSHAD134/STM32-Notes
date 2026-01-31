@@ -9,7 +9,7 @@ void Enter_Stop_Mode(void)
 	SCB->SCR |= (1 << 2);    						// SLEEPDEEP = 1
 	PWR->CR &= ~(1 << 1);     						// Clear PDDS bit
 
-	PWR->CR &= ~(1 << 0);							// Main voltage regulator ON during Stop mode
+	PWR->CR |= (1 << 0);   							// LPDS = 1 (low-power regulator)
 
 	CPU_Enter_WFI();   								// Wait For Interrupt
 }

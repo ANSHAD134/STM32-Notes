@@ -18,3 +18,17 @@ Finished building: default.size.stdout
  
 Finished building: DriverDev.list
  
+19:59:26 **** Build of configuration Debug for project oled ****
+make -j4 all 
+arm-none-eabi-size  oled.elf 
+   text	   data	    bss	    dec	    hex	filename
+  32076	    476	   3116	  35668	   8b54	oled.elf
+Finished building: default.size.stdout
+ 
+20:19:07 **** Incremental Build of configuration Debug for project oled ****
+make -j4 all 
+arm-none-eabi-size  oled.elf 
+   text	   data	    bss	    dec	    hex	filename
+  32076	    476	   3116	  35668	   8b54	oled.elf
+Finished building: default.size.stdout
+ 
