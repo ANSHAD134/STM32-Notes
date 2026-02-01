@@ -1,3 +1,4 @@
+"./Driver/Src/LM35.o"
 "./Driver/Src/stm32f446xx_gpio_driver.o"
 "./Driver/Src/stm32f446xx_low_power.o"
 "./Driver/Src/stm32f446xx_rcc_driver.o"

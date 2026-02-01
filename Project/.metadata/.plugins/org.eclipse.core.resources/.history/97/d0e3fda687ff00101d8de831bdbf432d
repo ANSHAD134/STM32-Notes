@@ -1,0 +1,16 @@
+/*
+ * LM35.c
+ *
+ *  Created on: 01-Feb-2026
+ *      Author: HP
+ */
+
+#include "stm32f446xx.h"
+#include "stm32f446xx_gpio_driver.h"
+#include "LM35.h"
+
+void Temperature_LM35(void)
+{
+	GPIO_PeriClockControl(GPIOA, ENABLE);
+	ADC1_CLK_EN();
+}

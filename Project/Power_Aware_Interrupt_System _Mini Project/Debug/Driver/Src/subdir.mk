@@ -5,18 +5,21 @@
 
 # Add inputs and outputs from these tool invocations to the build variables 
 C_SRCS += \
+../Driver/Src/LM35.c \
 ../Driver/Src/stm32f446xx_gpio_driver.c \
 ../Driver/Src/stm32f446xx_low_power.c \
 ../Driver/Src/stm32f446xx_rcc_driver.c \
 ../Driver/Src/stm32f446xx_usart_driver.c 
 
 OBJS += \
+./Driver/Src/LM35.o \
 ./Driver/Src/stm32f446xx_gpio_driver.o \
 ./Driver/Src/stm32f446xx_low_power.o \
 ./Driver/Src/stm32f446xx_rcc_driver.o \
 ./Driver/Src/stm32f446xx_usart_driver.o 
 
 C_DEPS += \
+./Driver/Src/LM35.d \
 ./Driver/Src/stm32f446xx_gpio_driver.d \
 ./Driver/Src/stm32f446xx_low_power.d \
 ./Driver/Src/stm32f446xx_rcc_driver.d \
@@ -30,7 +33,7 @@ Driver/Src/%.o Driver/Src/%.su Driver/Src/%.cyclo: ../Driver/Src/%.c Driver/Src/
 clean: clean-Driver-2f-Src
 
 clean-Driver-2f-Src:
-	-$(RM) ./Driver/Src/stm32f446xx_gpio_driver.cyclo ./Driver/Src/stm32f446xx_gpio_driver.d ./Driver/Src/stm32f446xx_gpio_driver.o ./Driver/Src/stm32f446xx_gpio_driver.su ./Driver/Src/stm32f446xx_low_power.cyclo ./Driver/Src/stm32f446xx_low_power.d ./Driver/Src/stm32f446xx_low_power.o ./Driver/Src/stm32f446xx_low_power.su ./Driver/Src/stm32f446xx_rcc_driver.cyclo ./Driver/Src/stm32f446xx_rcc_driver.d ./Driver/Src/stm32f446xx_rcc_driver.o ./Driver/Src/stm32f446xx_rcc_driver.su ./Driver/Src/stm32f446xx_usart_driver.cyclo ./Driver/Src/stm32f446xx_usart_driver.d ./Driver/Src/stm32f446xx_usart_driver.o ./Driver/Src/stm32f446xx_usart_driver.su
+	-$(RM) ./Driver/Src/LM35.cyclo ./Driver/Src/LM35.d ./Driver/Src/LM35.o ./Driver/Src/LM35.su ./Driver/Src/stm32f446xx_gpio_driver.cyclo ./Driver/Src/stm32f446xx_gpio_driver.d ./Driver/Src/stm32f446xx_gpio_driver.o ./Driver/Src/stm32f446xx_gpio_driver.su ./Driver/Src/stm32f446xx_low_power.cyclo ./Driver/Src/stm32f446xx_low_power.d ./Driver/Src/stm32f446xx_low_power.o ./Driver/Src/stm32f446xx_low_power.su ./Driver/Src/stm32f446xx_rcc_driver.cyclo ./Driver/Src/stm32f446xx_rcc_driver.d ./Driver/Src/stm32f446xx_rcc_driver.o ./Driver/Src/stm32f446xx_rcc_driver.su ./Driver/Src/stm32f446xx_usart_driver.cyclo ./Driver/Src/stm32f446xx_usart_driver.d ./Driver/Src/stm32f446xx_usart_driver.o ./Driver/Src/stm32f446xx_usart_driver.su
 
 .PHONY: clean-Driver-2f-Src
 

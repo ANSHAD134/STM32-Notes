@@ -25,17 +25,20 @@
 #include "stm32f446xx_rcc_driver.h"
 #include "stm32f446xx_usart_driver.h"
 #include "stm32f446xx_low_power.h"
+#include "LM35.h"
 
 /*--------Global variables-------*/
 volatile uint8_t button_event = 0;
 volatile uint8_t wake_flag = 0;
 /* USER CODE BEGIN PV */
+char temp_msg[50];
 USART_Handle_t USART2Handle;
 /* USER CODE END PV */
 void delay(void);
 int main(void)
 {
     PWR_PCLK_EN();
+    LM35_ADC_Init();
 
     /* USER CODE BEGIN 1 */
     GPIO_Handle_t GpioLed, GpioBtn;
@@ -152,8 +155,11 @@ while (1)
 
 		if(wake_flag == 1)
 		{
+			float temperature = LM35_ReadTemp();
+			sprintf(temp_msg, "Temperature = %.2f C\r\n", temperature);
 			GPIO_WriteToOutputPin(GPIOB, GPIO_PIN_NO_5, GPIO_PIN_SET);
 			USART_SendData(&USART2Handle, msg_wake, strlen((char*)msg_wake));
+			USART_SendData(&USART2Handle, (uint8_t*)temp_msg, strlen(temp_msg));
 		}
 		else
 		{

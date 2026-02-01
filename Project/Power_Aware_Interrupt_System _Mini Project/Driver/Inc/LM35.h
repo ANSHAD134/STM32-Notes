@@ -1,0 +1,51 @@
+/*
+ * LM35.h
+ *
+ *  Created on: 01-Feb-2026
+ *      Author: HP
+ */
+
+#ifndef INC_LM35_H_
+#define INC_LM35_H_
+
+#include "stm32f446xx.h"
+#include "stm32f446xx_gpio_driver.h"
+
+/*
+ * ADC REGISTER STRUCTURE
+ */
+
+typedef struct
+{
+	volatile uint32_t ADC_SR;					//ADC status register 												(0x00)
+	volatile uint32_t ADC_CR1;					//ADC control register 1 											(0x04)
+	volatile uint32_t ADC_CR2;					//ADC control register 2											(0x08)
+	volatile uint32_t ADC_SMPR1;				//ADC sample time register 1										(0x0C)
+	volatile uint32_t ADC_SMPR2;				//ADC sample time register 2										(0x10)
+	volatile uint32_t ADC_JOFR1;				//ADC injected channel data offset register 1						(0x14)
+	volatile uint32_t ADC_JOFR2;				//ADC injected channel data offset register 2						(0x18)
+	volatile uint32_t ADC_JOFR3;				//ADC injected channel data offset register 3						(0x1C)
+	volatile uint32_t ADC_JOFR4;				//ADC injected channel data offset register 4						(0x20)
+	volatile uint32_t ADC_HTR;					//ADC watchdog higher threshold register							(0x24)
+	volatile uint32_t ADC_LTR;					//ADC watchdog lower threshold register								(0x28)
+	volatile uint32_t ADC_SQR1;					//ADC regular sequence register 1									(0x2C)
+	volatile uint32_t ADC_SQR2;					//ADC regular sequence register 2									(0x30)
+	volatile uint32_t ADC_SQR3;					//ADC regular sequence register 3									(0x34)
+	volatile uint32_t ADC_JSQR;					//ADC injected sequence register									(0x38)
+	volatile uint32_t ADC_JDR1;					//ADC injected data register 1										(0x3C)
+	volatile uint32_t ADC_JDR2;					//ADC injected data register 2										(0x40)
+	volatile uint32_t ADC_JDR3;					//ADC injected data register 3										(0x44)
+	volatile uint32_t ADC_JDR4;					//ADC injected data register 4										(0x48)
+	volatile uint32_t ADC_DR;					//ADC regular data register											(0x4C)
+	volatile uint32_t ADC_CSR;					//ADC Common status register										(0x00) (ADC1_BASEADDR + 0x300)
+	volatile uint32_t ADC_CCR;					//ADC common control register										(0x04) (ADC1_BASEADDR + 0x300)
+	volatile uint32_t ADC_CDR;					//ADC common regular data register for dual and triple modes		(0x08) (ADC1_BASEADDR + 0x300)
+} ADC_RegDef_t;
+
+#define ADC1						((ADC_RegDef_t*)ADC1_BASEADDR)
+
+#define ADC1_CLK_EN()				(RCC->APB2ENR |= (1<<8))
+
+void LM35_ADC_Init(void);
+float LM35_ReadTemp(void);
+#endif /* INC_LM35_H_ */

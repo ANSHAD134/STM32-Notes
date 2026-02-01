@@ -1,14 +1,7 @@
-21:14:34 **** Incremental Build of configuration Debug for project Power_Aware_Interrupt_System _Mini Project ****
+22:05:46 **** Incremental Build of configuration Debug for project Power_Aware_Interrupt_System _Mini Project ****
 make -j4 all 
 arm-none-eabi-size  Power_Aware_Interrupt_System\ _Mini\ Project.elf 
    text	   data	    bss	    dec	    hex	filename
-  18920	    476	   1940	  21336	   5358	Power_Aware_Interrupt_System _Mini Project.elf
-Finished building: default.size.stdout
- 
-21:14:39 **** Incremental Build of configuration Debug for project Power_Aware_Interrupt_System _Mini Project ****
-make -j4 all 
-arm-none-eabi-size  Power_Aware_Interrupt_System\ _Mini\ Project.elf 
-   text	   data	    bss	    dec	    hex	filename
-  18920	    476	   1940	  21336	   5358	Power_Aware_Interrupt_System _Mini Project.elf
+  21424	    476	   1996	  23896	   5d58	Power_Aware_Interrupt_System _Mini Project.elf
 Finished building: default.size.stdout
  
