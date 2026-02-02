@@ -28,8 +28,7 @@
 #include "LM35.h"
 
 /*--------Global variables-------*/
-volatile uint8_t button_event = 0;
-volatile uint8_t wake_flag = 0;
+volatile uint8_t go_to_stop = 0;
 /* USER CODE BEGIN PV */
 char temp_msg[50];
 USART_Handle_t USART2Handle;
@@ -129,7 +128,7 @@ int main(void)
 
 while (1)
 {
-	if (wake_flag == 0)
+	if (go_to_stop == 1)
 	{
 		GPIO_WriteToOutputPin(GPIOB, GPIO_PIN_NO_5, GPIO_PIN_RESET);
 
@@ -146,30 +145,21 @@ while (1)
         USART_PeriClockControl(USART2, ENABLE);
         USART_PeripheralControl(USART2, ENABLE);
 
-        wake_flag = 1;
+        go_to_stop = 0;
 	}
 
-	if(button_event)
+	if(go_to_stop == 0)
 	{
-		button_event = 0;
+		GPIO_WriteToOutputPin(GPIOB, GPIO_PIN_NO_5, GPIO_PIN_SET);
 
-		if(wake_flag == 1)
-		{
-			float temperature = LM35_ReadTemp();
-			sprintf(temp_msg, "Temperature = %.2f C\r\n", temperature);
-			GPIO_WriteToOutputPin(GPIOB, GPIO_PIN_NO_5, GPIO_PIN_SET);
-			USART_SendData(&USART2Handle, msg_wake, strlen((char*)msg_wake));
-			USART_SendData(&USART2Handle, (uint8_t*)temp_msg, strlen(temp_msg));
-		}
-		else
-		{
-			GPIO_WriteToOutputPin(GPIOB, GPIO_PIN_NO_5, GPIO_PIN_RESET);
-		}
+		float temperature = LM35_ReadTemp();
+		sprintf(temp_msg, "Temperature = %.2f C\r\n", temperature);
+		USART_SendData(&USART2Handle, msg_wake, strlen((char*)msg_wake));
+		USART_SendData(&USART2Handle, (uint8_t*)temp_msg, strlen(temp_msg));
 		delay();
 	}
 }
 }
-
 
 /* -------- EXTI Interrupt Handler -------- */
 void EXTI15_10_IRQHandler(void)
@@ -177,8 +167,7 @@ void EXTI15_10_IRQHandler(void)
     if (EXTI->PR & (1 << GPIO_PIN_NO_13))
     {
         EXTI->PR |= (1 << GPIO_PIN_NO_13);   					// Clear pending bit
-        button_event = 1;
-        wake_flag ^= 1;
+        go_to_stop = 1;
     }
 }
 
