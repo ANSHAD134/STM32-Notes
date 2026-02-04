@@ -10,7 +10,7 @@
 volatile uint8_t BUTTON_PRESS = 1;
 
 void delay(void){
-	for(uint32_t i = 0; i<500000; i++);
+	for(uint32_t i = 0;i<500000;i++ );
 }
 
 int main(void){
@@ -41,11 +41,7 @@ int main(void){
 
 	while(1){
 
-		if(GPIO_ReadFromInputPin(GPIOC, GPIO_PIN_NO_13) == BUTTON_PRESS)
-		{
-			GPIO_WriteToOutputPin(GPIOA, GPIO_PIN_NO_5, GPIO_PIN_SET);
-			delay();
-		}
+
 	}
 
 }
