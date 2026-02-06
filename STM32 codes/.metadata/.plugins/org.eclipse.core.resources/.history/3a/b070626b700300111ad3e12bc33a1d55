@@ -46,7 +46,8 @@ int main(void){
 		{
 			GPIO_WriteToOutputPin(GPIOA, GPIO_PIN_NO_5, GPIO_PIN_SET);
 			delay();
-		} else
+		}
+		if(GPIO_ReadFromInputPin(GPIOC, GPIO_PIN_NO_13) == BUTTON_PRESS)
 		{
 			GPIO_WriteToOutputPin(GPIOA, GPIO_PIN_NO_5,GPIO_PIN_RESET);
 		}
