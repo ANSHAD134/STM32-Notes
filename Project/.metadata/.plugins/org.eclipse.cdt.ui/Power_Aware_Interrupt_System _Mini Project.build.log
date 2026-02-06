@@ -1,4 +1,4 @@
-12:30:43 **** Incremental Build of configuration Debug for project Power_Aware_Interrupt_System _Mini Project ****
+19:41:42 **** Incremental Build of configuration Debug for project Power_Aware_Interrupt_System _Mini Project ****
 make -j4 all 
 arm-none-eabi-size  Power_Aware_Interrupt_System\ _Mini\ Project.elf 
    text	   data	    bss	    dec	    hex	filename
@@ -6,5 +6,5 @@ arm-none-eabi-size  Power_Aware_Interrupt_System\ _Mini\ Project.elf
 Finished building: default.size.stdout
  
 
-12:30:43 Build Finished. 0 errors, 0 warnings. (took 366ms)
+19:41:43 Build Finished. 0 errors, 0 warnings. (took 449ms)
 
