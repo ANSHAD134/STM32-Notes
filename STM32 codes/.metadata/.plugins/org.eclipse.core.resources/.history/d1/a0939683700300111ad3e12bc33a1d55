@@ -46,6 +46,9 @@ int main(void){
 		{
 			GPIO_WriteToOutputPin(GPIOA, GPIO_PIN_NO_5, GPIO_PIN_SET);
 			delay();
+		} else
+		{
+			GPIO_WriteToOutputPin(GPIOA, GPIO_PIN_NO_5,GPIO_PIN_RESET);
 		}
 	}
 

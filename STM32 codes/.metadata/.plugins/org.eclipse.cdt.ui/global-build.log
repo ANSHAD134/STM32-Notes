@@ -1,4 +1,4 @@
-20:55:37 **** Build of configuration Debug for project DriverDev ****
+20:58:45 **** Build of configuration Debug for project DriverDev ****
 make -j4 all 
 arm-none-eabi-gcc -mcpu=cortex-m4 -g3 -DDEBUG -c -I"C:/Users/HP/Documents/C Programming/STM32/STM32 codes/DriverDev/Drivers/Inc" -I"C:/Users/HP/Documents/C Programming/STM32/STM32 codes/DriverDev/Drivers/Src" -x assembler-with-cpp -MMD -MP -MF"Startup/startup_stm32f446retx.d" -MT"Startup/startup_stm32f446retx.o" --specs=nano.specs -mfloat-abi=soft -mthumb -o "Startup/startup_stm32f446retx.o" "../Startup/startup_stm32f446retx.s"
 arm-none-eabi-gcc "../Src/Gpio_Toggle.c" -mcpu=cortex-m4 -std=gnu11 -g3 -DDEBUG -DSTM32 -DSTM32F4 -DSTM32F446RETx -DNUCLEO_F446RE -c -I../Inc -I"C:/Users/HP/Documents/C Programming/STM32/STM32 codes/DriverDev/Drivers/Inc" -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Src/Gpio_Toggle.d" -MT"Src/Gpio_Toggle.o" --specs=nano.specs -mfloat-abi=soft -mthumb -o "Src/Gpio_Toggle.o"
@@ -14,15 +14,22 @@ Finished building target: DriverDev.elf
 arm-none-eabi-size  DriverDev.elf 
 arm-none-eabi-objdump -h -S DriverDev.elf  > "DriverDev.list"
    text	   data	    bss	    dec	    hex	filename
-   2244	      4	   1564	   3812	    ee4	DriverDev.elf
+   2208	      0	   1568	   3776	    ec0	DriverDev.elf
 Finished building: default.size.stdout
  
 Finished building: DriverDev.list
  
-20:55:45 **** Incremental Build of configuration Debug for project DriverDev ****
+20:58:52 **** Incremental Build of configuration Debug for project DriverDev ****
 make -j4 all 
 arm-none-eabi-size  DriverDev.elf 
    text	   data	    bss	    dec	    hex	filename
-   2244	      4	   1564	   3812	    ee4	DriverDev.elf
+   2208	      0	   1568	   3776	    ec0	DriverDev.elf
+Finished building: default.size.stdout
+ 
+20:59:10 **** Incremental Build of configuration Debug for project DriverDev ****
+make -j4 all 
+arm-none-eabi-size  DriverDev.elf 
+   text	   data	    bss	    dec	    hex	filename
+   2208	      0	   1568	   3776	    ec0	DriverDev.elf
 Finished building: default.size.stdout
  
