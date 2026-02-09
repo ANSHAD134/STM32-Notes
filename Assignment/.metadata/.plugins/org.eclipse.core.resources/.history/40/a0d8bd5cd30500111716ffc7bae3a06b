@@ -37,13 +37,16 @@ int main(void){
 	GPIO_Init(&GpioLed);
 
 	while(1){
-		GPIO_WriteToOutputPin(GPIOA, GPIO_PIN_NO_6, GPIO_PIN_SET);
-		GPIO_WriteToOutputPin(GPIOA, GPIO_PIN_NO_7, GPIO_PIN_RESET);
-		delay();
 
-		GPIO_WriteToOutputPin(GPIOA, GPIO_PIN_NO_6, GPIO_PIN_RESET);
-		GPIO_WriteToOutputPin(GPIOA, GPIO_PIN_NO_7, GPIO_PIN_SET);
-		delay();
+		if(GPIO_ReadFromInputPin(GPIOC, GPIO_PIN_NO_13) == BUTTON_PRESSED)
+		{
+			GPIO_ToggleOutputPin(GPIOA, GPIO_PIN_NO_6);
+			delay1();
+		}
+		else {
+			GPIO_ToggleOutputPin(GPIOA, GPIO_PIN_NO_7);
+			delay2();
 		}
 	}
 
+}
