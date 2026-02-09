@@ -17,3 +17,9 @@ Command-line arguments:  -os win32 -ws win32 -arch x86_64
 
 !ENTRY com.st.stm32cube.ide.mpu.remote.serial 1 1 2026-02-09 21:19:44.537
 !MESSAGE port: 
+
+!ENTRY org.eclipse.cdt.core 1 0 2026-02-09 21:21:43.962
+!MESSAGE Indexed 'DriverDev' (6 sources, 59 headers) in 1.61 sec: 2,442 declarations; 4,827 references; 0 unresolved inclusions; 1 syntax errors; 2 unresolved names (0.028%)
+
+!ENTRY org.eclipse.cdt.core 1 0 2026-02-09 21:21:44.449
+!MESSAGE Indexed 'Two_LED_Program' (3 sources, 53 headers) in 0.481 sec: 1,954 declarations; 2,863 references; 0 unresolved inclusions; 2 syntax errors; 2 unresolved names (0.042%)
