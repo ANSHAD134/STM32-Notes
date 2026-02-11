@@ -60,8 +60,8 @@ all: main-build
 main-build: DriverDev.elf secondary-outputs
 
 # Tool invocations
-DriverDev.elf DriverDev.map: $(OBJS) $(USER_OBJS) C:\Users\HP\Documents\C\ Programming\STM32\STM32\ codes\DriverDev\STM32F446RETX_FLASH.ld makefile objects.list $(OPTIONAL_TOOL_DEPS)
-	arm-none-eabi-gcc -o "DriverDev.elf" @"objects.list" $(USER_OBJS) $(LIBS) -mcpu=cortex-m4 -T"C:\Users\HP\Documents\C Programming\STM32\STM32 codes\DriverDev\STM32F446RETX_FLASH.ld" --specs=nosys.specs -Wl,-Map="DriverDev.map" -Wl,--gc-sections -static --specs=nano.specs -mfloat-abi=soft -mthumb -Wl,--start-group -lc -lm -Wl,--end-group
+DriverDev.elf DriverDev.map: $(OBJS) $(USER_OBJS) C:\Users\HP\Documents\C\ Programming\STM32\Assignment\DriverDev\STM32F446RETX_FLASH.ld makefile objects.list $(OPTIONAL_TOOL_DEPS)
+	arm-none-eabi-gcc -o "DriverDev.elf" @"objects.list" $(USER_OBJS) $(LIBS) -mcpu=cortex-m4 -T"C:\Users\HP\Documents\C Programming\STM32\Assignment\DriverDev\STM32F446RETX_FLASH.ld" --specs=nosys.specs -Wl,-Map="DriverDev.map" -Wl,--gc-sections -static --specs=nano.specs -mfloat-abi=soft -mthumb -Wl,--start-group -lc -lm -Wl,--end-group
 	@echo 'Finished building target: $@'
 	@echo ' '
 
