@@ -25,17 +25,6 @@ int main()
 	Gpioled.GPIO_PinConfig.GPIO_PinOPType = GPIO_OP_TYPE_PP;
 	Gpioled.GPIO_PinConfig.GPIO_PinPuPdControl = GPIO_NO_PUPD;
 
-	GPIO_PeriClockControl(GPIOA, ENABLE);
-	GPIO_Init(&Gpioled);
-
 	// For Button Interrupt
-	Gpioint.pGPIOx = GPIOC;
-	Gpioint.GPIO_PinConfig.GPIO_PinNumber = GPIO_PIN_NO_13;
-	Gpioint.GPIO_PinConfig.GPIO_PinMode = GPIO_MODE_IT_FT;
-	Gpioint.GPIO_PinConfig.GPIO_PinSpeed = GPIO_SPEED_FAST;
-	Gpioint.GPIO_PinConfig.GPIO_PinPuPdControl = GPIO_PIN_PU;
-
-	GPIO_PeriClockControl(GPIOC, ENABLE);
-	GPIO_Init(&Gpioint);
 
 }
