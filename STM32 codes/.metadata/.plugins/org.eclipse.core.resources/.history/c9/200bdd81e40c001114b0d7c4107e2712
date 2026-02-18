@@ -38,18 +38,4 @@ int main()
 	GPIO_PeriClockControl(GPIOC, ENABLE);
 	GPIO_Init(&Gpioint);
 
-	GPIO_IRQInterruptConfig(IRQ_NO_EXTI15_10, ENABLE);
-
-	while(1)
-	{
-
-	}
-
-}
-
-void EXTI15_10_IRQHandler(void)
-{
-	GPIO_IRQHandling(GPIO_PIN_NO_13);
-	GPIO_ToggleOutputPin(GPIOA ,GPIO_PIN_NO_5);
-	delay();
 }
