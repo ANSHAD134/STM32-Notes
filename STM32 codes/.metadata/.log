@@ -5273,3 +5273,6 @@ Command-line arguments:  -os win32 -ws win32 -arch x86_64
 
 !ENTRY org.eclipse.cdt.core 1 0 2026-02-18 21:19:18.363
 !MESSAGE Indexed 'Interrupt_Program' (2 sources, 53 headers) in 1.9 sec: 1,952 declarations; 2,861 references; 0 unresolved inclusions; 1 syntax errors; 2 unresolved names (0.042%)
+
+!ENTRY org.eclipse.cdt.core 1 0 2026-02-18 21:25:22.290
+!MESSAGE Indexed 'Interrupt_Program' (6 sources, 57 headers) in 0.481 sec: 2,328 declarations; 4,661 references; 0 unresolved inclusions; 1 syntax errors; 2 unresolved names (0.029%)
