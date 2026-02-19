@@ -1,4 +1,11 @@
-21:43:59 **** Incremental Build of configuration Debug for project Interrupt_Program ****
+21:45:24 **** Incremental Build of configuration Debug for project Interrupt_Program ****
+make -j4 all 
+arm-none-eabi-size  Interrupt_Program.elf 
+   text	   data	    bss	    dec	    hex	filename
+   2468	      0	   1568	   4036	    fc4	Interrupt_Program.elf
+Finished building: default.size.stdout
+ 
+21:45:49 **** Incremental Build of configuration Debug for project Interrupt_Program ****
 make -j4 all 
 arm-none-eabi-size  Interrupt_Program.elf 
    text	   data	    bss	    dec	    hex	filename
