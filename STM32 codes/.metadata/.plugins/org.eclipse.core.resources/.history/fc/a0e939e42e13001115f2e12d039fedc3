@@ -208,10 +208,10 @@ void I2C_Init(I2C_Handle_t *pI2CHandle)
 
 	//configure the FREQ field of CR2
 	tempreg = 0;
-	tempreg |= RCC_GetPCLK1Value() /1000000U ;					// APB1 clock in MHz
+	tempreg |= RCC_GetPCLK1Value() /1000000U ;
 	pI2CHandle->pI2Cx->CR2 =  (tempreg & 0x3F);
 
-   //Configure device own address (for slave mode)
+   //program the device own address
 	tempreg = 0;
 	tempreg |= pI2CHandle->I2C_Config.I2C_DeviceAddress << 1;
 	tempreg |= ( 1 << 14);
@@ -228,7 +228,7 @@ void I2C_Init(I2C_Handle_t *pI2CHandle)
 	}else
 	{
 		//mode is fast mode
-		tempreg |= ( 1 << 15);									// Enable Fast Mode
+		tempreg |= ( 1 << 15);
 		tempreg |= (pI2CHandle->I2C_Config.I2C_FMDutyCycle << 14);
 		if(pI2CHandle->I2C_Config.I2C_FMDutyCycle == I2C_FM_DUTY_2)
 		{
