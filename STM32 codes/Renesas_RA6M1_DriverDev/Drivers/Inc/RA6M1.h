@@ -25,12 +25,34 @@
 
 typedef struct
 {
-	__vo uint32_t	PCNTR1;						// Port Control Register 1
-	__vo uint32_t	PCNTR2;						// Port Control Register 2
-	__vo uint32_t	PCNTR3;						// Port Control Register 3
-	__vo uint32_t	PCNTR4;						// Port Control Register 4
-	__vo uint32_t	PmnPFS;						// Port mn Pin Function Select Register
-	__vo uint32_t	PWPR;						// Write-Protect Register
+	__vo uint32_t	PDRn;						// Pmn Direction				(0x02)
+	__vo uint32_t	PODRn;						// Pmn Output Data				(0x00)
+	__vo uint32_t	PIDRn;						// Pmn State					(0x06)
+	__vo uint32_t	EIDRn;						// Port Event Input Data		(0x04)
+	__vo uint32_t	POSRn;						// Pmn Output Set				(0x0A)
+	__vo uint32_t	PORRn;						// Pmn Output Reset				(0x08)
+	__vo uint32_t	EOSRn;						// Pmn Event Output Set			(0x0E)
+	__vo uint32_t	EORRn;						// Pmn Event Output Reset		(0x0C)
+	__vo uint32_t	PODR;						// Port Output Data				(0x00)
+	__vo uint32_t	PIDR;						// Pmn State					(0x06)
+	__vo uint32_t	PDR;						// Port Direction				(0x02)
+	__vo uint32_t	RESERVED0;					// Reserved
+	__vo uint32_t	PCR;						// Pull-up Control
+	__vo uint32_t	RESERVED1;					// Reserved
+	__vo uint32_t	NCODR;						// N-Channel Open-Drain Control
+	__vo uint32_t	RESERVED2[2];				// Reserved
+	__vo uint32_t	DSCR;						// Port Drive Capability
+	__vo uint32_t	EOF;						// Event on Falling
+	__vo uint32_t	EOR;						// Event on Rising
+	__vo uint32_t	ISEL;						// IRQ Input Enable
+	__vo uint32_t	ASEL;						// Analog Input Enable
+	__vo uint32_t	PMR;						// Port Mode Control
+	__vo uint32_t	RESERVED3[2];				// Reserved
+	__vo uint32_t	PSEL;						// Peripheral Select
+	__vo uint32_t	RESERVED4;					// Reserved
+	__vo uint32_t	RESERVED5;					// Reserved
+	__vo uint32_t	PFSWE;						// PmnPFS Register Write Enable
+	__vo uint32_t	B0WI;						// PFSWE Bit Write Disable
 }GPIO_Regdef_t;
 
 

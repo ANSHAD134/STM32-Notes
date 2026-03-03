@@ -1,0 +1,13 @@
+/*
+ * RA6M1_gpio_driver.h
+ *
+ *  Created on: 03-Mar-2026
+ *      Author: HP
+ */
+
+#ifndef INC_RA6M1_GPIO_DRIVER_H_
+#define INC_RA6M1_GPIO_DRIVER_H_
+
+
+
+#endif /* INC_RA6M1_GPIO_DRIVER_H_ */
