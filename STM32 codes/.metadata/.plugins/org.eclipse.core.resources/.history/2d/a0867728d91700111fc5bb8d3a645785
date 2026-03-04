@@ -60,14 +60,5 @@ typedef struct
 }GPIO_Regdef_t;
 
 
-#define PORT0					((GPIO_Regdef_t*)Port 0_BASEADDR)
-#define PORT1					((GPIO_Regdef_t*)Port 1_BASEADDR)
-#define PORT2					((GPIO_Regdef_t*)Port 2_BASEADDR)
-#define PORT3					((GPIO_Regdef_t*)Port 3_BASEADDR)
-#define PORT4					((GPIO_Regdef_t*)Port 4_BASEADDR)
-#define PORT5					((GPIO_Regdef_t*)Port 5_BASEADDR)
-#define PORT6					((GPIO_Regdef_t*)Port 6_BASEADDR)
-#define PORT7					((GPIO_Regdef_t*)Port 7_BASEADDR)
-#define PmnPin					((GPIO_Regdef_t*)Pmn_Pin_BASEADDR)
 
 #endif /* INC_RA6M1_H_ */

@@ -13,16 +13,12 @@
 /*
  * Memory Base Addresses
  */
-#define PERIPH_BASEADDR					0x40100000U
-#define Port 0_BASEADDR					0x40040000U
-#define Port 1_BASEADDR					0x40040020U
-#define Port 2_BASEADDR					0x40040040U
-#define Port 3_BASEADDR					0x40040060U
-#define Port 4_BASEADDR					0x40040080U
-#define Port 5_BASEADDR					0x400400A0U
-#define Port 6_BASEADDR					0x400400C0U
-#define Port 7_BASEADDR					0x400400E0U
-#define Pmn_Pin_BASEADDR				0x40040800U
+#define PERIPH_BASEADDR					40100000U
+#define PERIPH_BUS_1					40000000U
+#define PERIPH_BUS_3					40040000U
+#define PERIPH_BUS_4					40060000U
+#define PERIPH_BUS_5					40080000U
+
 /*
  * Peripheral register definition structure for I/O ports
  */
@@ -60,14 +56,5 @@ typedef struct
 }GPIO_Regdef_t;
 
 
-#define PORT0					((GPIO_Regdef_t*)Port 0_BASEADDR)
-#define PORT1					((GPIO_Regdef_t*)Port 1_BASEADDR)
-#define PORT2					((GPIO_Regdef_t*)Port 2_BASEADDR)
-#define PORT3					((GPIO_Regdef_t*)Port 3_BASEADDR)
-#define PORT4					((GPIO_Regdef_t*)Port 4_BASEADDR)
-#define PORT5					((GPIO_Regdef_t*)Port 5_BASEADDR)
-#define PORT6					((GPIO_Regdef_t*)Port 6_BASEADDR)
-#define PORT7					((GPIO_Regdef_t*)Port 7_BASEADDR)
-#define PmnPin					((GPIO_Regdef_t*)Pmn_Pin_BASEADDR)
 
 #endif /* INC_RA6M1_H_ */

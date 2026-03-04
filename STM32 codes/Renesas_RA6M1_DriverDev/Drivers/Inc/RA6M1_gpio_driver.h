@@ -34,6 +34,88 @@ typedef struct
 
 
 /*
+ * @GPIO_PIN_NUMBERS
+ * GPIO pin numbers
+ */
+#define GPIO_PIN_NO_0                   0
+#define GPIO_PIN_NO_1                   1
+#define GPIO_PIN_NO_2                   2
+#define GPIO_PIN_NO_3                   3
+#define GPIO_PIN_NO_4                   4
+#define GPIO_PIN_NO_5                   5
+#define GPIO_PIN_NO_6                   6
+#define GPIO_PIN_NO_7                   7
+#define GPIO_PIN_NO_8                   8
+#define GPIO_PIN_NO_9                   9
+#define GPIO_PIN_NO_10                  10
+#define GPIO_PIN_NO_11                  11
+#define GPIO_PIN_NO_12                  12
+#define GPIO_PIN_NO_13                  13
+#define GPIO_PIN_NO_14                  14
+#define GPIO_PIN_NO_15                  15
+#define GPIO_PIN_NO_16                  16
+#define GPIO_PIN_NO_17                  17
+#define GPIO_PIN_NO_18                  18
+#define GPIO_PIN_NO_19                  19
+#define GPIO_PIN_NO_20                  20
+#define GPIO_PIN_NO_21                  21
+#define GPIO_PIN_NO_22                  22
+#define GPIO_PIN_NO_23                  23
+#define GPIO_PIN_NO_24                  24
+#define GPIO_PIN_NO_25                  25
+#define GPIO_PIN_NO_26                  26
+#define GPIO_PIN_NO_27                  27
+#define GPIO_PIN_NO_28                  28
+#define GPIO_PIN_NO_29                  29
+#define GPIO_PIN_NO_30                  30
+#define GPIO_PIN_NO_31                  31
+#define GPIO_PIN_NO_32                  32
+#define GPIO_PIN_NO_33                  33
+#define GPIO_PIN_NO_34                  34
+#define GPIO_PIN_NO_35                  35
+#define GPIO_PIN_NO_36                  36
+#define GPIO_PIN_NO_37                  37
+#define GPIO_PIN_NO_38                  38
+#define GPIO_PIN_NO_39                  39
+#define GPIO_PIN_NO_40                  40
+#define GPIO_PIN_NO_41                  41
+#define GPIO_PIN_NO_42                  42
+#define GPIO_PIN_NO_43                  43
+#define GPIO_PIN_NO_44                  44
+#define GPIO_PIN_NO_45                  45
+#define GPIO_PIN_NO_46                  46
+#define GPIO_PIN_NO_47                  47
+#define GPIO_PIN_NO_48                  48
+#define GPIO_PIN_NO_49                  49
+#define GPIO_PIN_NO_50                  50
+#define GPIO_PIN_NO_51                  51
+#define GPIO_PIN_NO_52                  52
+#define GPIO_PIN_NO_53                  53
+#define GPIO_PIN_NO_54                  54
+#define GPIO_PIN_NO_55                  55
+#define GPIO_PIN_NO_56                  56
+#define GPIO_PIN_NO_57                  57
+#define GPIO_PIN_NO_58                  58
+#define GPIO_PIN_NO_59                  59
+#define GPIO_PIN_NO_60                  60
+#define GPIO_PIN_NO_61                  61
+#define GPIO_PIN_NO_62                  62
+#define GPIO_PIN_NO_63                  63
+#define GPIO_PIN_NO_64                  64
+#define GPIO_PIN_NO_65                  65
+#define GPIO_PIN_NO_66                  66
+#define GPIO_PIN_NO_67                  67
+#define GPIO_PIN_NO_68                  68
+#define GPIO_PIN_NO_69                  69
+#define GPIO_PIN_NO_70                  70
+#define GPIO_PIN_NO_71                  71
+#define GPIO_PIN_NO_72                  72
+#define GPIO_PIN_NO_73                  73
+#define GPIO_PIN_NO_74                  74
+#define GPIO_PIN_NO_75                  75
+#define GPIO_PIN_NO_76                  76
+
+/*
  * @GPIO_PIN_MODES
  * GPIO pin possible modes
  */
