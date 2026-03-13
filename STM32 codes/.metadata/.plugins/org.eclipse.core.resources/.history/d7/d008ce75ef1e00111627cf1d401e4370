@@ -44,7 +44,7 @@ int main(void){
 			GPIO_ToggleOutputPin(GPIOA, GPIO_PIN_NO_5);
 			delay();
 
-			while(GPIO_ReadFromInputPin(GPIOC, GPIO_PIN_NO_13) == 0);
+			while(GPIO_ReadFromInput(GPIOC, GPIO_PIN_NO_13) == 0);
 		}
 	}
 
