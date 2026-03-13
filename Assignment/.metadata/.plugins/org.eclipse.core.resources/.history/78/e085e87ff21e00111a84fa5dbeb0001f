@@ -37,7 +37,7 @@ int main(void){
 
 	while(1){
 
-		if(GPIO_ReadFromInputPin(GPIOC, GPIO_PIN_NO_13) == 0)
+		if(GPIO_ReadFromInputPin(GPIOC, GPIO_PIN_NO_13) == BUTTON_PRESSED)
 		{
 		  GPIO_ToggleOutputPin(GPIOA, GPIO_PIN_NO_5);
 		  delay();
