@@ -1,0 +1,23 @@
+!SESSION 2026-04-19 19:50:08.837 -----------------------------------------------
+eclipse.buildId=Version 2.0.0
+java.version=21.0.8
+java.vendor=Eclipse Adoptium
+BootLoader constants: OS=win32, ARCH=x86_64, WS=win32, NL=en_IN
+Framework arguments:  C:\Users\HP\Documents\C Programming\STM32\RTOS_Workspace\RTOS_1\.project
+Command-line arguments:  -os win32 -ws win32 -arch x86_64 C:\Users\HP\Documents\C Programming\STM32\RTOS_Workspace\RTOS_1\.project
+
+!ENTRY com.st.stm32cube.ide.mcu.informationcenter 1 1 2026-04-19 19:50:49.697
+!MESSAGE Log4j2 initialized with config file C:\Users\HP\Documents\C Programming\STM32\RTOS_Workspace\.metadata\.log4j2.xml
+
+!ENTRY com.st.stm32cube.ide.mcu.ide 1 1 2026-04-19 19:50:55.321
+!MESSAGE Started RMI Server, listening on port 41337
+
+!ENTRY org.eclipse.cdt.core 1 0 2026-04-19 19:51:09.489
+!MESSAGE Indexed 'RTOS_1' (20 sources, 116 headers) in 9.34 sec: 11,467 declarations; 45,793 references; 5 unresolved inclusions; 1,105 syntax errors; 1,305 unresolved names (2.2%)
+
+!ENTRY com.st.stm32cube.ide.mpu.remote.serial 1 1 2026-04-19 19:51:12.929
+!MESSAGE Executed PowerShell command powershell.exe -Command "Get-CimInstance -ClassName Win32_SerialPort | Select-Object -ExpandProperty DeviceID":
+
+
+!ENTRY com.st.stm32cube.ide.mpu.remote.serial 1 1 2026-04-19 19:51:12.930
+!MESSAGE port: 
