@@ -3,10 +3,7 @@
 
 /* Here is a good place to include header files that are required across
    your application. */
-#if defined(__ICCARM__) || defined(__GNUC__) || (__CC__ARM)
-	#include <stdint.h>
-	extern uint32_t SystemCoreClock;
-#endif
+#include "FreeRTOS.h"
 
 #define configUSE_PREEMPTION                                        1
 #define configUSE_PORT_OPTIMISED_TASK_SELECTION                     0
@@ -68,7 +65,7 @@
 
 /* Interrupt nesting behaviour configuration. */
 #define configKERNEL_INTERRUPT_PRIORITY         [dependent of processor]
-//#define configMAX_SYSCALL_INTERRUPT_PRIORITY    [dependent on processor and application]
+#define configMAX_SYSCALL_INTERRUPT_PRIORITY    [dependent on processor and application]
 #define configMAX_API_CALL_INTERRUPT_PRIORITY   [dependent on processor and application]
 
 /* Define to trap errors during development. */

@@ -96,22 +96,22 @@ int main(void)
   MX_USART2_UART_Init();
   /* USER CODE BEGIN 2 */
   xReturned = xTaskCreate(
-		  	  	  	  task1_handler,      	/* Function that implements the task. */
-                      "TASK1",          	/* Text name for the task. */
-                      100,      			/* Stack size in words, not bytes. */
-                      "Hello from Task1",   /* Parameter passed into the task. */
-                      2,					/* Priority at which the task is created. */
+		  	  	  	  task1_handler,       /* Function that implements the task. */
+                      "TASK1",          /* Text name for the task. */
+                      100,      /* Stack size in words, not bytes. */
+                      "Hello from Task1",    /* Parameter passed into the task. */
+                      2,/* Priority at which the task is created. */
                       &task1_handle );      /* Used to pass out the created task's handle. */
   configASSERT(xReturned == pdPASS);
 
   xReturned = xTaskCreate(
-  		  	  	  	  task2_handler,       	/* Function that implements the task. */
-                      "TASK2",          	/* Text name for the task. */
-                      100,      			/* Stack size in words, not bytes. */
-                      "Hello from Task2", 	/* Parameter passed into the task. */
-                      2,					/* Priority at which the task is created. */
-                      &task2_handle );    	/* Used to pass out the created task's handle. */
-  configASSERT(xReturned == pdPASS);
+  		  	  	  	  task2_handler,       /* Function that implements the task. */
+                        "TASK2",          /* Text name for the task. */
+                        100,      /* Stack size in words, not bytes. */
+                        "Hello from Task2",    /* Parameter passed into the task. */
+                        2,/* Priority at which the task is created. */
+                        &task2_handle );      /* Used to pass out the created task's handle. */
+    configASSERT(xReturned == pdPASS);
 
     vTaskStartScheduler();
   /* USER CODE END 2 */

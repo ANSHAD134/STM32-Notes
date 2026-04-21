@@ -26,7 +26,16 @@ Core/Src/main.o: ../Core/Src/main.c ../Core/Inc/main.h \
  ../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_pwr_ex.h \
  ../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_tim.h \
  ../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_tim_ex.h \
- ../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_uart.h
+ ../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_uart.h \
+ C:/Users/HP/Documents/C\ Programming/STM32/RTOS_Workspace/RTOS_1/ThirdParty/FreeRTOS/include/FreeRTOS.h \
+ C:/Users/HP/Documents/C\ Programming/STM32/RTOS_Workspace/RTOS_1/ThirdParty/FreeRTOS/FreeRTOSConfig.h \
+ C:/Users/HP/Documents/C\ Programming/STM32/RTOS_Workspace/RTOS_1/ThirdParty/FreeRTOS/include/projdefs.h \
+ C:/Users/HP/Documents/C\ Programming/STM32/RTOS_Workspace/RTOS_1/ThirdParty/FreeRTOS/include/portable.h \
+ C:/Users/HP/Documents/C\ Programming/STM32/RTOS_Workspace/RTOS_1/ThirdParty/FreeRTOS/include/deprecated_definitions.h \
+ C:/Users/HP/Documents/C\ Programming/STM32/RTOS_Workspace/RTOS_1/ThirdParty/FreeRTOS/portable/GCC/ARM_CM4F/portmacro.h \
+ C:/Users/HP/Documents/C\ Programming/STM32/RTOS_Workspace/RTOS_1/ThirdParty/FreeRTOS/include/mpu_wrappers.h \
+ C:/Users/HP/Documents/C\ Programming/STM32/RTOS_Workspace/RTOS_1/ThirdParty/FreeRTOS/include/task.h \
+ C:/Users/HP/Documents/C\ Programming/STM32/RTOS_Workspace/RTOS_1/ThirdParty/FreeRTOS/include/list.h
 ../Core/Inc/main.h:
 ../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal.h:
 ../Core/Inc/stm32f4xx_hal_conf.h:
@@ -56,3 +65,12 @@ Core/Src/main.o: ../Core/Src/main.c ../Core/Inc/main.h \
 ../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_tim.h:
 ../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_tim_ex.h:
 ../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_uart.h:
+C:/Users/HP/Documents/C\ Programming/STM32/RTOS_Workspace/RTOS_1/ThirdParty/FreeRTOS/include/FreeRTOS.h:
+C:/Users/HP/Documents/C\ Programming/STM32/RTOS_Workspace/RTOS_1/ThirdParty/FreeRTOS/FreeRTOSConfig.h:
+C:/Users/HP/Documents/C\ Programming/STM32/RTOS_Workspace/RTOS_1/ThirdParty/FreeRTOS/include/projdefs.h:
+C:/Users/HP/Documents/C\ Programming/STM32/RTOS_Workspace/RTOS_1/ThirdParty/FreeRTOS/include/portable.h:
+C:/Users/HP/Documents/C\ Programming/STM32/RTOS_Workspace/RTOS_1/ThirdParty/FreeRTOS/include/deprecated_definitions.h:
+C:/Users/HP/Documents/C\ Programming/STM32/RTOS_Workspace/RTOS_1/ThirdParty/FreeRTOS/portable/GCC/ARM_CM4F/portmacro.h:
+C:/Users/HP/Documents/C\ Programming/STM32/RTOS_Workspace/RTOS_1/ThirdParty/FreeRTOS/include/mpu_wrappers.h:
+C:/Users/HP/Documents/C\ Programming/STM32/RTOS_Workspace/RTOS_1/ThirdParty/FreeRTOS/include/task.h:
+C:/Users/HP/Documents/C\ Programming/STM32/RTOS_Workspace/RTOS_1/ThirdParty/FreeRTOS/include/list.h:
