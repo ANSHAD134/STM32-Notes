@@ -71,7 +71,6 @@ int main(void)
   /* USER CODE BEGIN 1 */
 	TaskHandle_t task1_handle;
 	TaskHandle_t task2_handle;
-	BaseType_t xReturned;
   /* USER CODE END 1 */
 
   /* MCU Configuration--------------------------------------------------------*/
@@ -94,13 +93,7 @@ int main(void)
   MX_GPIO_Init();
   MX_USART2_UART_Init();
   /* USER CODE BEGIN 2 */
-  xReturned = xTaskCreate(
-                      vTaskCode,       /* Function that implements the task. */
-                      "NAME",          /* Text name for the task. */
-                      STACK_SIZE,      /* Stack size in words, not bytes. */
-                      ( void * ) 1,    /* Parameter passed into the task. */
-                      tskIDLE_PRIORITY,/* Priority at which the task is created. */
-                      &xHandle );      /* Used to pass out the created task's handle. */
+
   /* USER CODE END 2 */
 
   /* Infinite loop */
