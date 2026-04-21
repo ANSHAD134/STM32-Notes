@@ -240,9 +240,6 @@ portFORCE_INLINE static BaseType_t xPortIsInsideInterrupt( void )
         : "=r" ( ulOriginalBASEPRI ), "=r" ( ulNewBASEPRI ) : "i" ( configMAX_SYSCALL_INTERRUPT_PRIORITY ) : "memory"
     );
 
-    /* This return will not be reached but is necessary to prevent compiler*/
-     /* warnings. */
-    //return ulOriginalBASEPRI;
 //}*/
 /*-----------------------------------------------------------*/
 

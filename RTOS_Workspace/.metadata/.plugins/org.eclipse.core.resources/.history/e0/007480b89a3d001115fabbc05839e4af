@@ -210,7 +210,7 @@ portFORCE_INLINE static BaseType_t xPortIsInsideInterrupt( void )
 
 /*-----------------------------------------------------------*/
 
-portFORCE_INLINE static void vPortRaiseBASEPRI( void )
+/*portFORCE_INLINE static void vPortRaiseBASEPRI( void )
 {
     uint32_t ulNewBASEPRI;
 
@@ -222,11 +222,11 @@ portFORCE_INLINE static void vPortRaiseBASEPRI( void )
         "   dsb                                                     \n" \
         : "=r" ( ulNewBASEPRI ) : "i" ( configMAX_SYSCALL_INTERRUPT_PRIORITY ) : "memory"
     );
-}
+}*/
 
 /*-----------------------------------------------------------*/
 
-portFORCE_INLINE static uint32_t ulPortRaiseBASEPRI( void )
+/*portFORCE_INLINE static uint32_t ulPortRaiseBASEPRI( void )
 {
     uint32_t ulOriginalBASEPRI, ulNewBASEPRI;
 
@@ -240,10 +240,10 @@ portFORCE_INLINE static uint32_t ulPortRaiseBASEPRI( void )
         : "=r" ( ulOriginalBASEPRI ), "=r" ( ulNewBASEPRI ) : "i" ( configMAX_SYSCALL_INTERRUPT_PRIORITY ) : "memory"
     );
 
-    /* This return will not be reached but is necessary to prevent compiler
-     * warnings. */
-    return ulOriginalBASEPRI;
-}
+    /* This return will not be reached but is necessary to prevent compiler*/
+     /* warnings. */
+    //return ulOriginalBASEPRI;
+//}*/
 /*-----------------------------------------------------------*/
 
 portFORCE_INLINE static void vPortSetBASEPRI( uint32_t ulNewMaskValue )
