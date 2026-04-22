@@ -98,8 +98,8 @@ int main(void)
   xReturned = xTaskCreate(
 		  	  	  	  task1_handler,      	/* Function that implements the task. */
                       "TASK1",          	/* Text name for the task. */
-                      500,      			/* Stack size in words, not bytes. */
-                      (void*)"Hello from Task1",   /* Parameter passed into the task. */
+                      100,      			/* Stack size in words, not bytes. */
+                      "Hello from Task1",   /* Parameter passed into the task. */
                       2,					/* Priority at which the task is created. */
                       &task1_handle );      /* Used to pass out the created task's handle. */
   configASSERT(xReturned == pdPASS);
@@ -107,13 +107,13 @@ int main(void)
   xReturned = xTaskCreate(
   		  	  	  	  task2_handler,       	/* Function that implements the task. */
                       "TASK2",          	/* Text name for the task. */
-                      500,      			/* Stack size in words, not bytes. */
-					  (void*)"Hello from Task2", 	/* Parameter passed into the task. */
+                      100,      			/* Stack size in words, not bytes. */
+                      "Hello from Task2", 	/* Parameter passed into the task. */
                       2,					/* Priority at which the task is created. */
                       &task2_handle );    	/* Used to pass out the created task's handle. */
   configASSERT(xReturned == pdPASS);
 
-  vTaskStartScheduler();
+    vTaskStartScheduler();
   /* USER CODE END 2 */
 
   /* Infinite loop */
@@ -247,19 +247,19 @@ static void MX_GPIO_Init(void)
 }
 
 /* USER CODE BEGIN 4 */
-static void task1_handler(void* Parameters)
+static void task1_handler(void* pvParameters)
 {
 	while(1)
 	{
-		printf("%s", (char*)Parameters);
+		printf("%s", (char*)pvParameters);
 	}
 }
 
-static void task2_handler(void* Parameters)
+static void task2_handler(void* pvParameters)
 {
 	while(1)
 	{
-		printf("%s", (char*)Parameters);
+		printf("%s", (char*)pvParameters);
 	}
 }
 /* USER CODE END 4 */
