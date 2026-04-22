@@ -1,4 +1,4 @@
-09:22:31 **** Build of configuration Debug for project RTOS_1 ****
+09:33:21 **** Build of configuration Debug for project RTOS_1 ****
 make -j4 all 
 arm-none-eabi-gcc "../Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal.c" -mcpu=cortex-m4 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32F446xx -c -I../Core/Inc -I"C:/Users/HP/Documents/C Programming/STM32/RTOS_Workspace/RTOS_1/ThirdParty/FreeRTOS/portable/GCC/ARM_CM4F" -I"C:/Users/HP/Documents/C Programming/STM32/RTOS_Workspace/RTOS_1/ThirdParty/FreeRTOS" -I"C:/Users/HP/Documents/C Programming/STM32/RTOS_Workspace/RTOS_1/ThirdParty/FreeRTOS/include" -I../Drivers/STM32F4xx_HAL_Driver/Inc -I../Drivers/STM32F4xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32F4xx/Include -I../Drivers/CMSIS/Include -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal.d" -MT"Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal.o" --specs=nano.specs -mfloat-abi=soft -mthumb -o "Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal.o"
 arm-none-eabi-gcc "../Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_cortex.c" -mcpu=cortex-m4 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32F446xx -c -I../Core/Inc -I"C:/Users/HP/Documents/C Programming/STM32/RTOS_Workspace/RTOS_1/ThirdParty/FreeRTOS/portable/GCC/ARM_CM4F" -I"C:/Users/HP/Documents/C Programming/STM32/RTOS_Workspace/RTOS_1/ThirdParty/FreeRTOS" -I"C:/Users/HP/Documents/C Programming/STM32/RTOS_Workspace/RTOS_1/ThirdParty/FreeRTOS/include" -I../Drivers/STM32F4xx_HAL_Driver/Inc -I../Drivers/STM32F4xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32F4xx/Include -I../Drivers/CMSIS/Include -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_cortex.d" -MT"Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_cortex.o" --specs=nano.specs -mfloat-abi=soft -mthumb -o "Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_cortex.o"
@@ -23,16 +23,34 @@ arm-none-eabi-gcc "../Core/Src/stm32f4xx_hal_timebase_tim.c" -mcpu=cortex-m4 -st
 arm-none-eabi-gcc "../Core/Src/stm32f4xx_it.c" -mcpu=cortex-m4 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32F446xx -c -I../Core/Inc -I"C:/Users/HP/Documents/C Programming/STM32/RTOS_Workspace/RTOS_1/ThirdParty/FreeRTOS/portable/GCC/ARM_CM4F" -I"C:/Users/HP/Documents/C Programming/STM32/RTOS_Workspace/RTOS_1/ThirdParty/FreeRTOS" -I"C:/Users/HP/Documents/C Programming/STM32/RTOS_Workspace/RTOS_1/ThirdParty/FreeRTOS/include" -I../Drivers/STM32F4xx_HAL_Driver/Inc -I../Drivers/STM32F4xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32F4xx/Include -I../Drivers/CMSIS/Include -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Core/Src/stm32f4xx_it.d" -MT"Core/Src/stm32f4xx_it.o" --specs=nano.specs -mfloat-abi=soft -mthumb -o "Core/Src/stm32f4xx_it.o"
 In file included from C:/Users/HP/Documents/C Programming/STM32/RTOS_Workspace/RTOS_1/ThirdParty/FreeRTOS/include/FreeRTOS.h:64,
                  from ../Core/Src/main.c:25:
-C:/Users/HP/Documents/C Programming/STM32/RTOS_Workspace/RTOS_1/ThirdParty/FreeRTOS/FreeRTOSConfig.h:75:23: error: expected parameter name, found "("
-   75 | #define configASSERT( ( x ) ) if( ( x ) == 0 ) vAssertCalled( __FILE__, __LINE__ )
-      |                       ^
 ../Core/Src/main.c: In function 'main':
-../Core/Src/main.c:75:20: warning: variable 'xReturned' set but not used [-Wunused-but-set-variable]
-   75 |         BaseType_t xReturned;
-      |                    ^~~~~~~~~
+C:/Users/HP/Documents/C Programming/STM32/RTOS_Workspace/RTOS_1/ThirdParty/FreeRTOS/FreeRTOSConfig.h:75:44: warning: implicit declaration of function 'vAssertCalled' [-Wimplicit-function-declaration]
+   75 | #define configASSERT( x ) if( ( x ) == 0 ) vAssertCalled( _FILE, __LINE_ )
+      |                                            ^~~~~~~~~~~~~
+../Core/Src/main.c:105:3: note: in expansion of macro 'configASSERT'
+  105 |   configASSERT(xReturned == pdPASS);
+      |   ^~~~~~~~~~~~
+C:/Users/HP/Documents/C Programming/STM32/RTOS_Workspace/RTOS_1/ThirdParty/FreeRTOS/FreeRTOSConfig.h:75:59: error: '_FILE' undeclared (first use in this function); did you mean 'FILE'?
+   75 | #define configASSERT( x ) if( ( x ) == 0 ) vAssertCalled( _FILE, __LINE_ )
+      |                                                           ^~~~~
+../Core/Src/main.c:105:3: note: in expansion of macro 'configASSERT'
+  105 |   configASSERT(xReturned == pdPASS);
+      |   ^~~~~~~~~~~~
+C:/Users/HP/Documents/C Programming/STM32/RTOS_Workspace/RTOS_1/ThirdParty/FreeRTOS/FreeRTOSConfig.h:75:59: note: each undeclared identifier is reported only once for each function it appears in
+   75 | #define configASSERT( x ) if( ( x ) == 0 ) vAssertCalled( _FILE, __LINE_ )
+      |                                                           ^~~~~
+../Core/Src/main.c:105:3: note: in expansion of macro 'configASSERT'
+  105 |   configASSERT(xReturned == pdPASS);
+      |   ^~~~~~~~~~~~
+C:/Users/HP/Documents/C Programming/STM32/RTOS_Workspace/RTOS_1/ThirdParty/FreeRTOS/FreeRTOSConfig.h:75:66: error: '__LINE_' undeclared (first use in this function); did you mean '__LINE__'?
+   75 | #define configASSERT( x ) if( ( x ) == 0 ) vAssertCalled( _FILE, __LINE_ )
+      |                                                                  ^~~~~~~
+../Core/Src/main.c:105:3: note: in expansion of macro 'configASSERT'
+  105 |   configASSERT(xReturned == pdPASS);
+      |   ^~~~~~~~~~~~
 make: *** [Core/Src/subdir.mk:37: Core/Src/main.o] Error 1
 make: *** Waiting for unfinished jobs....
 "make -j4 all" terminated with exit code 2. Build might be incomplete.
 
-09:22:37 Build Failed. 3 errors, 1 warnings. (took 6s.165ms)
+09:33:26 Build Failed. 4 errors, 1 warnings. (took 5s.488ms)
 
