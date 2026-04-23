@@ -1,0 +1,40 @@
+/*
+ * Simple_Queue.h
+ *
+ *  Created on: 23-Apr-2026
+ *      Author: HP
+ */
+
+#ifndef INC_SIMPLE_QUEUE_H_
+#define INC_SIMPLE_QUEUE_H_
+
+#include <stdint.h>
+#include <stdbool.h>
+#include "FreeRTOS.h"
+#include "semphr.h"
+
+typedef struct
+{
+	uint8_t *buffer;			// raw memory buffer
+	uint32_t item_size;			// size of one item
+	uint32_t capacity;			// number of items queue can hold
+	uint32_t head;				// dequeue index
+	uint32_t tail;				// enqueue index
+	uint32_t count;				// current number of items
+
+	semaphoreHandle_t mutex;	// Thread safety
+}simple_queue_t;
+
+// Initialize queue
+void queue_init(simple_queue_t *q, void *buffer, uint32_t item_size, uint32_t capacity);
+
+//check queue state
+void queue_is_full(simple_queue_t *q);
+void queue_is_empty(simple_queue_t *q);
+
+// thread-safe operation
+void queue_push(simple_queue_t *q, const void *item);
+void queue_pop(simple_queue_t *q, void *out);
+
+
+#endif /* INC_SIMPLE_QUEUE_H_ */

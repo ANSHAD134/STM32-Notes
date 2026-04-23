@@ -1,0 +1,32 @@
+/*
+ * Simple_Queue.c
+ *
+ *  Created on: 23-Apr-2026
+ *      Author: HP
+ */
+
+#include <string.h>
+#include "Simple_Queue.h"
+
+void queue_init(simple_queue_t *q, void *buffer, uint32_t item_size, uint32_t capacity)
+{
+	q->buffer = (uint8_t *)buffer;
+	q->item_size = item_size;
+	q->capacity = capacity;
+	q->head = 0;
+	q->tail = 0;
+	q->count = 0;
+
+	q->mutex = xSemaphoreCreateMutex();
+}
+
+void queue_is_full(simple_queue_t *q)
+{
+	return (q->count == q->capacity);
+}
+
+void queue_is_empty(simple_queue_t *q)
+{
+	return (q->count == 0);
+}
+

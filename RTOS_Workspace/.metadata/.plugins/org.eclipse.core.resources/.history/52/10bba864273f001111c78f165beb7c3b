@@ -1,0 +1,81 @@
+/*
+ * Traffic.c
+ *
+ *  Created on: 23-Apr-2026
+ *      Author: HP
+ */
+
+#include <stdbool.h>
+#include "main.h"
+#include "cmsis_os.h"
+#include "Traffic.h"
+
+#define TOGGLE_INTERVAL		300
+
+Led_Status_t g_taffic_light_state = UNDEFINED_STATE;
+volatile bool g_traffic_enable = false;
+volatile uint32_t g_red_duration = 0;
+volatile uint32_t g_green_duration = 0;
+volatile uint32_t g_yellow_duration = 0;
+uint32_t g_tick = 0;
+
+bool traffic_init(void)
+{
+	g_red_duration = CONFIG_DEFAULT_RED_TIME_S;
+	g_green_duration = CONFIG_DEFAULT_GREEN_TIME_S;
+	g_yellow_duration = CONFIG_DEFAULT_YELLOW_TIME_S;
+	g_taffic_light_state = RED_STATE;
+	g_traffic_enable = false;
+	return true;
+}
+
+void run_traffic_ctrl(void const * argument)
+{
+	for(;;)
+	{
+		if(!g_traffic_enable)
+		{
+			HAL_GPIO_WritePin(GPIOA, Red_Led_Pin, GPIO_PIN_RESET);
+			HAL_GPIO_WritePin(GPIOA, Green_Led_Pin, GPIO_PIN_RESET);
+			HAL_GPIO_WritePin(GPIOA, Yellow_Led_Pin, GPIO_PIN_RESET);
+			g_taffic_light_state = RED_STATE;
+			g_tick = 0;
+			vTaskDelay(pdMS_TO_TICKS(10));
+			continue;
+		}
+		g_tick++;
+		switch(g_taffic_light_state)
+		{
+		case RED_STATE:
+			HAL_GPIO_WritePin(GPIOA, Red_Led_Pin, GPIO_PIN_SET);
+			if(g_tick > g_red_duration * 1000)
+			{
+				HAL_GPIO_WritePin(GPIOA, Red_Led_Pin, GPIO_PIN_RESET);
+				g_taffic_light_state = GREEN_STATE;
+				g_tick = 0;
+			}
+			break;
+		case GREEN_STATE:
+			HAL_GPIO_WritePin(GPIOA, Green_Led_Pin, GPIO_PIN_SET);
+			if(g_tick > g_green_duration * 1000)
+			{
+				g_taffic_light_state = YELLOW_STATE;
+				HAL_GPIO_WritePin(GPIOA, Green_Led_Pin, GPIO_PIN_RESET);
+				g_tick = 0;
+			}
+			break;
+		case GREEN_STATE:
+			HAL_GPIO_WritePin(GPIOA, Yellow_Led_Pin, GPIO_PIN_SET);
+			if(g_tick > g_yellow_duration * 1000)
+			{
+				g_taffic_light_state = RED_STATE;
+				HAL_GPIO_WritePin(GPIOA, Green_Led_Pin, GPIO_PIN_RESET);
+				g_tick = 0;
+			}
+			break;
+		default:
+			break;
+		}
+		vTaskDelay(pdMS_TO_TICKS(1));
+	}
+}

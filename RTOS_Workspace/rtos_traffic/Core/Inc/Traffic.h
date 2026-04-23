@@ -15,12 +15,13 @@
 typedef enum
 {
 	LED_STATE = 0,
+	RED_STATE,
 	GREEN_STATE,
 	YELLOW_STATE,
 	UNDEFINED_STATE
 }Led_Status_t;
 
-void traffic_inti(void);
+bool traffic_inti(void);
 void run_traffic_ctrl(void const * argument);
 
 #endif /* INC_TRAFFIC_H_ */
