@@ -1,0 +1,26 @@
+/*
+ * Traffic.h
+ *
+ *  Created on: 23-Apr-2026
+ *      Author: HP
+ */
+
+#ifndef INC_TRAFFIC_H_
+#define INC_TRAFFIC_H_
+
+#define CONFIG_DEFAULT_RED_TIME_S		10
+#define CONFIG_DEFAULT_GREEN_TIME_S		15
+#define CONFIG_DEFAULT_YELLOW_TIME_S	5
+
+typedef enum
+{
+	LED_STATE = 0,
+	GREEN_STATE,
+	YELLOW_STATE,
+	UNDEFINED_STATE
+}LED_Status_t;
+
+void traffic_inti(void);
+void run_traffic_ctrl(void const * argument);
+
+#endif /* INC_TRAFFIC_H_ */
