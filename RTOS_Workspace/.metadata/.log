@@ -103,3 +103,6 @@ Command-line arguments:  -os win32 -ws win32 -arch x86_64
 
 !ENTRY org.eclipse.cdt.core 1 0 2026-04-23 11:34:03.334
 !MESSAGE Indexed 'Sample_Project' (33 sources, 184 headers) in 12.4 sec: 16,660 declarations; 62,254 references; 7 unresolved inclusions; 235 syntax errors; 1,309 unresolved names (1.6%)
+
+!ENTRY org.eclipse.cdt.core 1 0 2026-04-23 11:39:11.558
+!MESSAGE Indexed 'rtos_traffic' (0 sources, 0 headers) in 0.001 sec: 0 declarations; 0 references; 0 unresolved inclusions; 0 syntax errors; 0 unresolved names (0%)
