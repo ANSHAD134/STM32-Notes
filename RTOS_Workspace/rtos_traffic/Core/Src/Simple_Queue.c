@@ -30,3 +30,40 @@ int queue_is_empty(simple_queue_t *q)
 	return (q->count == 0);
 }
 
+int queue_push(simple_queue_t *q, const void *item)
+{
+	bool result = false;
+
+	if(xSemaphoreTake(q->mutex, portMAX_DELAY) == pdTRUE)
+	{
+		if(!queue_is_full(q))
+		{
+			memcpy(&q->buffer(q->tail * q->item_size), item, q->item_size);
+			q->tail = (q->tail + 1) % q->capacity;
+			q->count++;
+			result = true;
+		}
+
+		xSemaphoreGive(q->mutex);
+	}
+	return result;
+}
+
+int queue_pop(simple_queue_t *q, void *out)
+{
+	bool result = false;
+
+	if(xSemaphoreTake(q->mutex, portMAX_DELAY) == pdTRUE)
+	{
+		if(!queue_is_empty(q))
+		{
+			memcpy(out, &q->buffer(q->head * q->item_size), item, q->item_size);
+			q->head = (q->tail + 1) % q->capacity;
+			q->count--;
+			result = true;
+		}
+
+		xSemaphoreGive(q->mutex);
+	}
+	return result;
+}

@@ -33,8 +33,8 @@ int queue_is_full(simple_queue_t *q);
 int queue_is_empty(simple_queue_t *q);
 
 // thread-safe operation
-int queue_push(simple_queue_t *q, const void *item);
-int queue_pop(simple_queue_t *q, void *out);
+void queue_push(simple_queue_t *q, const void *item);
+void queue_pop(simple_queue_t *q, void *out);
 
 
 #endif /* INC_SIMPLE_QUEUE_H_ */
