@@ -58,7 +58,7 @@ int queue_pop(simple_queue_t *q, void *out)
 		if(!queue_is_empty(q))
 		{
 			memcpy(out, &q->buffer(q->head * q->item_size), item, q->item_size);
-			q->head = (q->head + 1) % q->capacity;
+			q->head = (q->tail + 1) % q->capacity;
 			q->count--;
 			result = true;
 		}
