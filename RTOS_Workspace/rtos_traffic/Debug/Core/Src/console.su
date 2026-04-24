@@ -1,2 +1,0 @@
-../Core/Src/console.c:33:6:console_init	152	static
-../Core/Src/console.c:56:6:receive_command	56	static

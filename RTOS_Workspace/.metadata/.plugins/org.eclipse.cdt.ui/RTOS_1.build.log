@@ -1,4 +1,4 @@
-21:00:16 **** Build of configuration Debug for project RTOS_1 ****
+20:11:24 **** Build of configuration Debug for project RTOS_1 ****
 make -j4 all 
 arm-none-eabi-gcc "../Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal.c" -mcpu=cortex-m4 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32F446xx -c -I../Core/Inc -I"C:/Users/HP/Documents/C Programming/STM32/RTOS_Workspace/RTOS_1/ThirdParty/FreeRTOS/portable/GCC/ARM_CM4F" -I"C:/Users/HP/Documents/C Programming/STM32/RTOS_Workspace/RTOS_1/ThirdParty/FreeRTOS" -I"C:/Users/HP/Documents/C Programming/STM32/RTOS_Workspace/RTOS_1/ThirdParty/FreeRTOS/include" -I../Drivers/STM32F4xx_HAL_Driver/Inc -I../Drivers/STM32F4xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32F4xx/Include -I../Drivers/CMSIS/Include -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal.d" -MT"Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal.o" --specs=nano.specs -mfloat-abi=soft -mthumb -o "Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal.o"
 arm-none-eabi-gcc "../Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_cortex.c" -mcpu=cortex-m4 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32F446xx -c -I../Core/Inc -I"C:/Users/HP/Documents/C Programming/STM32/RTOS_Workspace/RTOS_1/ThirdParty/FreeRTOS/portable/GCC/ARM_CM4F" -I"C:/Users/HP/Documents/C Programming/STM32/RTOS_Workspace/RTOS_1/ThirdParty/FreeRTOS" -I"C:/Users/HP/Documents/C Programming/STM32/RTOS_Workspace/RTOS_1/ThirdParty/FreeRTOS/include" -I../Drivers/STM32F4xx_HAL_Driver/Inc -I../Drivers/STM32F4xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32F4xx/Include -I../Drivers/CMSIS/Include -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_cortex.d" -MT"Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_cortex.o" --specs=nano.specs -mfloat-abi=soft -mthumb -o "Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_cortex.o"
@@ -66,5 +66,5 @@ collect2.exe: error: ld returned 1 exit status
 make: *** [makefile:64: RTOS_1.elf] Error 1
 "make -j4 all" terminated with exit code 2. Build might be incomplete.
 
-21:00:24 Build Failed. 5 errors, 3 warnings. (took 7s.440ms)
+20:11:32 Build Failed. 5 errors, 3 warnings. (took 7s.573ms)
 
