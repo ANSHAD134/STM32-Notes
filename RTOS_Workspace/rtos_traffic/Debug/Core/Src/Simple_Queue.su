@@ -1,3 +1,5 @@
 ../Core/Src/Simple_Queue.c:11:6:queue_init	24	static
 ../Core/Src/Simple_Queue.c:23:5:queue_is_full	16	static
 ../Core/Src/Simple_Queue.c:28:5:queue_is_empty	16	static
+../Core/Src/Simple_Queue.c:33:5:queue_push	24	static
+../Core/Src/Simple_Queue.c:52:5:queue_pop	24	static

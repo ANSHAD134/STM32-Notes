@@ -30,7 +30,7 @@ volatile uint32_t g_red_duration;
 volatile uint32_t g_green_duration;
 volatile uint32_t g_yellow_duration;
 
-void console_init(void)
+console_init(void)
 {
     bool b_return_status = true;
     char banner[128];
@@ -53,7 +53,7 @@ void console_init(void)
     return b_return_status;
 }
 
-void receive_command(void const * argument)
+receive_command(void const * argument)
 {
     char c_temp_buffer[26] = {0};
     uint8_t c_current_char;

@@ -1,5 +1,6 @@
 "./Core/Src/Simple_Queue.o"
 "./Core/Src/Traffic.o"
+"./Core/Src/console.o"
 "./Core/Src/freertos.o"
 "./Core/Src/main.o"
 "./Core/Src/stm32f4xx_hal_msp.o"

@@ -38,7 +38,7 @@ int queue_push(simple_queue_t *q, const void *item)
 	{
 		if(!queue_is_full(q))
 		{
-			memcpy((uint8_t *)q->buffer + (q->tail * q->item_size), item, q->item_size);
+			memcpy(&q->buffer(q->tail * q->item_size), item, q->item_size);
 			q->tail = (q->tail + 1) % q->capacity;
 			q->count++;
 			result = true;
@@ -57,7 +57,7 @@ int queue_pop(simple_queue_t *q, void *out)
 	{
 		if(!queue_is_empty(q))
 		{
-			memcpy(out, (uint8_t *)q->buffer + (q->head * q->item_size), q->item_size);
+			memcpy(out, &q->buffer(q->head * q->item_size), item, q->item_size);
 			q->head = (q->head + 1) % q->capacity;
 			q->count--;
 			result = true;

@@ -1,4 +1,4 @@
-20:51:19 **** Build of configuration Debug for project rtos_traffic ****
+20:09:13 **** Build of configuration Debug for project rtos_traffic ****
 make -j4 all 
 arm-none-eabi-gcc "../Middlewares/Third_Party/FreeRTOS/Source/portable/MemMang/heap_4.c" -mcpu=cortex-m4 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32F446xx -c -I../Core/Inc -I../Drivers/STM32F4xx_HAL_Driver/Inc -I../Drivers/STM32F4xx_HAL_Driver/Inc/Legacy -I../Middlewares/Third_Party/FreeRTOS/Source/include -I../Middlewares/Third_Party/FreeRTOS/Source/CMSIS_RTOS -I../Middlewares/Third_Party/FreeRTOS/Source/portable/GCC/ARM_CM4F -I../Drivers/CMSIS/Device/ST/STM32F4xx/Include -I../Drivers/CMSIS/Include -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Middlewares/Third_Party/FreeRTOS/Source/portable/MemMang/heap_4.d" -MT"Middlewares/Third_Party/FreeRTOS/Source/portable/MemMang/heap_4.o" --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -o "Middlewares/Third_Party/FreeRTOS/Source/portable/MemMang/heap_4.o"
 arm-none-eabi-gcc "../Middlewares/Third_Party/FreeRTOS/Source/portable/GCC/ARM_CM4F/port.c" -mcpu=cortex-m4 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32F446xx -c -I../Core/Inc -I../Drivers/STM32F4xx_HAL_Driver/Inc -I../Drivers/STM32F4xx_HAL_Driver/Inc/Legacy -I../Middlewares/Third_Party/FreeRTOS/Source/include -I../Middlewares/Third_Party/FreeRTOS/Source/CMSIS_RTOS -I../Middlewares/Third_Party/FreeRTOS/Source/portable/GCC/ARM_CM4F -I../Drivers/CMSIS/Device/ST/STM32F4xx/Include -I../Drivers/CMSIS/Include -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Middlewares/Third_Party/FreeRTOS/Source/portable/GCC/ARM_CM4F/port.d" -MT"Middlewares/Third_Party/FreeRTOS/Source/portable/GCC/ARM_CM4F/port.o" --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -o "Middlewares/Third_Party/FreeRTOS/Source/portable/GCC/ARM_CM4F/port.o"
@@ -27,8 +27,7 @@ arm-none-eabi-gcc "../Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_uart.c" -mc
 arm-none-eabi-gcc -mcpu=cortex-m4 -g3 -DDEBUG -c -I../Core/Inc -I../Drivers/STM32F4xx_HAL_Driver/Inc -I../Drivers/STM32F4xx_HAL_Driver/Inc/Legacy -I../Middlewares/Third_Party/FreeRTOS/Source/include -I../Middlewares/Third_Party/FreeRTOS/Source/CMSIS_RTOS -I../Middlewares/Third_Party/FreeRTOS/Source/portable/GCC/ARM_CM4F -I../Drivers/CMSIS/Device/ST/STM32F4xx/Include -I../Drivers/CMSIS/Include -x assembler-with-cpp -MMD -MP -MF"Core/Startup/startup_stm32f446retx.d" -MT"Core/Startup/startup_stm32f446retx.o" --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -o "Core/Startup/startup_stm32f446retx.o" "../Core/Startup/startup_stm32f446retx.s"
 arm-none-eabi-gcc "../Core/Src/Simple_Queue.c" -mcpu=cortex-m4 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32F446xx -c -I../Core/Inc -I../Drivers/STM32F4xx_HAL_Driver/Inc -I../Drivers/STM32F4xx_HAL_Driver/Inc/Legacy -I../Middlewares/Third_Party/FreeRTOS/Source/include -I../Middlewares/Third_Party/FreeRTOS/Source/CMSIS_RTOS -I../Middlewares/Third_Party/FreeRTOS/Source/portable/GCC/ARM_CM4F -I../Drivers/CMSIS/Device/ST/STM32F4xx/Include -I../Drivers/CMSIS/Include -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Core/Src/Simple_Queue.d" -MT"Core/Src/Simple_Queue.o" --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -o "Core/Src/Simple_Queue.o"
 arm-none-eabi-gcc "../Core/Src/Traffic.c" -mcpu=cortex-m4 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32F446xx -c -I../Core/Inc -I../Drivers/STM32F4xx_HAL_Driver/Inc -I../Drivers/STM32F4xx_HAL_Driver/Inc/Legacy -I../Middlewares/Third_Party/FreeRTOS/Source/include -I../Middlewares/Third_Party/FreeRTOS/Source/CMSIS_RTOS -I../Middlewares/Third_Party/FreeRTOS/Source/portable/GCC/ARM_CM4F -I../Drivers/CMSIS/Device/ST/STM32F4xx/Include -I../Drivers/CMSIS/Include -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Core/Src/Traffic.d" -MT"Core/Src/Traffic.o" --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -o "Core/Src/Traffic.o"
-arm-none-eabi-gcc "../Core/Src/freertos.c" -mcpu=cortex-m4 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32F446xx -c -I../Core/Inc -I../Drivers/STM32F4xx_HAL_Driver/Inc -I../Drivers/STM32F4xx_HAL_Driver/Inc/Legacy -I../Middlewares/Third_Party/FreeRTOS/Source/include -I../Middlewares/Third_Party/FreeRTOS/Source/CMSIS_RTOS -I../Middlewares/Third_Party/FreeRTOS/Source/portable/GCC/ARM_CM4F -I../Drivers/CMSIS/Device/ST/STM32F4xx/Include -I../Drivers/CMSIS/Include -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Core/Src/freertos.d" -MT"Core/Src/freertos.o" --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -o "Core/Src/freertos.o"
-arm-none-eabi-gcc "../Core/Src/main.c" -mcpu=cortex-m4 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32F446xx -c -I../Core/Inc -I../Drivers/STM32F4xx_HAL_Driver/Inc -I../Drivers/STM32F4xx_HAL_Driver/Inc/Legacy -I../Middlewares/Third_Party/FreeRTOS/Source/include -I../Middlewares/Third_Party/FreeRTOS/Source/CMSIS_RTOS -I../Middlewares/Third_Party/FreeRTOS/Source/portable/GCC/ARM_CM4F -I../Drivers/CMSIS/Device/ST/STM32F4xx/Include -I../Drivers/CMSIS/Include -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Core/Src/main.d" -MT"Core/Src/main.o" --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -o "Core/Src/main.o"
+arm-none-eabi-gcc "../Core/Src/console.c" -mcpu=cortex-m4 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32F446xx -c -I../Core/Inc -I../Drivers/STM32F4xx_HAL_Driver/Inc -I../Drivers/STM32F4xx_HAL_Driver/Inc/Legacy -I../Middlewares/Third_Party/FreeRTOS/Source/include -I../Middlewares/Third_Party/FreeRTOS/Source/CMSIS_RTOS -I../Middlewares/Third_Party/FreeRTOS/Source/portable/GCC/ARM_CM4F -I../Drivers/CMSIS/Device/ST/STM32F4xx/Include -I../Drivers/CMSIS/Include -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Core/Src/console.d" -MT"Core/Src/console.o" --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -o "Core/Src/console.o"
 ../Core/Src/Traffic.c: In function 'run_traffic_ctrl':
 ../Core/Src/Traffic.c:38:50: error: 'Red_Led_Pin' undeclared (first use in this function)
    38 |                         HAL_GPIO_WritePin(GPIOA, Red_Led_Pin, GPIO_PIN_RESET);
@@ -37,30 +36,53 @@ arm-none-eabi-gcc "../Core/Src/main.c" -mcpu=cortex-m4 -std=gnu11 -g3 -DDEBUG -D
 ../Core/Src/Traffic.c:39:50: error: 'Green_Led_Pin' undeclared (first use in this function)
    39 |                         HAL_GPIO_WritePin(GPIOA, Green_Led_Pin, GPIO_PIN_RESET);
       |                                                  ^~~~~~~~~~~~~
+arm-none-eabi-gcc "../Core/Src/freertos.c" -mcpu=cortex-m4 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32F446xx -c -I../Core/Inc -I../Drivers/STM32F4xx_HAL_Driver/Inc -I../Drivers/STM32F4xx_HAL_Driver/Inc/Legacy -I../Middlewares/Third_Party/FreeRTOS/Source/include -I../Middlewares/Third_Party/FreeRTOS/Source/CMSIS_RTOS -I../Middlewares/Third_Party/FreeRTOS/Source/portable/GCC/ARM_CM4F -I../Drivers/CMSIS/Device/ST/STM32F4xx/Include -I../Drivers/CMSIS/Include -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Core/Src/freertos.d" -MT"Core/Src/freertos.o" --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -o "Core/Src/freertos.o"
 ../Core/Src/Traffic.c:40:50: error: 'Yellow_Led_Pin' undeclared (first use in this function)
    40 |                         HAL_GPIO_WritePin(GPIOA, Yellow_Led_Pin, GPIO_PIN_RESET);
       |                                                  ^~~~~~~~~~~~~~
-make: *** [Core/Src/subdir.mk:43: Core/Src/Traffic.o] Error 1
+arm-none-eabi-gcc "../Core/Src/main.c" -mcpu=cortex-m4 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32F446xx -c -I../Core/Inc -I../Drivers/STM32F4xx_HAL_Driver/Inc -I../Drivers/STM32F4xx_HAL_Driver/Inc/Legacy -I../Middlewares/Third_Party/FreeRTOS/Source/include -I../Middlewares/Third_Party/FreeRTOS/Source/CMSIS_RTOS -I../Middlewares/Third_Party/FreeRTOS/Source/portable/GCC/ARM_CM4F -I../Drivers/CMSIS/Device/ST/STM32F4xx/Include -I../Drivers/CMSIS/Include -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Core/Src/main.d" -MT"Core/Src/main.o" --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -o "Core/Src/main.o"
+make: *** [Core/Src/subdir.mk:46: Core/Src/Traffic.o] Error 1
 make: *** Waiting for unfinished jobs....
+../Core/Src/console.c: In function 'console_init':
+../Core/Src/console.c:53:12: warning: 'return' with a value, in function returning void [-Wreturn-type]
+   53 |     return b_return_status;
+      |            ^~~~~~~~~~~~~~~
+../Core/Src/console.c:33:6: note: declared here
+   33 | void console_init(void)
+      |      ^~~~~~~~~~~~
+../Core/Src/console.c: At top level:
+../Core/Src/console.c:25:21: warning: 'CONSOLE_QUEUE_ERROR_MSG' defined but not used [-Wunused-variable]
+   25 | static const char * CONSOLE_QUEUE_ERROR_MSG = "Application Queue Full\n";
+      |                     ^~~~~~~~~~~~~~~~~~~~~~~
 ../Core/Src/main.c: In function 'main':
 ../Core/Src/main.c:101:4: warning: implicit declaration of function 'console_init' [-Wimplicit-function-declaration]
-  101 |   (console_init() == false);
+  101 |   (console_init() == false)
       |    ^~~~~~~~~~~~
 ../Core/Src/main.c:101:22: error: 'false' undeclared (first use in this function)
-  101 |   (console_init() == false);
+  101 |   (console_init() == false)
       |                      ^~~~~
 ../Core/Src/main.c:22:1: note: 'false' is defined in header '<stdbool.h>'; did you forget to '#include <stdbool.h>'?
    21 | #include "cmsis_os.h"
   +++ |+#include <stdbool.h>
    22 | 
 ../Core/Src/main.c:101:22: note: each undeclared identifier is reported only once for each function it appears in
-  101 |   (console_init() == false);
+  101 |   (console_init() == false)
       |                      ^~~~~
-../Core/Src/main.c:105:4: warning: implicit declaration of function 'traffic_init' [-Wimplicit-function-declaration]
-  105 |   (traffic_init() == false);
-      |    ^~~~~~~~~~~~
-make: *** [Core/Src/subdir.mk:43: Core/Src/main.o] Error 1
+../Core/Src/main.c:101:28: error: expected ';' before '{' token
+  101 |   (console_init() == false)
+      |                            ^
+      |                            ;
+  102 |         {
+      |         ~                   
+In file included from ../Core/Src/main.c:21:
+../Middlewares/Third_Party/FreeRTOS/Source/CMSIS_RTOS/cmsis_os.h:434:2: error: 'os_thread_def_TrafficControl' undeclared (first use in this function)
+  434 | &os_thread_def_##name
+      |  ^~~~~~~~~~~~~~
+../Core/Src/main.c:131:41: note: in expansion of macro 'osThread'
+  131 |   TrafficControlHandle = osThreadCreate(osThread(TrafficControl), NULL);
+      |                                         ^~~~~~~~
+make: *** [Core/Src/subdir.mk:46: Core/Src/main.o] Error 1
 "make -j4 all" terminated with exit code 2. Build might be incomplete.
 
-20:51:24 Build Failed. 7 errors, 2 warnings. (took 5s.511ms)
+20:09:20 Build Failed. 9 errors, 3 warnings. (took 7s.342ms)
 
