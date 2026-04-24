@@ -28,7 +28,7 @@
 
 /* Private typedef -----------------------------------------------------------*/
 /* USER CODE BEGIN PTD */
-void vAssertCalled(const char *file, int line);
+
 /* USER CODE END PTD */
 
 /* Private define ------------------------------------------------------------*/

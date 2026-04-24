@@ -28,7 +28,7 @@
 
 /* Private typedef -----------------------------------------------------------*/
 /* USER CODE BEGIN PTD */
-void vAssertCalled(const char *file, int line);
+
 /* USER CODE END PTD */
 
 /* Private define ------------------------------------------------------------*/
@@ -252,7 +252,6 @@ static void task1_handler(void* Parameters)
 	while(1)
 	{
 		printf("%s", (char*)Parameters);
-		taskYIELD();
 	}
 }
 

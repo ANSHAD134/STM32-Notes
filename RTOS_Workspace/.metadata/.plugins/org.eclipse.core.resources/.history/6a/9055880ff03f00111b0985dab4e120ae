@@ -210,19 +210,19 @@ portFORCE_INLINE static BaseType_t xPortIsInsideInterrupt( void )
 
 /*-----------------------------------------------------------*/
 
-portFORCE_INLINE static void vPortRaiseBASEPRI( void )
+/*portFORCE_INLINE static void vPortRaiseBASEPRI( void )
 {
     uint32_t ulNewBASEPRI;
 
     __asm volatile
     (
-        "   mov %0, %1       \n"
-        "   msr basepri, %0  \n"
-        "   isb              \n"
-        "   dsb              \n"
+        "   mov %0, %1                                              \n" \
+        "   msr basepri, %0                                         \n" \
+        "   isb                                                     \n" \
+        "   dsb                                                     \n" \
         : "=r" ( ulNewBASEPRI ) : "i" ( configMAX_SYSCALL_INTERRUPT_PRIORITY ) : "memory"
     );
-}
+}*/
 
 /*-----------------------------------------------------------*/
 
