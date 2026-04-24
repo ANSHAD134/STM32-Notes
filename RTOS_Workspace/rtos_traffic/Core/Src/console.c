@@ -19,8 +19,64 @@
 #define CMD_QUEUE_SIZE	10
 
 
+static command_msg_t cmd_buffer[CMD_QUEUE_SIZE];
+static simple_queue_t cmdQueue;
 
+static const char * CONSOLE_QUEUE_ERROR_MSG = "Application Queue Full\n";
+
+extern UART_HandleTypeDef huart2;
 volatile bool g_traffic_enable;
 volatile uint32_t g_red_duration;
 volatile uint32_t g_green_duration;
 volatile uint32_t g_yellow_duration;
+
+console_init(void)
+{
+    bool b_return_status = true;
+    char banner[128];
+
+    queue_init(&cmdQueue, cmd_buffer, sizeof(command_msg_t), CMD_QUEUE_SIZE);
+
+    snprintf(banner, sizeof(banner),
+             "\n"
+             "====== RTOS EXAMPLE ======\n"
+             "======== v%d.%d =========\n"
+             "=========================\n",
+             APP_VERSION_MAJOR,
+             APP_VERSION_MINOR);
+
+    if (HAL_OK != HAL_UART_Transmit(&huart2, (uint8_t *)banner, strlen(banner), CONSOLE_UART_TX_TIMEOUT))
+    {
+        b_return_status = false;
+    }
+
+    return b_return_status;
+}
+
+receive_command(void const * argument)
+{
+    char c_temp_buffer[26] = {0};
+    uint8_t c_current_char;
+    int32_t pos = 0;
+
+    for(;;)
+    {
+        if (HAL_UART_Receive(&huart2, &c_current_char, 1, CONSOLE_UART_RX_TIMEOUT) == HAL_OK)
+        {
+            if (c_current_char != '\r' && c_current_char != '\n')
+            {
+                c_temp_buffer[pos++] = c_current_char;
+            }
+            else
+            {
+                c_temp_buffer[pos] = '\0';
+                process_command(c_temp_buffer);
+                pos = 0;
+            }
+        }
+
+        vTaskDelay(pdMS_TO_TICKS(1));
+    }
+}
+
+
