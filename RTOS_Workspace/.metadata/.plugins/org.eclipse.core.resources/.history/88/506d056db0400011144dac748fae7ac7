@@ -30,7 +30,7 @@ volatile uint32_t g_red_duration;
 volatile uint32_t g_green_duration;
 volatile uint32_t g_yellow_duration;
 
-int console_init(void)
+void console_init(void)
 {
     bool b_return_status = true;
     char banner[128];
@@ -79,43 +79,4 @@ void receive_command(void const * argument)
     }
 }
 
-void process_command(char *command)
-{
-    char *token;
-    command_msg_t msg;
 
-    msg.type = CMD_UNKNOWN;
-    msg.param = 0;
-
-    token = strtok(command, " ");
-    if (token == NULL) return;
-
-    if (strcmp(token, "system") == 0)
-    {
-        char *arg = strtok(NULL, " ");
-        if (arg != NULL)
-        {
-            if (strcmp(arg, "on") == 0)
-            {
-                msg.type = CMD_SYSTEM_ON;
-            }
-            else if (strcmp(arg, "off") == 0)
-            {
-                msg.type = CMD_SYSTEM_OFF;
-            }
-            else
-            {
-                msg.type = CMD_UNKNOWN;
-            }
-        }
-    }
-    else if (strcmp(token, "red") == 0)
-    {
-        msg.type = CMD_RED;
-        msg.param = atoi(strtok(NULL, " "));
-    }
-    else if (strcmp(token, "green") == 0)
-    {
-        // (rest continues below in your file)
-    }
-}
