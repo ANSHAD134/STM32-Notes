@@ -190,37 +190,11 @@ respond_command(void const * argument)
                     }
                     else
                     {
-                        r_red_duration = msg.param;
-                        snprintf(out, sizeof(out), "RED %d\r\n", msg.param);
+                        // (continues in your file)
                     }
-                    uart_send_str(out);
                     break;
 
-                case CMD_GREEN:
-                    if (msg.param <= 0)
-                    {
-                        snprintf(out, sizeof(out), "GREEN: invalid param %d\r\n", msg.param);
-                    }
-                    else
-                    {
-                        r_green_duration = msg.param;
-                        snprintf(out, sizeof(out), "GREEN %d\r\n", msg.param);
-                    }
-                    uart_send_str(out);
-                    break;
-
-                case CMD_YELLOW:
-                    if (msg.param <= 0)
-                    {
-                        snprintf(out, sizeof(out), "YELLOW: invalid param %d\r\n", msg.param);
-                    }
-                    else
-                    {
-                        r_yellow_duration = msg.param;
-                        snprintf(out, sizeof(out), "YELLOW %d\r\n", msg.param);
-                    }
-                    uart_send_str(out);
-                    break;
+                // more cases below...
             }
         }
     }
