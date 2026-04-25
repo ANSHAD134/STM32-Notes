@@ -10,6 +10,10 @@
 #include "cmsis_os.h"
 #include "Traffic.h"
 
+#define Red_Led_Pin			13
+#define Green_Led_Pin		12
+#define Yellow_Led_Pin		11
+
 #define TOGGLE_INTERVAL		300
 
 Led_Status_t g_taffic_light_state = UNDEFINED_STATE;

@@ -22,7 +22,10 @@
 
 /* Private includes ----------------------------------------------------------*/
 /* USER CODE BEGIN Includes */
-
+#include "console.h"
+#include "FreeRTOSConfig.h"
+#include "Simple_Queue.h"
+#include "Traffic.h"
 /* USER CODE END Includes */
 
 /* Private typedef -----------------------------------------------------------*/

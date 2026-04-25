@@ -159,7 +159,7 @@ static void uart_send_str(const char *s)
     HAL_UART_Transmit(&huart2, (uint8_t *)s, strlen(s), CONSOLE_UART_TX_TIMEOUT);
 }
 
-respond_command(void const * argument)
+void respond_command(void const * argument)
 {
     (void)argument;
     command_msg_t msg;
@@ -190,8 +190,8 @@ respond_command(void const * argument)
                     }
                     else
                     {
-                        r_red_duration = msg.param;
-                        snprintf(out, sizeof(out), "RED %d\r\n", msg.param);
+                        g_red_duration = msg.param;
+                        snprintf(out, sizeof(out), "RED: %d\r\n", msg.param);
                     }
                     uart_send_str(out);
                     break;
@@ -203,7 +203,7 @@ respond_command(void const * argument)
                     }
                     else
                     {
-                        r_green_duration = msg.param;
+                        g_green_duration = msg.param;
                         snprintf(out, sizeof(out), "GREEN %d\r\n", msg.param);
                     }
                     uart_send_str(out);
@@ -216,12 +216,19 @@ respond_command(void const * argument)
                     }
                     else
                     {
-                        r_yellow_duration = msg.param;
+                        g_yellow_duration = msg.param;
                         snprintf(out, sizeof(out), "YELLOW %d\r\n", msg.param);
                     }
                     uart_send_str(out);
                     break;
+
+                default:
+                	snprintf(out, sizeof(out), "ERROR: UNKNOWN CMD\r\n");
+					uart_send_str(out);
+                	break;
             }
         }
+
+              vTaskDelay(pdMS_TO_TICKS(10));
     }
 }
