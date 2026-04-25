@@ -114,88 +114,8 @@ void process_command(char *command)
         msg.type = CMD_RED;
         msg.param = atoi(strtok(NULL, " "));
     }
-    else if (strcmp(token, "red") == 0)
-    {
-        msg.type = CMD_RED;
-        msg.param = atoi(strtok(NULL, " "));
-    }
     else if (strcmp(token, "green") == 0)
     {
-        msg.type = CMD_GREEN;
-        msg.param = atoi(strtok(NULL, " "));
-    }
-    else if (strcmp(token, "yellow") == 0)
-    {
-        msg.type = CMD_YELLOW;
-        msg.param = atoi(strtok(NULL, " "));
-    }
-    else if (strcmp(token, "temp") == 0)
-    {
-        msg.type = CMD_TEMP;
-    }
-    else if (strcmp(token, "log") == 0)
-    {
-        msg.type = CMD_LOG;
-    }
-    else
-    {
-        msg.type = CMD_UNKNOWN;
-    }
-
-    if (!queue_push(&cmdQueue, &msg))
-    {
-        HAL_UART_Transmit(&huart2,
-                          (uint8_t *)CONSOLE_QUEUE_ERROR_MSG,
-                          strlen(CONSOLE_QUEUE_ERROR_MSG),
-                          CONSOLE_UART_TX_TIMEOUT);
-    }
-}
-
-static void uart_send_str(const char *s)
-{
-    if (s == NULL)
-        return;
-
-    HAL_UART_Transmit(&huart2, (uint8_t *)s, strlen(s), CONSOLE_UART_TX_TIMEOUT);
-}
-
-respond_command(void const * argument)
-{
-    (void)argument;
-    command_msg_t msg;
-    char out[64];
-
-    for (;;)
-    {
-        if (queue_pop(&cmdQueue, &msg))
-        {
-            switch ((command_type_t)msg.type)
-            {
-                case CMD_SYSTEM_ON:
-                    g_traffic_enable = true;
-                    snprintf(out, sizeof(out), "System: ON\r\n");
-                    uart_send_str(out);
-                    break;
-
-                case CMD_SYSTEM_OFF:
-                    g_traffic_enable = false;
-                    snprintf(out, sizeof(out), "System: OFF\r\n");
-                    uart_send_str(out);
-                    break;
-
-                case CMD_RED:
-                    if (msg.param <= 0)
-                    {
-                        snprintf(out, sizeof(out), "RED: invalid param %d\r\n", msg.param);
-                    }
-                    else
-                    {
-                        // (continues in your file)
-                    }
-                    break;
-
-                // more cases below...
-            }
-        }
+        // (rest continues below in your file)
     }
 }
