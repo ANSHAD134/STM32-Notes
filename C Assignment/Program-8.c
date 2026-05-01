@@ -1,5 +1,4 @@
 #include <stdio.h>
-#include <string.h>
 
 void ConvertBase(int num, int base, char result[])
 {
@@ -33,7 +32,7 @@ void ConvertBase(int num, int base, char result[])
 
 int main()
 {
-    int num, base;
+    int num, base, i=0;
     char result[100];
     
     printf("Enter decimal number:");
@@ -51,12 +50,16 @@ int main()
     
     ConvertBase(num, base, result);
     
-    printf("Converted number:");
-    
-    for(int i = strlen(result) - 1; i >= 0; i--)
+   while(result[i] != '\0')
     {
-        printf("%c", result[i]);
+        i++;
     }
+
+    for(int j = i - 1; j >= 0; j--)
+    {
+        printf("%c", result[j]);
+    }
+
     printf("\n");
 
     return 0;
