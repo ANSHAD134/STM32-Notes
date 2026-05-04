@@ -59,8 +59,8 @@ int main(void)
 		}
 			
 			
-		PORTB |= (1 << PORTB2);				// RED LED For High
-		_delay_ms(10000);					// 10 second delay
+		PORTB |= (1 << PORTB2);					// RED LED For High
+		_delay_ms(10000);						// 10 second delay
 		
 		if(flag)
 		{
