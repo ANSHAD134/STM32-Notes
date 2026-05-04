@@ -17,8 +17,6 @@ volatile uint8_t flag = 0;
 ISR(INT0_vect)
 {
 	flag = 1;
-	PORTB |= (1 << PORTB0);						// GREEN LED For High
-	_delay_ms(5000);							// 5 second delay
 }
 
 
@@ -38,19 +36,37 @@ int main(void)
     /* Replace with your application code */
     while (1) 
     {
-		if (flag == 0)
+		PORTB |= (1 << PORTB0);					// GREEN LED For High
+		_delay_ms(10000);						// 10 second delay
+		
+		if(flag)
 		{
-			PORTB |= (1 << PORTB0);				// GREEN LED For High
-			_delay_ms(10000);					// 10 second delay
-			PORTB0 &= ~(1 << PORTB0);			// GREEN LED for Low
+			PORTB |= (1 << PORTB0);				// Priority GREEN
+			_delay_ms(5000);					// 5 second delay
+			flag = 0;
+			continue;
+		}
 			
-			PORTB |= (1 << PORTB1);				// ORANGE LED For High
-			_delay_ms(3000);					// 3 second delay
-			PORTB &= ~(1 << PORTB1);			// ORANGE LED For Low
+		PORTB |= (1 << PORTB1);					// ORANGE LED For High
+		_delay_ms(3000);						// 3 second delay
+		
+		if(flag)
+		{
+			PORTB |= (1 << PORTB0);				// Priority GREEN
+			_delay_ms(5000);					// 5 second delay
+			flag = 0;
+			continue;
+		}
 			
-			PORTB |= (1 << PORTB2);				// RED LED For High
-			_delay_ms(10000);					// 10 second delay
-			PORTB &= ~(1 << PORTB2);			// RED LED For Low
+			
+		PORTB |= (1 << PORTB2);				// RED LED For High
+		_delay_ms(10000);					// 10 second delay
+		
+		if(flag)
+		{
+			PORTB |= (1 << PORTB0);				// Priority GREEN
+			_delay_ms(5000);					// 5 second delay
+			flag = 0;
 		}
     }
 }
