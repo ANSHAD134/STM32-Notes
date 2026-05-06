@@ -13,7 +13,7 @@
 
 void LED_Condition(void)
 {
-	uint8_t LED_Brightness=0;
+	uint8_t LED_Brightness=64;
 	static uint8_t state = 1;
 	
 	if(!(PIND&(1 << PIND2)))
@@ -23,6 +23,8 @@ void LED_Condition(void)
 		state++;
 		if (state > 5)
 		state = 1;
+		
+		TCCR0A |= (1 << COM0A1);
 		
 		switch(state)
 		{
@@ -43,7 +45,9 @@ void LED_Condition(void)
 			break;
 			
 			case 5:
-			LED_Brightness = 0;					// LED OFF
+			LED_Brightness = 0;					// LED 
+			TCCR0A &= ~(1 << COM0A1);
+			PORTD &= ~(1 << PORTD6);
 			break;
 		}
 		OCR0A = LED_Brightness;
