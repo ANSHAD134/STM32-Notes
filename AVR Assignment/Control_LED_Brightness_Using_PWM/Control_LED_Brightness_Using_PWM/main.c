@@ -13,8 +13,8 @@
 
 void LED_Condition(void)
 {
-	uint16_t LED_Brightness = 0;
-	uint8_t state;
+	uint8_t LED_Brightness;
+	static uint8_t state = 1;
 	
 	if(!(PIND&(1 << PIND2)))
 	{
@@ -22,29 +22,25 @@ void LED_Condition(void)
 		while(!(PIND&(1 << PIND2)));			// Wait until button released
 		
 		state++;
-		if (state > 5)
-		state = 1
+		if (state > 4)
+		state = 1;
 		
 		switch(state)
 		{
 			case 1:
-			LED_Brightness = 25;				// 25% LED Brightness
+			LED_Brightness = 64;				// 25% LED Brightness
 			break;
 			
 			case 2:
-			LED_Brightness = 50;				// 50% LED Brightness
+			LED_Brightness = 128;				// 50% LED Brightness
 			break;
 			
 			case 3:
-			LED_Brightness = 75;				// 75% LED Brightness
+			LED_Brightness = 192;				// 75% LED Brightness
 			break;
 			
 			case 4:
-			LED_Brightness = 100;				// 100% LED Brightness
-			break;
-			
-			case 5:
-			LED_Brightness = 0;					// LED OFF
+			LED_Brightness = 255;				// 100% LED Brightness
 			break;
 		}
 		OCR0A = LED_Brightness;
@@ -62,7 +58,7 @@ int main(void)
 	
 	TCCR0B |= (1 << CS01) | (1 << CS00);		// Prescalar 64
 	TCCR0A |= (1 << WGM00) | (1 << WGM01);		// Fast PWM
-	OCR0A = 0;									// Start with LED off
+	OCR0A = 64;									// Start with 25% Brightness
     /* Replace with your application code */
     while (1) 
     {
