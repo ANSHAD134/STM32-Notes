@@ -13,16 +13,15 @@
 
 void LED_Condition(void)
 {
-	uint8_t LED_Brightness = 64;
+	uint8_t LED_Brightness=0;
 	static uint8_t state = 1;
 	
 	if(!(PIND&(1 << PIND2)))
 	{
 		_delay_ms(50);							// Debounce delay for Push-button
-		while(!(PIND&(1 << PIND2)));			// Wait until button released
 		
 		state++;
-		if (state > 4)
+		if (state > 5)
 		state = 1;
 		
 		switch(state)
@@ -42,14 +41,19 @@ void LED_Condition(void)
 			case 4:
 			LED_Brightness = 255;				// 100% LED Brightness
 			break;
+			
+			case 5:
+			LED_Brightness = 0;					// LED OFF
+			break;
 		}
 		OCR0A = LED_Brightness;
+		while(!(PIND&(1 << PIND2)));			// Wait until button released
 	}
 } 
 
 int main(void)
 {
-	DDRD |= (1 << DDD6);						// Set PD6 for Output
+	DDRD |= (1 << DDD6);						// Set PD6 for Output bn
 	
 	DDRD &= ~(1 << DDD2);						// Set PD2 for Input
 	PORTD |= (1 << PORTD2);						// Enable PULL-UP on PD2
