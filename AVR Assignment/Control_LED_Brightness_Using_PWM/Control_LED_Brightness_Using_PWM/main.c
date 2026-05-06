@@ -13,7 +13,7 @@
 
 void LED_Condition(void)
 {
-	uint8_t LED_Brightness;
+	uint8_t LED_Brightness = 64;
 	static uint8_t state = 1;
 	
 	if(!(PIND&(1 << PIND2)))
