@@ -13,7 +13,7 @@
 
 void Motor_Speed(void)
 {
-	uint8_t speed;
+	uint8_t speed = 64;
 	static uint8_t state = 1;
 	
 	if(!(PIND&(1 << PIND2)))
