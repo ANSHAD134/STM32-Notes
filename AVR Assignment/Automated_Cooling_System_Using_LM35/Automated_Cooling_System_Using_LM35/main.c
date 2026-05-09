@@ -23,7 +23,7 @@ void ADC_init(void)
 uint16_t ADC_Read(uint8_t channel)
 {
 	channel &= 0x07;														// Limit to 0-7
-	ADMUX = (ADMUX & 0x07) | channel;										// Select channel
+	ADMUX = (ADMUX & 0xF8) | channel;										// Select channel
 	ADCSRA |= (1 << ADSC);													// Start conversion
 	while(ADCSRA & (1 << ADSC));											// Wait for conversion complete
 	return (ADCL | (ADCH << 8));											// Combine Result
