@@ -18,7 +18,7 @@ void ADC_init(void)
 }
 
 // ADC Reading
-uint8_t ADC_Read(uint8_t channel)
+uint16_t ADC_Read(uint8_t channel)
 {
 	channel &= 0x07;														// Limit to 0-7
 	ADMUX = (ADMUX & 0x07) | channel;										// Select channel
