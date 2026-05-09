@@ -10,6 +10,8 @@
 #include <avr/io.h>
 #include <util/delay.h>
 
+volatile uint8_t state = 0;
+
 // ADC Initialisation
 void ADC_init(void)
 {
@@ -33,45 +35,38 @@ void Motor_init(void)
 	
 	TCCR0B |= (1 << CS01) | (1 << CS00);									// Prescalar 64
 	TCCR0A |= (1 << WGM00) | (1 << WGM01);									// Fast PWM
-	OCR0A = 64;																// Start with 25% Motor speed
+	OCR0A = 0;																// Motor OFF Initially
 }
 
-void Motor_Speed(void)
+void System_Control(void)
 {
-	uint8_t speed = 64;
-	static uint8_t state = 1;
-	
-	if(!(PIND&(1 << PIND2)))
+	if(!(PIND & (1 << PIND2)))
 	{
-		_delay_ms(50);														// Debounce delay for Push-button
+		_delay_ms(50);														// Debounce delay
 		
-		state++;
-		if (state > 5)
-		state = 1;
+		state ^= 1;															// Toggle system state
 		
-		switch(state)
-		{
-			case 1:
-			speed = 64;														// 25% Motor speed
-			break;
-			
-			case 2:
-			speed = 128;													// 50% Motor speed
-			break;
-			
-			case 3:
-			speed = 192;													// 75% Motor speed
-			break;
-			
-			case 4:
-			speed = 255;													// 100% Motor speed
-			break;
-			
-			case 5:
-			speed = 0;														// Motor stop
-		}
-		OCR0A = speed;
-		while(!(PIND&(1 << PIND2)));										// Wait until button released
+		while(!(PIND & (1 << PIND2)));										// Wait until button Release
+	}
+}
+
+void Motor_Speed(uint16_t temperature)
+{
+	if (temperature < 30)
+	{
+		OCR0A = 64;															// 25% speed
+	}
+	else if(temperature >=30 && temperature < 40)
+	{
+		OCR0A = 128;														// 50% speed
+	}
+	else if(temperature >=40 && temperature < 50)
+	{
+		OCR0A = 192;														// 75% speed
+	}
+	else
+	{
+		OCR0A = 255;														// 100% speed
 	}
 }
 
@@ -89,7 +84,20 @@ int main(void)
     /* Replace with your application code */
     while (1) 
     {
-		adc_value = ADC_Read(0);											// Read from analog channel 0 (A0 pin of arduino)
+		System_Control();
+		
+		if(state)
+		{
+			float temperature;
+			adc_value = ADC_Read(0);										// Read from analog channel 0 (A0 pin of arduino)
+			temperature = adc_value*0.488;									// Converting adc value into Temperature
+			
+			Motor_Speed(temperature);										// Control Motor speed
+		}
+		else
+		{
+			OCR0A = 0;														// Motor OFF
+		}
     }
 }
 
