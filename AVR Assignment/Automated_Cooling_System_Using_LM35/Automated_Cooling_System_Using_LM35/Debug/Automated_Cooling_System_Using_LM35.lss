@@ -115,11 +115,11 @@ uint16_t ADC_Read(uint8_t channel)
 {
 	channel &= 0x07;														// Limit to 0-7
   a6:	87 70       	andi	r24, 0x07	; 7
-	ADMUX = (ADMUX & 0x07) | channel;										// Select channel
+	ADMUX = (ADMUX & 0xF8) | channel;										// Select channel
   a8:	ec e7       	ldi	r30, 0x7C	; 124
   aa:	f0 e0       	ldi	r31, 0x00	; 0
   ac:	90 81       	ld	r25, Z
-  ae:	97 70       	andi	r25, 0x07	; 7
+  ae:	98 7f       	andi	r25, 0xF8	; 248
   b0:	89 2b       	or	r24, r25
   b2:	80 83       	st	Z, r24
 	ADCSRA |= (1 << ADSC);													// Start conversion
