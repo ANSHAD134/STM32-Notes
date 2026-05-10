@@ -32,7 +32,7 @@ void Timer1_Config(void)
 	DDRB |=(1 << DDB1);														// Output for Servo motor
 	
 	TCCR1B |= (1 << WGM13) | (1 << WGM12) | (1 << CS11);					// Prescalar 8
-	TCCR1A |= (1 << COM1A1) | (1 << WGM11);									// Phase Correct PWM Mode
+	TCCR1A |= (1 << COM1A1) | (1 << WGM11);									// Fast PWM Mode
 	ICR1 = 39999;
 }
 

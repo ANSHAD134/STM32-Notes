@@ -142,7 +142,7 @@ void Timer1_Config(void)
   d2:	80 81       	ld	r24, Z
   d4:	8a 61       	ori	r24, 0x1A	; 26
   d6:	80 83       	st	Z, r24
-	TCCR1A |= (1 << COM1A1) | (1 << WGM11);									// Phase Correct PWM Mode
+	TCCR1A |= (1 << COM1A1) | (1 << WGM11);									// Fast PWM Mode
   d8:	e0 e8       	ldi	r30, 0x80	; 128
   da:	f0 e0       	ldi	r31, 0x00	; 0
   dc:	80 81       	ld	r24, Z
