@@ -31,9 +31,9 @@ void Timer1_Config(void)
 {
 	DDRB |=(1 << DDB1);														// Output for Servo motor
 	
-	TCCR1B |= (1 << CS11) | (1 << CS10);									// Prescalar 64
-	TCCR1A |= (1 << WGM10) | (1 << WGM11);									// Fast PWM
-	OCR1A = 20000;
+	TCCR1B |= (1 << WGM13) | (1 << CS11);									// Prescalar 8
+	TCCR1A |= (1 << COM1A1) | (1 << WGM11);									// Phase Correct PWM Mode
+	ICR1 = 40000;
 }
 
 int main(void)
@@ -49,7 +49,7 @@ int main(void)
     {
 		adc_value = ADC_Read(0);											// Read from analog channel 0
 		
-		servo_position = 1000 + ((adc_value * 1000UL) / 1023);				// ADC (0-1023) to Servo pulse (1000-2000)
+		servo_position = 2000 + ((adc_value * 2000UL) / 1023);				// ADC (0-1023) to Servo pulse (2000-4000)
 		
 		OCR1A = servo_position;
     }
