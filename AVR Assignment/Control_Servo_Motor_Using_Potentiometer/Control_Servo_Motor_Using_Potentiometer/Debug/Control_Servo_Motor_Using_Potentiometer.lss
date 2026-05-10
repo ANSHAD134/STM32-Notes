@@ -136,23 +136,23 @@ void Timer1_Config(void)
   ca:	82 60       	ori	r24, 0x02	; 2
   cc:	84 b9       	out	0x04, r24	; 4
 	
-	TCCR1B |= (1 << CS11) | (1 << CS10);									// Prescalar 64
+	TCCR1B |= (1 << WGM13) | (1 << CS11);									// Prescalar 8
   ce:	e1 e8       	ldi	r30, 0x81	; 129
   d0:	f0 e0       	ldi	r31, 0x00	; 0
   d2:	80 81       	ld	r24, Z
-  d4:	83 60       	ori	r24, 0x03	; 3
+  d4:	82 61       	ori	r24, 0x12	; 18
   d6:	80 83       	st	Z, r24
-	TCCR1A |= (1 << WGM10) | (1 << WGM11);									// Fast PWM
+	TCCR1A |= (1 << COM1A1) | (1 << WGM11);									// Phase Correct PWM Mode
   d8:	e0 e8       	ldi	r30, 0x80	; 128
   da:	f0 e0       	ldi	r31, 0x00	; 0
   dc:	80 81       	ld	r24, Z
-  de:	83 60       	ori	r24, 0x03	; 3
+  de:	82 68       	ori	r24, 0x82	; 130
   e0:	80 83       	st	Z, r24
-	OCR1A = 20000;
-  e2:	80 e2       	ldi	r24, 0x20	; 32
-  e4:	9e e4       	ldi	r25, 0x4E	; 78
-  e6:	90 93 89 00 	sts	0x0089, r25	; 0x800089 <__TEXT_REGION_LENGTH__+0x7f8089>
-  ea:	80 93 88 00 	sts	0x0088, r24	; 0x800088 <__TEXT_REGION_LENGTH__+0x7f8088>
+	ICR1 = 40000;
+  e2:	80 e4       	ldi	r24, 0x40	; 64
+  e4:	9c e9       	ldi	r25, 0x9C	; 156
+  e6:	90 93 87 00 	sts	0x0087, r25	; 0x800087 <__TEXT_REGION_LENGTH__+0x7f8087>
+  ea:	80 93 86 00 	sts	0x0086, r24	; 0x800086 <__TEXT_REGION_LENGTH__+0x7f8086>
   ee:	08 95       	ret
 
 000000f0 <main>:
@@ -173,18 +173,18 @@ int main(void)
   f8:	80 e0       	ldi	r24, 0x00	; 0
   fa:	0e 94 4b 00 	call	0x96	; 0x96 <ADC_Read>
 		
-		servo_position = 1000 + ((adc_value * 1000UL) / 1023);				// ADC (0-1023) to Servo pulse (1000-2000)
+		servo_position = 2000 + ((adc_value * 2000UL) / 1023);				// ADC (0-1023) to Servo pulse (2000-4000)
   fe:	9c 01       	movw	r18, r24
- 100:	a8 ee       	ldi	r26, 0xE8	; 232
- 102:	b3 e0       	ldi	r27, 0x03	; 3
+ 100:	a0 ed       	ldi	r26, 0xD0	; 208
+ 102:	b7 e0       	ldi	r27, 0x07	; 7
  104:	0e 94 b3 00 	call	0x166	; 0x166 <__umulhisi3>
  108:	2f ef       	ldi	r18, 0xFF	; 255
  10a:	33 e0       	ldi	r19, 0x03	; 3
  10c:	40 e0       	ldi	r20, 0x00	; 0
  10e:	50 e0       	ldi	r21, 0x00	; 0
  110:	0e 94 91 00 	call	0x122	; 0x122 <__udivmodsi4>
- 114:	28 51       	subi	r18, 0x18	; 24
- 116:	3c 4f       	sbci	r19, 0xFC	; 252
+ 114:	20 53       	subi	r18, 0x30	; 48
+ 116:	38 4f       	sbci	r19, 0xF8	; 248
 		
 		OCR1A = servo_position;
  118:	30 93 89 00 	sts	0x0089, r19	; 0x800089 <__TEXT_REGION_LENGTH__+0x7f8089>
