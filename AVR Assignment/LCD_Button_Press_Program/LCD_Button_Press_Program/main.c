@@ -19,6 +19,8 @@ int main(void)
 	
 	lcd_init();										// Initialize LCD Display
 	
+	uint32_t counter = 0;
+	
     /* Replace with your application code */
     while (1) 
     {
