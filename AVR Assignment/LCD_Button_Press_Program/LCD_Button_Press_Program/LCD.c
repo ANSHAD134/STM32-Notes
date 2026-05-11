@@ -142,7 +142,7 @@ void lcd_printf_uint16(uint16_t v)
 {
 	if (v >= 10)
 	{
-		lcd_printf_uint16(v / 10);  											// print higher digits first
+		lcd_printf_uint16(v / 10);  										// print higher digits first
 	}
 	lcd_data('0' + (v % 10));       										// then print the last digit
 }

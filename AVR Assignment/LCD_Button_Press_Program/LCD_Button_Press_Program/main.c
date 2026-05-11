@@ -57,7 +57,7 @@ void Button_check(void)
 			{
 				counter = 0;								// Reset counter after reaching maximum 9-digit value
 			}
-			LCD_Display(counter);
+			LCD_Display(counter);							// Update LCD display
 		}
 	}
 }
