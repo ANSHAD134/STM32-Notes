@@ -29,13 +29,13 @@ void Button_check(void)
 {
 	uint16_t press_time = 0;
 	
-	if(!(PIND & (1 << PIND2)))
+	if(!(PIND & (1 << PIND7)))
 	{
 		_delay_ms(20);										// Debounce delay
 		
-		if(!(PIND & (1 << PIND2)))
+		if(!(PIND & (1 << PIND7)))
 		{
-			while(!(PIND & (1 << PIND2)))
+			while(!(PIND & (1 << PIND7)))
 			{
 				_delay_ms(10);								// Delay for timing
 				press_time += 10;							// Increase press time
@@ -46,7 +46,7 @@ void Button_check(void)
 					
 					LCD_Display(counter);					// Update LCD display
 					
-					while(!(PIND & (1 << PIND2)));			// Wait until button released
+					while(!(PIND & (1 << PIND7)));			// Wait until button released
 					
 					return;
 				}
@@ -64,10 +64,11 @@ void Button_check(void)
 
 int main(void)
 {
-	DDRD &= ~(1 << DDD2);									// Input for Push-Button
-	PORTD |= (1 << PORTD2);									// Enable Pull-up
+	DDRD &= ~(1 << DDD7);									// Input for Push-Button
+	PORTD |= (1 << PORTD7);									// Enable Pull-up
 	
 	lcd_init();												// Initialize LCD Display
+	_delay_ms(100);
 
 	LCD_Display(counter);									// Display initial counter value
     /* Replace with your application code */
