@@ -18,7 +18,7 @@ int main()
     printf("Enter target sum:");
     scanf("%d", &target);
     
-    printf("Pairs with %d are:", target);
+    printf("Pairs with %d are:\n", target);
     
     for(i=0; i<size; i++)
     {
