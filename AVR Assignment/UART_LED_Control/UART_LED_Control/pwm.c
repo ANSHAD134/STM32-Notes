@@ -4,7 +4,9 @@
  * Created: 13-05-2026 8.04.01 PM
  *  Author: HP
  */ 
+#define F_CPU 16000000UL
 
+#include <avr/io.h>
 #include "pwm.h"
 
 void PWM_init(void)

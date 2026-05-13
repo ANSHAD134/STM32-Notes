@@ -4,6 +4,9 @@
  * Created: 13-05-2026 7.57.39 PM
  *  Author: HP
  */ 
+#define F_CPU 16000000UL
+
+#include <avr/io.h>
 #include "uart.h"
 
 void UART_Init(void)

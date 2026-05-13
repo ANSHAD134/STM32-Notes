@@ -22,6 +22,7 @@ void UART_TxChar(char data);
 void UART_TxString(const char *str);
 void UART_TxHex(uint8_t value);
 void UART_TxNumber(uint32_t num);
+char UART_RxChar(void);
 
 
 
