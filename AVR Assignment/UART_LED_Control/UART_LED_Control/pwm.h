@@ -9,7 +9,8 @@
 #ifndef PWM_H_
 #define PWM_H_
 
-
+void PWM_init(void);									// PWM Initialization
+void LED_Brightness(uint8_t brightness);				// Control LED Brightness
 
 
 
