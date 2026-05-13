@@ -10,13 +10,13 @@ void UART_Init(void)
 {
 	UBRR0H = (unsigned char)(UBRR_VALUE >> 8);
 	UBRR0L = (unsigned char)UBRR_VALUE;
-	UCSR0B = (1 << TXEN0);								// Enable transmitter
+	UCSR0B = (1 << RXEN0) | (1 << TXEN0);				// Enable Tx and Rx
 	UCSR0C = (1 << UCSZ01) | (1 << UCSZ00);				// 8-bit data
 }
 
 void UART_TxChar(char data)
 {
-	while (!(UCSR0A & (1 << UDRE0)));
+	while (!(UCSR0A & (1 << UDRE0)));					// Wait until buffer empty
 	UDR0 = data;
 }
 
@@ -26,6 +26,13 @@ void UART_TxString(const char *str)
 	{
 		UART_TxChar(*str++);
 	}
+}
+
+char UART_RxChar(void)
+{
+	while(!(UCSR0A & (1 << RXC0)));						// Wait for data
+
+	return UDR0;
 }
 
 void UART_TxHex(uint8_t value)
