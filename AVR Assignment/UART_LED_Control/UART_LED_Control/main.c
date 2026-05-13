@@ -9,10 +9,13 @@
 
 #include <avr/io.h>
 #include <util/delay.h>
+#include "pwm.h"
+#include "uart.h"
 
 
 int main(void)
 {
+	char[]
     /* Replace with your application code */
     while (1) 
     {
