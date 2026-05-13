@@ -46,7 +46,8 @@ int main(void)
 
 			else if(strcmp(buffer, "OFF") == 0)					// OFF Command
 			{
-				LED_Brightness(0);
+				TCCR0A &= ~(1 << COM0A1);						// Disconnect PWM
+				PORTD &= ~(1 << PORTD6);						// Force LED OFF
 
 				UART_TxString("LED is now OFF\r\n");
 			}
@@ -54,12 +55,20 @@ int main(void)
 			{
 				brightness = atoi(buffer);
 
-				if(brightness <= 100)							// Brightness Control
+				if(brightness <= 100)
 				{
 					char msg[40];
 
-					LED_Brightness(brightness);
-
+					if(brightness == 0)
+					{
+						TCCR0A &= ~(1 << COM0A1);					// Disconnect PWM
+						PORTD &= ~(1 << PORTD6);					// LED OFF
+					}
+					else
+					{
+						TCCR0A |= (1 << COM0A1);					// Enable PWM
+						LED_Brightness(brightness);
+					}
 					sprintf(msg, "Brightness set to %d%%\r\n", brightness);
 
 					UART_TxString(msg);
