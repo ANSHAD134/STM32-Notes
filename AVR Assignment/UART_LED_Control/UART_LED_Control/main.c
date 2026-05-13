@@ -39,6 +39,8 @@ int main(void)
 
 			if(strcmp(buffer, "ON") == 0)						// ON Command
 			{
+				TCCR0A |= (1 << COM0A1);						// Re-enable PWM
+				
 				LED_Brightness(100);
 
 				UART_TxString("LED is now ON\r\n");
