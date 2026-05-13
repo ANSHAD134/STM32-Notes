@@ -23,7 +23,7 @@ void LED_Brightness(uint8_t brightness)
 {
 	uint16_t pwm_value;
 	
-	OCR0A = (brightness * 255UL) / 100;								// Convert 0-255
+	pwm_value = (brightness * 255UL) / 100;							// Convert 0-255
 	
 	OCR0A = pwm_value;
 }
