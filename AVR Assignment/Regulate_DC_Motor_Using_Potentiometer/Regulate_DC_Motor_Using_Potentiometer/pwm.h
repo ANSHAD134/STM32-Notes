@@ -5,12 +5,13 @@
  *  Author: HP
  */ 
 
+#include <avr/io.h>
 
 #ifndef PWM_H_
 #define PWM_H_
 
-
-
+void PWM_Init(void);
+void Motor_Speed(uint8_t speed);
 
 
 #endif /* PWM_H_ */
