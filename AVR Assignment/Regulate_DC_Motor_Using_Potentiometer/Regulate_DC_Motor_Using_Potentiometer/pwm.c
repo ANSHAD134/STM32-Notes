@@ -10,9 +10,7 @@
 #include "pwm.h"
 
 void PWM_Init(void)
-{
-	DDRD |= (1 << DDD6);								// Set PD6 for Output Motor
-	
+{	
 	TCCR0A |= (1 << COM0A1);							// Non-inverting
 	TCCR0A |= (1 << WGM00) | (1 << WGM01);				// Fast PWM
 	

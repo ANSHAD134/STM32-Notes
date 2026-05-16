@@ -14,6 +14,13 @@
 
 int main(void)
 {
+	DDRD |= (1 << DDD6);								// Set PD6 for Output Motor
+	
+	DDRB |= (1 << DDB0) | (1 << DDB1);
+
+	PORTB |= (1 << PORTB0);								// IN1 HIGH
+	PORTB &= ~(1 << PORTB1);							// IN2 LOW
+	
 	uint16_t adc_value;
 	uint8_t pwm_value;
 	
