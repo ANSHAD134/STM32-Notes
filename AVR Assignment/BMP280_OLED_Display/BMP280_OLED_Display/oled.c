@@ -101,6 +101,8 @@ void OLED_clear(void)
 {
 	uint16_t i;
 
+	OLED_setCursor(0,0);
+
 	for(i = 0; i < 1024; i++)
 	{
 		OLED_data(0x00);
@@ -118,12 +120,126 @@ void OLED_char(char ch)
 {
 	uint8_t i;
 
-	// Numbers only
-	if(ch >= '0' && ch <= '9')
+	// Space
+	if(ch == ' ')
 	{
+		for(i = 0; i < 6; i++)
+		{
+			OLED_data(0x00);
+		}
+	}
+
+	// Numbers 0-9
+	else if(ch >= '0' && ch <= '9')
+	{
+		const uint8_t numbers[10][5] =
+		{
+			{0x3E,0x51,0x49,0x45,0x3E},		// 0
+			{0x00,0x42,0x7F,0x40,0x00},		// 1
+			{0x42,0x61,0x51,0x49,0x46},		// 2
+			{0x21,0x41,0x45,0x4B,0x31},		// 3
+			{0x18,0x14,0x12,0x7F,0x10},		// 4
+			{0x27,0x45,0x45,0x45,0x39},		// 5
+			{0x3C,0x4A,0x49,0x49,0x30},		// 6
+			{0x01,0x71,0x09,0x05,0x03},		// 7
+			{0x36,0x49,0x49,0x49,0x36},		// 8
+			{0x06,0x49,0x49,0x29,0x1E}		// 9
+		};
+
 		for(i = 0; i < 5; i++)
 		{
-			OLED_data(font5x7[ch - '0'][i]);
+			OLED_data(numbers[ch - '0'][i]);
+		}
+
+		OLED_data(0x00);
+	}
+
+	// Capital T
+	else if(ch == 'T')
+	{
+		uint8_t T[5] = {0x01,0x01,0x7F,0x01,0x01};
+
+		for(i = 0; i < 5; i++)
+		{
+			OLED_data(T[i]);
+		}
+
+		OLED_data(0x00);
+	}
+
+	// Lowercase e
+	else if(ch == 'e')
+	{
+		uint8_t e[5] = {0x38,0x54,0x54,0x54,0x18};
+
+		for(i = 0; i < 5; i++)
+		{
+			OLED_data(e[i]);
+		}
+
+		OLED_data(0x00);
+	}
+
+	// Lowercase m
+	else if(ch == 'm')
+	{
+		uint8_t m[5] = {0x7C,0x04,0x18,0x04,0x78};
+
+		for(i = 0; i < 5; i++)
+		{
+			OLED_data(m[i]);
+		}
+
+		OLED_data(0x00);
+	}
+
+	// Lowercase p
+	else if(ch == 'p')
+	{
+		uint8_t p[5] = {0x7C,0x14,0x14,0x14,0x08};
+
+		for(i = 0; i < 5; i++)
+		{
+			OLED_data(p[i]);
+		}
+
+		OLED_data(0x00);
+	}
+
+	// Colon :
+	else if(ch == ':')
+	{
+		uint8_t colon[5] = {0x00,0x36,0x36,0x00,0x00};
+
+		for(i = 0; i < 5; i++)
+		{
+			OLED_data(colon[i]);
+		}
+
+		OLED_data(0x00);
+	}
+
+	// Decimal point .
+	else if(ch == '.')
+	{
+		uint8_t dot[5] = {0x00,0x60,0x60,0x00,0x00};
+
+		for(i = 0; i < 5; i++)
+		{
+			OLED_data(dot[i]);
+		}
+
+		OLED_data(0x00);
+	}
+
+	// Capital C
+	else if(ch == 'C')
+	{
+		uint8_t C[5] = {0x3E,0x41,0x41,0x41,0x22};
+
+		for(i = 0; i < 5; i++)
+		{
+			OLED_data(C[i]);
 		}
 
 		OLED_data(0x00);

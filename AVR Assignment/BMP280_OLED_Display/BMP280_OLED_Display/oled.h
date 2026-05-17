@@ -13,6 +13,7 @@
 void OLED_init(void);
 void OLED_clear(void);
 void OLED_setCursor(uint8_t x, uint8_t y);
+void OLED_char(char ch);
 void OLED_print(char *str);
 
 #endif /* OLED_H_ */
