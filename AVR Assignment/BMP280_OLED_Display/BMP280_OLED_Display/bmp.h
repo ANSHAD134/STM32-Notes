@@ -21,6 +21,4 @@ void BMP_readCalibration(void);								// Read calibration values
 float BMP_readTemperature(void);							// Read temperature
 float BMP_readPressure(void);								// Read pressure
 
-
-
 #endif /* BMP_H_ */

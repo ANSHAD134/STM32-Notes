@@ -242,7 +242,7 @@ void OLED_char(char ch)
 		OLED_data(font[ch - ' '][i]);
 	}
 	
-	else if(ch == '~')     // use ~ as degree symbol
+	else if(ch == '~')						// use ~ as degree symbol
 	{
 		uint8_t degree[5] = {0x06,0x09,0x09,0x06,0x00};
 		for(i = 0; i < 5; i++)
