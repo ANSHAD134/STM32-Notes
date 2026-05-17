@@ -9,7 +9,6 @@
 
 #include <avr/io.h>
 #include <util/delay.h>
-#include <stdint.h>
 #include <stdlib.h>
 #include <stdio.h>
 #include "oled.h"
@@ -21,6 +20,9 @@ int main(void)
 {
 	float temperature;
 	float pressure;
+	
+	char temp_value[10];
+	char press_value[10];
 
 	char temp_buffer[20];
 	char press_buffer[20];
@@ -31,27 +33,24 @@ int main(void)
     /* Replace with your application code */
     while (1) 
     {
-		char temp_value[10];
-		char press_value[10];
+		temperature = BMP_readTemperature();				// Read temperature from BMP280
+		pressure = BMP_readPressure() / 100.0f;				// Read pressure and convert Pa to hPa
 
-		temperature = BMP_readTemperature();
-		pressure = BMP_readPressure() / 100.0f;
+		dtostrf(temperature, 5, 2, temp_value);				// Convert float temperature to string
+		dtostrf(pressure, 6, 2, press_value);				// Convert float pressure to string
 
-		dtostrf(temperature, 5, 2, temp_value);
-		dtostrf(pressure, 6, 2, press_value);
+		sprintf(temp_buffer, "Temp:%s ~C", temp_value);		// Create formatted temperature string
+		sprintf(press_buffer, "Pres:%s hPa", press_value);	// Create formatted pressure string
 
-		sprintf(temp_buffer, "Temp:%s ~C", temp_value);
-		sprintf(press_buffer, "Pres:%s hPa", press_value);
+		OLED_clear();										// Clear OLED display
 
-		OLED_clear();
+		OLED_setCursor(5,0);								// Set cursor to first line
+		OLED_print(temp_buffer);							// Display temperature
 
-		OLED_setCursor(5,0);
-		OLED_print(temp_buffer);
+		OLED_setCursor(5,2);								// Set cursor to second line
+		OLED_print(press_buffer);							// Display pressure
 
-		OLED_setCursor(5,2);
-		OLED_print(press_buffer);
-
-		_delay_ms(2000);
+		_delay_ms(2000);									// Update OLED display every 2 seconds
     }
 }
 
