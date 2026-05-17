@@ -40,7 +40,7 @@ int main(void)
 		dtostrf(temperature, 5, 2, temp_value);
 		dtostrf(pressure, 6, 2, press_value);
 
-		sprintf(temp_buffer, "Temp:%s C", temp_value);
+		sprintf(temp_buffer, "Temp:%s ~C", temp_value);
 		sprintf(press_buffer, "Pres:%s hPa", press_value);
 
 		OLED_clear();
