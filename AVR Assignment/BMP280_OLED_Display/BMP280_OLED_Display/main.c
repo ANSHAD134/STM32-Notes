@@ -10,6 +10,7 @@
 #include <avr/io.h>
 #include <util/delay.h>
 #include <stdint.h>
+#include <stdlib.h>
 #include <stdio.h>
 #include "oled.h"
 #include "i2c.h"
@@ -30,18 +31,24 @@ int main(void)
     /* Replace with your application code */
     while (1) 
     {
-		temperature = BMP_readTemperature();
-		pressure = BMP_readPressure() / 100.0f;				// Convert Pa to hPa
+		char temp_value[10];
+		char press_value[10];
 
-		sprintf(temp_buffer, "Temp: %.2f C", temperature);
-		sprintf(press_buffer, "Pres: %.2f hPa", pressure);
+		temperature = BMP_readTemperature();
+		pressure = BMP_readPressure() / 100.0f;
+
+		dtostrf(temperature, 5, 2, temp_value);
+		dtostrf(pressure, 6, 2, press_value);
+
+		sprintf(temp_buffer, "Temp:%s C", temp_value);
+		sprintf(press_buffer, "Pres:%s hPa", press_value);
 
 		OLED_clear();
 
-		OLED_setCursor(0,0);
+		OLED_setCursor(5,0);
 		OLED_print(temp_buffer);
 
-		OLED_setCursor(0,2);
+		OLED_setCursor(5,2);
 		OLED_print(press_buffer);
 
 		_delay_ms(2000);
