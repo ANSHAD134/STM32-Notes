@@ -9,8 +9,10 @@
 
 #include <avr/io.h>
 #include <util/delay.h>
+#include "uart.h"
 
 volatile uint8_t state = 0;
+#define TEMP_CALIBRATION_OFFSET		-1.8
 
 // ADC Initialisation
 void ADC_init(void)
@@ -29,11 +31,50 @@ uint16_t ADC_Read(uint8_t channel)
 	return (ADCL | (ADCH << 8));											// Combine Result
 }
 
-void Motor_init(void)
+float Get_Temperature(void)
+{
+	uint16_t samples[15];
+
+	for (uint8_t i = 0; i < 15; i++)
+	{
+		samples[i] = ADC_Read(0);
+		_delay_ms(3);
+	}
+
+	// Simple sorting (bubble sort)
+	for (uint8_t i = 0; i < 14; i++)
+	{
+		for (uint8_t j = i + 1; j < 15; j++)
+		{
+			if (samples[j] < samples[i])
+			{
+				uint16_t temp = samples[i];
+				samples[i] = samples[j];
+				samples[j] = temp;
+			}
+		}
+	}
+
+	// take middle 5 values average (remove noise)
+	uint32_t sum = 0;
+	for (uint8_t i = 5; i < 10; i++)
+	sum += samples[i];
+
+	float adc_avg = sum / 5.0;
+
+	float temperature = (adc_avg * 500.0) / 1023.0;
+
+	temperature += TEMP_CALIBRATION_OFFSET;
+
+	return temperature;
+}
+
+
+void PWM_init(void)
 {
 	TCCR0A |= (1 << COM0A1);												// Non-inverting
 	
-	TCCR0B |= (1 << CS01) | (1 << CS00);									// Prescalar 64
+	TCCR0B |= (1 << CS01);													// Prescalar 8
 	TCCR0A |= (1 << WGM00) | (1 << WGM01);									// Fast PWM
 	OCR0A = 0;																// Motor OFF Initially
 }
@@ -44,13 +85,16 @@ void System_Control(void)
 	{
 		_delay_ms(50);														// Debounce delay
 		
-		state ^= 1;															// Toggle system state
+		if (!(PIND & (1 << PIND2)))
+		{
+			state ^= 1;														// Toggle system state
 		
-		while(!(PIND & (1 << PIND2)));										// Wait until button Release
+			while(!(PIND & (1 << PIND2)));									// Wait until button Release
+		}
 	}
 }
 
-void Motor_Speed(uint16_t temperature)
+void Motor_Speed(float temperature)
 {
 	if (temperature < 30)
 	{
@@ -78,9 +122,9 @@ int main(void)
 	DDRD &= ~(1 << DDD2);													// Output for Push-Button
 	PORTD |= (1 << PORTD2);													// Enable Pull-up
 	
-	uint16_t adc_value;
 	ADC_init();	
-	Motor_init();
+	PWM_init();
+	UART_Init();
     /* Replace with your application code */
     while (1) 
     {
@@ -88,11 +132,11 @@ int main(void)
 		
 		if(state)
 		{
-			float temperature;
-			adc_value = ADC_Read(0);										// Read from analog channel 0 (A0 pin of arduino)
-			temperature = adc_value*0.488;									// Converting adc value into Temperature
+			float temp = Get_Temperature();									// Read temperature from LM35 sensor
+
+			Motor_Speed(temp);												// Adjust motor speed according to temperature
 			
-			Motor_Speed(temperature);										// Control Motor speed
+			_delay_ms(200);													// Small delay for stable operation
 		}
 		else
 		{

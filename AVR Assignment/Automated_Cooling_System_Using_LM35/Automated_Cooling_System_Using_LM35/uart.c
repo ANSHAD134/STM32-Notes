@@ -1,0 +1,59 @@
+/*
+ * uart.c
+ *
+ * Created: 18-05-2026 2.05.25 PM
+ *  Author: HP
+ */ 
+
+#define F_CPU 16000000UL
+
+#include <avr/io.h>
+#include "uart.h"
+
+void UART_Init(void)
+{
+	UBRR0H = (unsigned char)(UBRR_VALUE >> 8);
+	UBRR0L = (unsigned char)UBRR_VALUE;
+	UCSR0B = (1 << RXEN0) | (1 << TXEN0);				// Enable Tx and Rx
+	UCSR0C = (1 << UCSZ01) | (1 << UCSZ00);				// 8-bit data
+}
+
+void UART_TxChar(char data)
+{
+	while (!(UCSR0A & (1 << UDRE0)));					// Wait until buffer empty
+	UDR0 = data;
+}
+
+void UART_TxString(const char *str)
+{
+	while (*str)
+	{
+		UART_TxChar(*str++);
+	}
+}
+
+char UART_RxChar(void)
+{
+	while(!(UCSR0A & (1 << RXC0)));						// Wait for data
+
+	return UDR0;
+}
+
+void UART_TxHex(uint8_t value)
+{
+	const char hexChars[] = "0123456789ABCDEF";
+	char hex[5];
+	hex[0] = hexChars[(value >> 4) & 0x0F];
+	hex[1] = hexChars[value & 0x0F];
+	hex[2] = '\r';
+	hex[3] = '\n';
+	hex[4] = '\0';
+	UART_TxString("0x");
+	UART_TxString(hex);
+}
+void UART_TxNumber(uint32_t num)
+{
+	char buffer[12];
+	ltoa(num, buffer, 10);								// convert to string (long to ASCII)
+	UART_TxString(buffer);
+}
