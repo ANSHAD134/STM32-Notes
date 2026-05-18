@@ -31,7 +31,7 @@ int main(void)
 	
 	EIMSK |= (1 << INT0);						// Enable INT0 at EIMSK Register
 	EICRA |= (1 << ISC01);						// Enable Falling edge detection in EICRA Register
-	sei();										// Enable global Interrupt at SREG
+	sei();										// Enable global Interrupt 
 	
     /* Replace with your application code */
     while (1) 

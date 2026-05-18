@@ -148,7 +148,7 @@ int main(void)
   d6:	80 81       	ld	r24, Z
   d8:	82 60       	ori	r24, 0x02	; 2
   da:	80 83       	st	Z, r24
-	sei();										// Enable global Interrupt at SREG
+	sei();										// Enable global Interrupt 
   dc:	78 94       	sei
 	
     /* Replace with your application code */
