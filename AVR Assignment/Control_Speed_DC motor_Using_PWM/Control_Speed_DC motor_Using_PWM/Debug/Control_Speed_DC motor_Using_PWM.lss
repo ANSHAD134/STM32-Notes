@@ -3,29 +3,29 @@ Control_Speed_DC motor_Using_PWM.elf:     file format elf32-avr
 
 Sections:
 Idx Name          Size      VMA       LMA       File off  Algn
-  0 .data         00000002  00800100  00000118  0000018c  2**0
+  0 .data         00000002  00800100  00000150  000001c4  2**0
                   CONTENTS, ALLOC, LOAD, DATA
-  1 .text         00000118  00000000  00000000  00000074  2**1
+  1 .text         00000150  00000000  00000000  00000074  2**1
                   CONTENTS, ALLOC, LOAD, READONLY, CODE
-  2 .comment      00000030  00000000  00000000  0000018e  2**0
+  2 .comment      00000030  00000000  00000000  000001c6  2**0
                   CONTENTS, READONLY
-  3 .note.gnu.avr.deviceinfo 00000040  00000000  00000000  000001c0  2**2
+  3 .note.gnu.avr.deviceinfo 00000040  00000000  00000000  000001f8  2**2
                   CONTENTS, READONLY
-  4 .debug_aranges 00000028  00000000  00000000  00000200  2**0
+  4 .debug_aranges 00000028  00000000  00000000  00000238  2**0
                   CONTENTS, READONLY, DEBUGGING
-  5 .debug_info   00000741  00000000  00000000  00000228  2**0
+  5 .debug_info   0000076b  00000000  00000000  00000260  2**0
                   CONTENTS, READONLY, DEBUGGING
-  6 .debug_abbrev 000006a1  00000000  00000000  00000969  2**0
+  6 .debug_abbrev 000006a3  00000000  00000000  000009cb  2**0
                   CONTENTS, READONLY, DEBUGGING
-  7 .debug_line   000002d7  00000000  00000000  0000100a  2**0
+  7 .debug_line   000002f8  00000000  00000000  0000106e  2**0
                   CONTENTS, READONLY, DEBUGGING
-  8 .debug_frame  00000034  00000000  00000000  000012e4  2**2
+  8 .debug_frame  00000034  00000000  00000000  00001368  2**2
                   CONTENTS, READONLY, DEBUGGING
-  9 .debug_str    000003e3  00000000  00000000  00001318  2**0
+  9 .debug_str    000003dd  00000000  00000000  0000139c  2**0
                   CONTENTS, READONLY, DEBUGGING
- 10 .debug_loc    0000008f  00000000  00000000  000016fb  2**0
+ 10 .debug_loc    00000090  00000000  00000000  00001779  2**0
                   CONTENTS, READONLY, DEBUGGING
- 11 .debug_ranges 00000018  00000000  00000000  0000178a  2**0
+ 11 .debug_ranges 00000018  00000000  00000000  00001809  2**0
                   CONTENTS, READONLY, DEBUGGING
 
 Disassembly of section .text:
@@ -70,7 +70,7 @@ Disassembly of section .text:
   74:	11 e0       	ldi	r17, 0x01	; 1
   76:	a0 e0       	ldi	r26, 0x00	; 0
   78:	b1 e0       	ldi	r27, 0x01	; 1
-  7a:	e8 e1       	ldi	r30, 0x18	; 24
+  7a:	e0 e5       	ldi	r30, 0x50	; 80
   7c:	f1 e0       	ldi	r31, 0x01	; 1
   7e:	02 c0       	rjmp	.+4      	; 0x84 <__do_copy_data+0x10>
   80:	05 90       	lpm	r0, Z+
@@ -78,21 +78,21 @@ Disassembly of section .text:
   84:	a2 30       	cpi	r26, 0x02	; 2
   86:	b1 07       	cpc	r27, r17
   88:	d9 f7       	brne	.-10     	; 0x80 <__do_copy_data+0xc>
-  8a:	0e 94 73 00 	call	0xe6	; 0xe6 <main>
-  8e:	0c 94 8a 00 	jmp	0x114	; 0x114 <_exit>
+  8a:	0e 94 86 00 	call	0x10c	; 0x10c <main>
+  8e:	0c 94 a6 00 	jmp	0x14c	; 0x14c <_exit>
 
 00000092 <__bad_interrupt>:
   92:	0c 94 00 00 	jmp	0	; 0x0 <__vectors>
 
 00000096 <Motor_Speed>:
+
 void Motor_Speed(void)
 {
-	uint8_t speed = 64;
 	static uint8_t state = 1;
 	
 	if(!(PIND&(1 << PIND2)))
   96:	4a 99       	sbic	0x09, 2	; 9
-  98:	25 c0       	rjmp	.+74     	; 0xe4 <Motor_Speed+0x4e>
+  98:	38 c0       	rjmp	.+112    	; 0x10a <Motor_Speed+0x74>
 	#else
 		//round up by default
 		__ticks_dc = (uint32_t)(ceil(fabs(__tmp)));
@@ -111,112 +111,135 @@ void Motor_Speed(void)
 	{
 		_delay_ms(50);							// Debounce delay for Push-button
 		
-		state++;
-  ac:	80 91 00 01 	lds	r24, 0x0100	; 0x800100 <__DATA_REGION_ORIGIN__>
-  b0:	8f 5f       	subi	r24, 0xFF	; 255
-  b2:	80 93 00 01 	sts	0x0100, r24	; 0x800100 <__DATA_REGION_ORIGIN__>
-		if (state > 4)
-  b6:	85 30       	cpi	r24, 0x05	; 5
-  b8:	18 f0       	brcs	.+6      	; 0xc0 <Motor_Speed+0x2a>
-		state = 1;
-  ba:	81 e0       	ldi	r24, 0x01	; 1
-  bc:	80 93 00 01 	sts	0x0100, r24	; 0x800100 <__DATA_REGION_ORIGIN__>
+		if (!(PIND & (1 << PIND2)))
+  ac:	4a 99       	sbic	0x09, 2	; 9
+  ae:	2d c0       	rjmp	.+90     	; 0x10a <Motor_Speed+0x74>
+		{
+			state++;
+  b0:	80 91 00 01 	lds	r24, 0x0100	; 0x800100 <__DATA_REGION_ORIGIN__>
+  b4:	8f 5f       	subi	r24, 0xFF	; 255
+  b6:	80 93 00 01 	sts	0x0100, r24	; 0x800100 <__DATA_REGION_ORIGIN__>
+			if (state > 4)
+  ba:	85 30       	cpi	r24, 0x05	; 5
+  bc:	18 f0       	brcs	.+6      	; 0xc4 <Motor_Speed+0x2e>
+				state = 1;
+  be:	81 e0       	ldi	r24, 0x01	; 1
+  c0:	80 93 00 01 	sts	0x0100, r24	; 0x800100 <__DATA_REGION_ORIGIN__>
 		
-		switch(state)
-  c0:	80 91 00 01 	lds	r24, 0x0100	; 0x800100 <__DATA_REGION_ORIGIN__>
-  c4:	83 30       	cpi	r24, 0x03	; 3
-  c6:	31 f0       	breq	.+12     	; 0xd4 <Motor_Speed+0x3e>
-  c8:	84 30       	cpi	r24, 0x04	; 4
-  ca:	31 f0       	breq	.+12     	; 0xd8 <Motor_Speed+0x42>
-  cc:	82 30       	cpi	r24, 0x02	; 2
-  ce:	31 f0       	breq	.+12     	; 0xdc <Motor_Speed+0x46>
-#include <util/delay.h>
+			switch(state)
+  c4:	80 91 00 01 	lds	r24, 0x0100	; 0x800100 <__DATA_REGION_ORIGIN__>
+  c8:	82 30       	cpi	r24, 0x02	; 2
+  ca:	61 f0       	breq	.+24     	; 0xe4 <Motor_Speed+0x4e>
+  cc:	18 f4       	brcc	.+6      	; 0xd4 <Motor_Speed+0x3e>
+  ce:	81 30       	cpi	r24, 0x01	; 1
+  d0:	31 f0       	breq	.+12     	; 0xde <Motor_Speed+0x48>
+  d2:	10 c0       	rjmp	.+32     	; 0xf4 <Motor_Speed+0x5e>
+  d4:	83 30       	cpi	r24, 0x03	; 3
+  d6:	49 f0       	breq	.+18     	; 0xea <Motor_Speed+0x54>
+  d8:	84 30       	cpi	r24, 0x04	; 4
+  da:	51 f0       	breq	.+20     	; 0xf0 <Motor_Speed+0x5a>
+  dc:	0b c0       	rjmp	.+22     	; 0xf4 <Motor_Speed+0x5e>
+			{
+				case 1:
+				OCR0A = 64;							// 25% Motor speed
+  de:	80 e4       	ldi	r24, 0x40	; 64
+  e0:	87 bd       	out	0x27, r24	; 39
+				break;
+  e2:	08 c0       	rjmp	.+16     	; 0xf4 <Motor_Speed+0x5e>
+			
+				case 2:
+				OCR0A = 128;						// 50% Motor speed
+  e4:	80 e8       	ldi	r24, 0x80	; 128
+  e6:	87 bd       	out	0x27, r24	; 39
+				break;
+  e8:	05 c0       	rjmp	.+10     	; 0xf4 <Motor_Speed+0x5e>
+			
+				case 3:
+				OCR0A = 192;						// 75% Motor speed
+  ea:	80 ec       	ldi	r24, 0xC0	; 192
+  ec:	87 bd       	out	0x27, r24	; 39
+				break;
+  ee:	02 c0       	rjmp	.+4      	; 0xf4 <Motor_Speed+0x5e>
+			
+				case 4:
+				OCR0A = 255;						// 100% Motor speed
+  f0:	8f ef       	ldi	r24, 0xFF	; 255
+  f2:	87 bd       	out	0x27, r24	; 39
+				break;
+			}
+			while(!(PIND&(1 << PIND2)));			// Wait until button released
+  f4:	4a 9b       	sbis	0x09, 2	; 9
+  f6:	fe cf       	rjmp	.-4      	; 0xf4 <Motor_Speed+0x5e>
+  f8:	2f ef       	ldi	r18, 0xFF	; 255
+  fa:	80 e7       	ldi	r24, 0x70	; 112
+  fc:	92 e0       	ldi	r25, 0x02	; 2
+  fe:	21 50       	subi	r18, 0x01	; 1
+ 100:	80 40       	sbci	r24, 0x00	; 0
+ 102:	90 40       	sbci	r25, 0x00	; 0
+ 104:	e1 f7       	brne	.-8      	; 0xfe <Motor_Speed+0x68>
+ 106:	00 c0       	rjmp	.+0      	; 0x108 <Motor_Speed+0x72>
+ 108:	00 00       	nop
+ 10a:	08 95       	ret
 
-
-void Motor_Speed(void)
-{
-	uint8_t speed = 64;
-  d0:	80 e4       	ldi	r24, 0x40	; 64
-  d2:	05 c0       	rjmp	.+10     	; 0xde <Motor_Speed+0x48>
-			case 2:
-			speed = 128;						// 50% Motor speed
-			break;
-			
-			case 3:
-			speed = 192;						// 75% Motor speed
-  d4:	80 ec       	ldi	r24, 0xC0	; 192
-			break;
-  d6:	03 c0       	rjmp	.+6      	; 0xde <Motor_Speed+0x48>
-			
-			case 4:
-			speed = 255;						// 100% Motor speed
-  d8:	8f ef       	ldi	r24, 0xFF	; 255
-			break;
-  da:	01 c0       	rjmp	.+2      	; 0xde <Motor_Speed+0x48>
-			case 1:
-			speed = 64;							// 25% Motor speed
-			break;
-			
-			case 2:
-			speed = 128;						// 50% Motor speed
-  dc:	80 e8       	ldi	r24, 0x80	; 128
-			
-			case 4:
-			speed = 255;						// 100% Motor speed
-			break;
-		}
-		OCR0A = speed;
-  de:	87 bd       	out	0x27, r24	; 39
-		while(!(PIND&(1 << PIND2)));			// Wait until button released
-  e0:	4a 9b       	sbis	0x09, 2	; 9
-  e2:	fe cf       	rjmp	.-4      	; 0xe0 <Motor_Speed+0x4a>
-  e4:	08 95       	ret
-
-000000e6 <main>:
+0000010c <main>:
 	}
 }
 
 int main(void)
 {
 	DDRD |= (1 << DDD6);						// Set PD6 for Output Motor
-  e6:	8a b1       	in	r24, 0x0a	; 10
-  e8:	80 64       	ori	r24, 0x40	; 64
-  ea:	8a b9       	out	0x0a, r24	; 10
+ 10c:	8a b1       	in	r24, 0x0a	; 10
+ 10e:	80 64       	ori	r24, 0x40	; 64
+ 110:	8a b9       	out	0x0a, r24	; 10
 	
 	DDRD &= ~(1 << DDD2);						// Set PD2 for Input
-  ec:	8a b1       	in	r24, 0x0a	; 10
-  ee:	8b 7f       	andi	r24, 0xFB	; 251
-  f0:	8a b9       	out	0x0a, r24	; 10
+ 112:	8a b1       	in	r24, 0x0a	; 10
+ 114:	8b 7f       	andi	r24, 0xFB	; 251
+ 116:	8a b9       	out	0x0a, r24	; 10
 	PORTD |= (1 << PORTD2);						// Enable PULL-UP on PD2
-  f2:	8b b1       	in	r24, 0x0b	; 11
-  f4:	84 60       	ori	r24, 0x04	; 4
-  f6:	8b b9       	out	0x0b, r24	; 11
+ 118:	8b b1       	in	r24, 0x0b	; 11
+ 11a:	84 60       	ori	r24, 0x04	; 4
+ 11c:	8b b9       	out	0x0b, r24	; 11
+	
+	DDRB |= (1 << DDB0) | (1 << DDB1);
+ 11e:	84 b1       	in	r24, 0x04	; 4
+ 120:	83 60       	ori	r24, 0x03	; 3
+ 122:	84 b9       	out	0x04, r24	; 4
+
+	PORTB |= (1 << PORTB0);
+ 124:	85 b1       	in	r24, 0x05	; 5
+ 126:	81 60       	ori	r24, 0x01	; 1
+ 128:	85 b9       	out	0x05, r24	; 5
+	PORTB &= ~(1 << PORTB1);
+ 12a:	85 b1       	in	r24, 0x05	; 5
+ 12c:	8d 7f       	andi	r24, 0xFD	; 253
+ 12e:	85 b9       	out	0x05, r24	; 5
 	
 	TCCR0A |= (1 << COM0A1);					// Non-inverting
-  f8:	84 b5       	in	r24, 0x24	; 36
-  fa:	80 68       	ori	r24, 0x80	; 128
-  fc:	84 bd       	out	0x24, r24	; 36
+ 130:	84 b5       	in	r24, 0x24	; 36
+ 132:	80 68       	ori	r24, 0x80	; 128
+ 134:	84 bd       	out	0x24, r24	; 36
 	
 	TCCR0B |= (1 << CS01) | (1 << CS00);		// Prescalar 64
-  fe:	85 b5       	in	r24, 0x25	; 37
- 100:	83 60       	ori	r24, 0x03	; 3
- 102:	85 bd       	out	0x25, r24	; 37
+ 136:	85 b5       	in	r24, 0x25	; 37
+ 138:	83 60       	ori	r24, 0x03	; 3
+ 13a:	85 bd       	out	0x25, r24	; 37
 	TCCR0A |= (1 << WGM00) | (1 << WGM01);		// Fast PWM
- 104:	84 b5       	in	r24, 0x24	; 36
- 106:	83 60       	ori	r24, 0x03	; 3
- 108:	84 bd       	out	0x24, r24	; 36
+ 13c:	84 b5       	in	r24, 0x24	; 36
+ 13e:	83 60       	ori	r24, 0x03	; 3
+ 140:	84 bd       	out	0x24, r24	; 36
 	OCR0A = 64;									// Start with 25% Motor speed
- 10a:	80 e4       	ldi	r24, 0x40	; 64
- 10c:	87 bd       	out	0x27, r24	; 39
+ 142:	80 e4       	ldi	r24, 0x40	; 64
+ 144:	87 bd       	out	0x27, r24	; 39
 	/* Replace with your application code */
 	while (1)
 	{
 		Motor_Speed();
- 10e:	0e 94 4b 00 	call	0x96	; 0x96 <Motor_Speed>
- 112:	fd cf       	rjmp	.-6      	; 0x10e <main+0x28>
+ 146:	0e 94 4b 00 	call	0x96	; 0x96 <Motor_Speed>
+ 14a:	fd cf       	rjmp	.-6      	; 0x146 <main+0x3a>
 
-00000114 <_exit>:
- 114:	f8 94       	cli
+0000014c <_exit>:
+ 14c:	f8 94       	cli
 
-00000116 <__stop_program>:
- 116:	ff cf       	rjmp	.-2      	; 0x116 <__stop_program>
+0000014e <__stop_program>:
+ 14e:	ff cf       	rjmp	.-2      	; 0x14e <__stop_program>

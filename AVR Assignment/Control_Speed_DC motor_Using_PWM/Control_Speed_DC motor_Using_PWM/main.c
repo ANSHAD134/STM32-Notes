@@ -13,37 +13,39 @@
 
 void Motor_Speed(void)
 {
-	uint8_t speed = 64;
 	static uint8_t state = 1;
 	
 	if(!(PIND&(1 << PIND2)))
 	{
 		_delay_ms(50);							// Debounce delay for Push-button
 		
-		state++;
-		if (state > 4)
-		state = 1;
-		
-		switch(state)
+		if (!(PIND & (1 << PIND2)))
 		{
-			case 1:
-			speed = 64;							// 25% Motor speed
-			break;
+			state++;
+			if (state > 4)
+				state = 1;
+		
+			switch(state)
+			{
+				case 1:
+				OCR0A = 64;							// 25% Motor speed
+				break;
 			
-			case 2:
-			speed = 128;						// 50% Motor speed
-			break;
+				case 2:
+				OCR0A = 128;						// 50% Motor speed
+				break;
 			
-			case 3:
-			speed = 192;						// 75% Motor speed
-			break;
+				case 3:
+				OCR0A = 192;						// 75% Motor speed
+				break;
 			
-			case 4:
-			speed = 255;						// 100% Motor speed
-			break;
+				case 4:
+				OCR0A = 255;						// 100% Motor speed
+				break;
+			}
+			while(!(PIND&(1 << PIND2)));			// Wait until button released
+			_delay_ms(50);
 		}
-		OCR0A = speed;
-		while(!(PIND&(1 << PIND2)));			// Wait until button released
 	}
 }
 
@@ -53,6 +55,11 @@ int main(void)
 	
 	DDRD &= ~(1 << DDD2);						// Set PD2 for Input
 	PORTD |= (1 << PORTD2);						// Enable PULL-UP on PD2
+	
+	DDRB |= (1 << DDB0) | (1 << DDB1);
+
+	PORTB |= (1 << PORTB0);
+	PORTB &= ~(1 << PORTB1);
 	
 	TCCR0A |= (1 << COM0A1);					// Non-inverting
 	
