@@ -3,29 +3,29 @@ LED_Train_animation.elf:     file format elf32-avr
 
 Sections:
 Idx Name          Size      VMA       LMA       File off  Algn
-  0 .data         00000000  00800100  00800100  0000016c  2**0
+  0 .data         00000000  00800100  00800100  00000224  2**0
                   CONTENTS, ALLOC, LOAD, DATA
-  1 .text         00000118  00000000  00000000  00000054  2**1
+  1 .text         000001d0  00000000  00000000  00000054  2**1
                   CONTENTS, ALLOC, LOAD, READONLY, CODE
-  2 .comment      00000030  00000000  00000000  0000016c  2**0
+  2 .comment      00000030  00000000  00000000  00000224  2**0
                   CONTENTS, READONLY
-  3 .note.gnu.avr.deviceinfo 00000040  00000000  00000000  0000019c  2**2
+  3 .note.gnu.avr.deviceinfo 00000040  00000000  00000000  00000254  2**2
                   CONTENTS, READONLY
-  4 .debug_aranges 00000020  00000000  00000000  000001dc  2**0
+  4 .debug_aranges 00000020  00000000  00000000  00000294  2**0
                   CONTENTS, READONLY, DEBUGGING
-  5 .debug_info   00000714  00000000  00000000  000001fc  2**0
+  5 .debug_info   0000088c  00000000  00000000  000002b4  2**0
                   CONTENTS, READONLY, DEBUGGING
-  6 .debug_abbrev 0000066d  00000000  00000000  00000910  2**0
+  6 .debug_abbrev 0000066f  00000000  00000000  00000b40  2**0
                   CONTENTS, READONLY, DEBUGGING
-  7 .debug_line   000002ea  00000000  00000000  00000f7d  2**0
+  7 .debug_line   000003cb  00000000  00000000  000011af  2**0
                   CONTENTS, READONLY, DEBUGGING
-  8 .debug_frame  00000024  00000000  00000000  00001268  2**2
+  8 .debug_frame  00000024  00000000  00000000  0000157c  2**2
                   CONTENTS, READONLY, DEBUGGING
-  9 .debug_str    000003b1  00000000  00000000  0000128c  2**0
+  9 .debug_str    000003b1  00000000  00000000  000015a0  2**0
                   CONTENTS, READONLY, DEBUGGING
- 10 .debug_loc    00000067  00000000  00000000  0000163d  2**0
+ 10 .debug_loc    00000240  00000000  00000000  00001951  2**0
                   CONTENTS, READONLY, DEBUGGING
- 11 .debug_ranges 00000010  00000000  00000000  000016a4  2**0
+ 11 .debug_ranges 00000010  00000000  00000000  00001b91  2**0
                   CONTENTS, READONLY, DEBUGGING
 
 Disassembly of section .text:
@@ -66,7 +66,7 @@ Disassembly of section .text:
   70:	de bf       	out	0x3e, r29	; 62
   72:	cd bf       	out	0x3d, r28	; 61
   74:	0e 94 40 00 	call	0x80	; 0x80 <main>
-  78:	0c 94 8a 00 	jmp	0x114	; 0x114 <_exit>
+  78:	0c 94 e6 00 	jmp	0x1cc	; 0x1cc <_exit>
 
 0000007c <__bad_interrupt>:
   7c:	0c 94 00 00 	jmp	0	; 0x0 <__vectors>
@@ -101,11 +101,11 @@ int main(void)
   9e:	84 b1       	in	r24, 0x04	; 4
   a0:	80 62       	ori	r24, 0x20	; 32
   a2:	84 b9       	out	0x04, r24	; 4
-	DDRB |= (1 << DDB6);					// Set PORT6 as OUTPUT
+	DDRB |= (1 << DDD6);					// Set PORT6 as OUTPUT
   a4:	84 b1       	in	r24, 0x04	; 4
   a6:	80 64       	ori	r24, 0x40	; 64
   a8:	84 b9       	out	0x04, r24	; 4
-	DDRB |= (1 << DDB7);					// Set PORT7 as OUTPUT
+	DDRB |= (1 << DDD7);					// Set PORT7 as OUTPUT
   aa:	84 b1       	in	r24, 0x04	; 4
   ac:	80 68       	ori	r24, 0x80	; 128
   ae:	84 b9       	out	0x04, r24	; 4
@@ -113,83 +113,195 @@ int main(void)
     /* Replace with your application code */
     while (1) 
     {
-		for(uint8_t i=0; i<8; i++)
-  b0:	20 e0       	ldi	r18, 0x00	; 0
-  b2:	2d c0       	rjmp	.+90     	; 0x10e <main+0x8e>
-		{
-			PORTB &= ~(1 << PORTB0);			// Clear 1st LED
-  b4:	85 b1       	in	r24, 0x05	; 5
-  b6:	8e 7f       	andi	r24, 0xFE	; 254
-  b8:	85 b9       	out	0x05, r24	; 5
-			PORTB &= ~(1 << PORTB1);			// Clear 2nd LED
-  ba:	85 b1       	in	r24, 0x05	; 5
-  bc:	8d 7f       	andi	r24, 0xFD	; 253
-  be:	85 b9       	out	0x05, r24	; 5
-			PORTB &= ~(1 << PORTB2);			// Clear 3rd LED
-  c0:	85 b1       	in	r24, 0x05	; 5
-  c2:	8b 7f       	andi	r24, 0xFB	; 251
-  c4:	85 b9       	out	0x05, r24	; 5
-			PORTB &= ~(1 << PORTB3);			// Clear 4th LED
-  c6:	85 b1       	in	r24, 0x05	; 5
-  c8:	87 7f       	andi	r24, 0xF7	; 247
-  ca:	85 b9       	out	0x05, r24	; 5
-			PORTB &= ~(1 << PORTB4);			// Clear 5th LED
-  cc:	85 b1       	in	r24, 0x05	; 5
-  ce:	8f 7e       	andi	r24, 0xEF	; 239
-  d0:	85 b9       	out	0x05, r24	; 5
-			PORTB &= ~(1 << PORTB5);			// Clear 6th LED
-  d2:	85 b1       	in	r24, 0x05	; 5
-  d4:	8f 7d       	andi	r24, 0xDF	; 223
-  d6:	85 b9       	out	0x05, r24	; 5
-			PORTB &= ~(1 << PORTB6);			// Clear 7th LED
-  d8:	85 b1       	in	r24, 0x05	; 5
-  da:	8f 7b       	andi	r24, 0xBF	; 191
-  dc:	85 b9       	out	0x05, r24	; 5
-			PORTB &= ~(1 << PORTB7);			// Clear 8th LED
-  de:	85 b1       	in	r24, 0x05	; 5
-  e0:	8f 77       	andi	r24, 0x7F	; 127
-  e2:	85 b9       	out	0x05, r24	; 5
-			
-			PORTB |= (1 << i);					// Turns ON current LED
-  e4:	35 b1       	in	r19, 0x05	; 5
-  e6:	81 e0       	ldi	r24, 0x01	; 1
-  e8:	90 e0       	ldi	r25, 0x00	; 0
-  ea:	02 2e       	mov	r0, r18
-  ec:	02 c0       	rjmp	.+4      	; 0xf2 <main+0x72>
-  ee:	88 0f       	add	r24, r24
-  f0:	99 1f       	adc	r25, r25
-  f2:	0a 94       	dec	r0
-  f4:	e2 f7       	brpl	.-8      	; 0xee <main+0x6e>
-  f6:	83 2b       	or	r24, r19
-  f8:	85 b9       	out	0x05, r24	; 5
+		PORTB &= ~(1 << PORTB1);
+  b0:	85 b1       	in	r24, 0x05	; 5
+  b2:	8d 7f       	andi	r24, 0xFD	; 253
+  b4:	85 b9       	out	0x05, r24	; 5
+		PORTB |=  (1 << PORTB0);
+  b6:	85 b1       	in	r24, 0x05	; 5
+  b8:	81 60       	ori	r24, 0x01	; 1
+  ba:	85 b9       	out	0x05, r24	; 5
 	#else
 		//round up by default
 		__ticks_dc = (uint32_t)(ceil(fabs(__tmp)));
 	#endif
 
 	__builtin_avr_delay_cycles(__ticks_dc);
-  fa:	3f ef       	ldi	r19, 0xFF	; 255
-  fc:	83 ec       	ldi	r24, 0xC3	; 195
-  fe:	99 e0       	ldi	r25, 0x09	; 9
- 100:	31 50       	subi	r19, 0x01	; 1
- 102:	80 40       	sbci	r24, 0x00	; 0
- 104:	90 40       	sbci	r25, 0x00	; 0
- 106:	e1 f7       	brne	.-8      	; 0x100 <main+0x80>
- 108:	00 c0       	rjmp	.+0      	; 0x10a <main+0x8a>
- 10a:	00 00       	nop
-	DDRB |= (1 << DDB7);					// Set PORT7 as OUTPUT
-	
-    /* Replace with your application code */
-    while (1) 
-    {
-		for(uint8_t i=0; i<8; i++)
- 10c:	2f 5f       	subi	r18, 0xFF	; 255
- 10e:	28 30       	cpi	r18, 0x08	; 8
- 110:	88 f2       	brcs	.-94     	; 0xb4 <main+0x34>
- 112:	ce cf       	rjmp	.-100    	; 0xb0 <main+0x30>
+  bc:	2f ef       	ldi	r18, 0xFF	; 255
+  be:	83 ec       	ldi	r24, 0xC3	; 195
+  c0:	99 e0       	ldi	r25, 0x09	; 9
+  c2:	21 50       	subi	r18, 0x01	; 1
+  c4:	80 40       	sbci	r24, 0x00	; 0
+  c6:	90 40       	sbci	r25, 0x00	; 0
+  c8:	e1 f7       	brne	.-8      	; 0xc2 <main+0x42>
+  ca:	00 c0       	rjmp	.+0      	; 0xcc <main+0x4c>
+  cc:	00 00       	nop
+		_delay_ms(200);
+		PORTB &= ~(1 << PORTB0);
+  ce:	85 b1       	in	r24, 0x05	; 5
+  d0:	8e 7f       	andi	r24, 0xFE	; 254
+  d2:	85 b9       	out	0x05, r24	; 5
+		
+		PORTB &= ~(1 << PORTB2);
+  d4:	85 b1       	in	r24, 0x05	; 5
+  d6:	8b 7f       	andi	r24, 0xFB	; 251
+  d8:	85 b9       	out	0x05, r24	; 5
+		PORTB |=  (1 << PORTB1);
+  da:	85 b1       	in	r24, 0x05	; 5
+  dc:	82 60       	ori	r24, 0x02	; 2
+  de:	85 b9       	out	0x05, r24	; 5
+  e0:	2f ef       	ldi	r18, 0xFF	; 255
+  e2:	83 ec       	ldi	r24, 0xC3	; 195
+  e4:	99 e0       	ldi	r25, 0x09	; 9
+  e6:	21 50       	subi	r18, 0x01	; 1
+  e8:	80 40       	sbci	r24, 0x00	; 0
+  ea:	90 40       	sbci	r25, 0x00	; 0
+  ec:	e1 f7       	brne	.-8      	; 0xe6 <main+0x66>
+  ee:	00 c0       	rjmp	.+0      	; 0xf0 <main+0x70>
+  f0:	00 00       	nop
+		_delay_ms(200);
+		PORTB &= ~(1 << PORTB1);
+  f2:	85 b1       	in	r24, 0x05	; 5
+  f4:	8d 7f       	andi	r24, 0xFD	; 253
+  f6:	85 b9       	out	0x05, r24	; 5
+		
+		PORTB &= ~(1 << PORTB3);
+  f8:	85 b1       	in	r24, 0x05	; 5
+  fa:	87 7f       	andi	r24, 0xF7	; 247
+  fc:	85 b9       	out	0x05, r24	; 5
+		PORTB |=  (1 << PORTB2);
+  fe:	85 b1       	in	r24, 0x05	; 5
+ 100:	84 60       	ori	r24, 0x04	; 4
+ 102:	85 b9       	out	0x05, r24	; 5
+ 104:	2f ef       	ldi	r18, 0xFF	; 255
+ 106:	83 ec       	ldi	r24, 0xC3	; 195
+ 108:	99 e0       	ldi	r25, 0x09	; 9
+ 10a:	21 50       	subi	r18, 0x01	; 1
+ 10c:	80 40       	sbci	r24, 0x00	; 0
+ 10e:	90 40       	sbci	r25, 0x00	; 0
+ 110:	e1 f7       	brne	.-8      	; 0x10a <main+0x8a>
+ 112:	00 c0       	rjmp	.+0      	; 0x114 <main+0x94>
+ 114:	00 00       	nop
+		_delay_ms(200);
+		PORTB &= ~(1 << PORTB2);
+ 116:	85 b1       	in	r24, 0x05	; 5
+ 118:	8b 7f       	andi	r24, 0xFB	; 251
+ 11a:	85 b9       	out	0x05, r24	; 5
+		
+		PORTB &= ~(1 << PORTB4);
+ 11c:	85 b1       	in	r24, 0x05	; 5
+ 11e:	8f 7e       	andi	r24, 0xEF	; 239
+ 120:	85 b9       	out	0x05, r24	; 5
+		PORTB |=  (1 << PORTB3);
+ 122:	85 b1       	in	r24, 0x05	; 5
+ 124:	88 60       	ori	r24, 0x08	; 8
+ 126:	85 b9       	out	0x05, r24	; 5
+ 128:	2f ef       	ldi	r18, 0xFF	; 255
+ 12a:	83 ec       	ldi	r24, 0xC3	; 195
+ 12c:	99 e0       	ldi	r25, 0x09	; 9
+ 12e:	21 50       	subi	r18, 0x01	; 1
+ 130:	80 40       	sbci	r24, 0x00	; 0
+ 132:	90 40       	sbci	r25, 0x00	; 0
+ 134:	e1 f7       	brne	.-8      	; 0x12e <main+0xae>
+ 136:	00 c0       	rjmp	.+0      	; 0x138 <main+0xb8>
+ 138:	00 00       	nop
+		_delay_ms(200);
+		PORTB &= ~(1 << PORTB3);
+ 13a:	85 b1       	in	r24, 0x05	; 5
+ 13c:	87 7f       	andi	r24, 0xF7	; 247
+ 13e:	85 b9       	out	0x05, r24	; 5
+		
+		PORTB &= ~(1 << PORTB5);
+ 140:	85 b1       	in	r24, 0x05	; 5
+ 142:	8f 7d       	andi	r24, 0xDF	; 223
+ 144:	85 b9       	out	0x05, r24	; 5
+		PORTB |=  (1 << PORTB4);
+ 146:	85 b1       	in	r24, 0x05	; 5
+ 148:	80 61       	ori	r24, 0x10	; 16
+ 14a:	85 b9       	out	0x05, r24	; 5
+ 14c:	2f ef       	ldi	r18, 0xFF	; 255
+ 14e:	83 ec       	ldi	r24, 0xC3	; 195
+ 150:	99 e0       	ldi	r25, 0x09	; 9
+ 152:	21 50       	subi	r18, 0x01	; 1
+ 154:	80 40       	sbci	r24, 0x00	; 0
+ 156:	90 40       	sbci	r25, 0x00	; 0
+ 158:	e1 f7       	brne	.-8      	; 0x152 <main+0xd2>
+ 15a:	00 c0       	rjmp	.+0      	; 0x15c <main+0xdc>
+ 15c:	00 00       	nop
+		_delay_ms(200);
+		PORTB &= ~(1 << PORTB4);
+ 15e:	85 b1       	in	r24, 0x05	; 5
+ 160:	8f 7e       	andi	r24, 0xEF	; 239
+ 162:	85 b9       	out	0x05, r24	; 5
+		
+		PORTD &= ~(1 << PORTD6);
+ 164:	8b b1       	in	r24, 0x0b	; 11
+ 166:	8f 7b       	andi	r24, 0xBF	; 191
+ 168:	8b b9       	out	0x0b, r24	; 11
+		PORTB |=  (1 << PORTB5);
+ 16a:	85 b1       	in	r24, 0x05	; 5
+ 16c:	80 62       	ori	r24, 0x20	; 32
+ 16e:	85 b9       	out	0x05, r24	; 5
+ 170:	2f ef       	ldi	r18, 0xFF	; 255
+ 172:	83 ec       	ldi	r24, 0xC3	; 195
+ 174:	99 e0       	ldi	r25, 0x09	; 9
+ 176:	21 50       	subi	r18, 0x01	; 1
+ 178:	80 40       	sbci	r24, 0x00	; 0
+ 17a:	90 40       	sbci	r25, 0x00	; 0
+ 17c:	e1 f7       	brne	.-8      	; 0x176 <main+0xf6>
+ 17e:	00 c0       	rjmp	.+0      	; 0x180 <main+0x100>
+ 180:	00 00       	nop
+		_delay_ms(200);
+		PORTB &= ~(1 << PORTB5);
+ 182:	85 b1       	in	r24, 0x05	; 5
+ 184:	8f 7d       	andi	r24, 0xDF	; 223
+ 186:	85 b9       	out	0x05, r24	; 5
 
-00000114 <_exit>:
- 114:	f8 94       	cli
+		PORTD &= ~(1 << PORTD7);
+ 188:	8b b1       	in	r24, 0x0b	; 11
+ 18a:	8f 77       	andi	r24, 0x7F	; 127
+ 18c:	8b b9       	out	0x0b, r24	; 11
+		PORTD |=  (1 << PORTD6);
+ 18e:	8b b1       	in	r24, 0x0b	; 11
+ 190:	80 64       	ori	r24, 0x40	; 64
+ 192:	8b b9       	out	0x0b, r24	; 11
+ 194:	2f ef       	ldi	r18, 0xFF	; 255
+ 196:	83 ec       	ldi	r24, 0xC3	; 195
+ 198:	99 e0       	ldi	r25, 0x09	; 9
+ 19a:	21 50       	subi	r18, 0x01	; 1
+ 19c:	80 40       	sbci	r24, 0x00	; 0
+ 19e:	90 40       	sbci	r25, 0x00	; 0
+ 1a0:	e1 f7       	brne	.-8      	; 0x19a <main+0x11a>
+ 1a2:	00 c0       	rjmp	.+0      	; 0x1a4 <main+0x124>
+ 1a4:	00 00       	nop
+		_delay_ms(200);
+		PORTD &= ~(1 << PORTD6);
+ 1a6:	8b b1       	in	r24, 0x0b	; 11
+ 1a8:	8f 7b       	andi	r24, 0xBF	; 191
+ 1aa:	8b b9       	out	0x0b, r24	; 11
+		
+		PORTD |=  (1 << PORTD7);
+ 1ac:	8b b1       	in	r24, 0x0b	; 11
+ 1ae:	80 68       	ori	r24, 0x80	; 128
+ 1b0:	8b b9       	out	0x0b, r24	; 11
+ 1b2:	2f ef       	ldi	r18, 0xFF	; 255
+ 1b4:	83 ec       	ldi	r24, 0xC3	; 195
+ 1b6:	99 e0       	ldi	r25, 0x09	; 9
+ 1b8:	21 50       	subi	r18, 0x01	; 1
+ 1ba:	80 40       	sbci	r24, 0x00	; 0
+ 1bc:	90 40       	sbci	r25, 0x00	; 0
+ 1be:	e1 f7       	brne	.-8      	; 0x1b8 <main+0x138>
+ 1c0:	00 c0       	rjmp	.+0      	; 0x1c2 <main+0x142>
+ 1c2:	00 00       	nop
+		_delay_ms(200);
+		PORTD &= ~(1 << PORTD7);
+ 1c4:	8b b1       	in	r24, 0x0b	; 11
+ 1c6:	8f 77       	andi	r24, 0x7F	; 127
+ 1c8:	8b b9       	out	0x0b, r24	; 11
+ 1ca:	72 cf       	rjmp	.-284    	; 0xb0 <main+0x30>
 
-00000116 <__stop_program>:
- 116:	ff cf       	rjmp	.-2      	; 0x116 <__stop_program>
+000001cc <_exit>:
+ 1cc:	f8 94       	cli
+
+000001ce <__stop_program>:
+ 1ce:	ff cf       	rjmp	.-2      	; 0x1ce <__stop_program>
