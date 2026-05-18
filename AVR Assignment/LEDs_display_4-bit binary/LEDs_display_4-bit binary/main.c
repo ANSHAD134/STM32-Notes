@@ -82,6 +82,7 @@ int main(void)
 				display(count);
 			
 				while(!(PIND & (1 << PIND2)));	// Wait for until Release
+				_delay_ms(50);
 			}
 		}
     }
