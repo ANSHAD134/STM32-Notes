@@ -1,0 +1,10 @@
+20:46:44 **** Clean-only build of configuration Debug for project STM32_Bare-Metal_Driver_Implementation ****
+make -j4 clean 
+rm -rf ./Startup/startup_stm32f446retx.d ./Startup/startup_stm32f446retx.o
+rm -rf ./Src/main.cyclo ./Src/main.d ./Src/main.o ./Src/main.su ./Src/syscalls.cyclo ./Src/syscalls.d ./Src/syscalls.o ./Src/syscalls.su ./Src/sysmem.cyclo ./Src/sysmem.d ./Src/sysmem.o ./Src/sysmem.su
+rm -rf ./Drivers/Src/stm32f446xx_gpio_driver.cyclo ./Drivers/Src/stm32f446xx_gpio_driver.d ./Drivers/Src/stm32f446xx_gpio_driver.o ./Drivers/Src/stm32f446xx_gpio_driver.su ./Drivers/Src/stm32f446xx_i2c_driver.cyclo ./Drivers/Src/stm32f446xx_i2c_driver.d ./Drivers/Src/stm32f446xx_i2c_driver.o ./Drivers/Src/stm32f446xx_i2c_driver.su ./Drivers/Src/stm32f446xx_rcc_driver.cyclo ./Drivers/Src/stm32f446xx_rcc_driver.d ./Drivers/Src/stm32f446xx_rcc_driver.o ./Drivers/Src/stm32f446xx_rcc_driver.su ./Drivers/Src/stm32f446xx_spi_driver.cyclo ./Drivers/Src/stm32f446xx_spi_driver.d ./Drivers/Src/stm32f446xx_spi_driver.o ./Drivers/Src/stm32f446xx_spi_driver.su ./Drivers/Src/stm32f446xx_usart_driver.cyclo ./Drivers/Src/stm32f446xx_usart_driver.d ./Drivers/Src/stm32f446xx_usart_driver.o ./Drivers/Src/stm32f446xx_usart_driver.su
+rm -rf STM32_Bare-Metal_Driver_Implementation.elf STM32_Bare-Metal_Driver_Implementation.list STM32_Bare-Metal_Driver_Implementation.map default.size.stdout
+ 
+
+20:46:45 Build Finished. 0 errors, 0 warnings. (took 408ms)
+
