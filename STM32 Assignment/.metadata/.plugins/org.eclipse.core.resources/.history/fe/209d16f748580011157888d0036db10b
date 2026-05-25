@@ -52,9 +52,6 @@ int main(void)
 
 	while(1)
 	{
-		if(GPIO_ReadFromInputPin(GPIOA, GPIO_PIN_NO_0) == BIN_PRESSED)
-		{
-			GPIO_ToggleOutputPin(GPIOD, GPIO_PIN_NO_8);
-		}
+
 	}
 }
