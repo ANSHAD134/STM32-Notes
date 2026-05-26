@@ -1,7 +1,21 @@
-20:21:00 **** Incremental Build of configuration Debug for project STM32_Bare-Metal_Driver_Implementation ****
+20:17:39 **** Incremental Build of configuration Debug for project STM32_Bare-Metal_Driver_Implementation ****
 make -j4 all 
 arm-none-eabi-size  STM32_Bare-Metal_Driver_Implementation.elf 
    text	   data	    bss	    dec	    hex	filename
-   2124	      0	   1568	   3692	    e6c	STM32_Bare-Metal_Driver_Implementation.elf
+   2172	      0	   1568	   3740	    e9c	STM32_Bare-Metal_Driver_Implementation.elf
+Finished building: default.size.stdout
+ 
+20:17:45 **** Incremental Build of configuration Debug for project STM32_Bare-Metal_Driver_Implementation ****
+make -j4 all 
+arm-none-eabi-size  STM32_Bare-Metal_Driver_Implementation.elf 
+   text	   data	    bss	    dec	    hex	filename
+   2172	      0	   1568	   3740	    e9c	STM32_Bare-Metal_Driver_Implementation.elf
+Finished building: default.size.stdout
+ 
+20:23:33 **** Incremental Build of configuration Debug for project STM32_Bare-Metal_Driver_Implementation ****
+make -j4 all 
+arm-none-eabi-size  STM32_Bare-Metal_Driver_Implementation.elf 
+   text	   data	    bss	    dec	    hex	filename
+   2172	      0	   1568	   3740	    e9c	STM32_Bare-Metal_Driver_Implementation.elf
 Finished building: default.size.stdout
  
