@@ -18,7 +18,7 @@ int main(void)
 {
 	GPIO_Handle_t	GPIOLed, GPIOBtn;
 	GPIO_Handle_t USARTPins;
-	USART_Handle_t USART2Handle;
+
 
 	// LED GPIO Configuration
 	GPIOLed.pGPIOx = GPIOA;
@@ -56,16 +56,7 @@ int main(void)
 
 	GPIO_Init(&USARTPins);
 
-	// UART Initialization
-	USART2Handle.pUSARTx = USART2;
-	USART2Handle.USART_Config.USART_Baud = USART_STD_BAUD_115200;
-	USART2Handle.USART_Config.USART_HWFlowControl = USART_HW_FLOW_CTRL_NONE;
-	USART2Handle.USART_Config.USART_Mode = USART_MODE_ONLY_TX;
-	USART2Handle.USART_Config.USART_NoOfStopBits = USART_STOPBITS_1;
-	USART2Handle.USART_Config.USART_WordLength = USART_WORDLEN_8BITS;
-	USART2Handle.USART_Config.USART_ParityControl = USART_PARITY_DISABLE;
 
-	USART_Init(&USART2Handle);
 
 	while(1)
 	{
