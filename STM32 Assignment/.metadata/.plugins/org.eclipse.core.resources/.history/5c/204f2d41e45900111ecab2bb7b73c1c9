@@ -11,8 +11,8 @@
 #include "stm32f446xx_gpio_driver.h"
 #include "stm32f446xx_usart_driver.h"
 
-#define HIGH 			1
-#define BIN_PRESSED		HIGH
+#define LOW 			0
+#define BIN_PRESSED		LOW
 
 int main(void)
 {

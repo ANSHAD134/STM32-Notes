@@ -11,14 +11,14 @@
 #include "stm32f446xx_gpio_driver.h"
 #include "stm32f446xx_usart_driver.h"
 
-#define HIGH 			1
-#define BIN_PRESSED		HIGH
+#define LOW 			0
+#define BIN_PRESSED		LOW
 
 int main(void)
 {
 	GPIO_Handle_t	GPIOLed, GPIOBtn;
-	GPIO_Handle_t 	USARTPins;
-	USART_Handle_t 	USART2Handle;
+	GPIO_Handle_t USARTPins;
+	USART_Handle_t USART2Handle;
 
 	// LED GPIO Configuration
 	GPIOLed.pGPIOx = GPIOA;

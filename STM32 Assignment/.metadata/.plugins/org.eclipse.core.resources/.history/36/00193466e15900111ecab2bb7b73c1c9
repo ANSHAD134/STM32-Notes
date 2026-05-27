@@ -63,5 +63,4 @@ int main(void)
 			delay();
 		}
 	}
-	return 0;
 }

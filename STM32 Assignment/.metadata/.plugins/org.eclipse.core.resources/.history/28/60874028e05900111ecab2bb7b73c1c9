@@ -11,14 +11,14 @@
 #include "stm32f446xx_gpio_driver.h"
 #include "stm32f446xx_usart_driver.h"
 
-#define HIGH 			1
-#define BIN_PRESSED		HIGH
+#define LOW 			0
+#define BIN_PRESSED		LOW
 
 int main(void)
 {
 	GPIO_Handle_t	GPIOLed, GPIOBtn;
-	GPIO_Handle_t 	USARTPins;
-	USART_Handle_t 	USART2Handle;
+	GPIO_Handle_t USARTPins;
+	USART_Handle_t USART2Handle;
 
 	// LED GPIO Configuration
 	GPIOLed.pGPIOx = GPIOA;
@@ -37,7 +37,7 @@ int main(void)
 	GPIOBtn.GPIO_PinConfig.GPIO_PinNumber = GPIO_PIN_NO_13;
 	GPIOBtn.GPIO_PinConfig.GPIO_PinMode = GPIO_MODE_IN;
 	GPIOBtn.GPIO_PinConfig.GPIO_PinSpeed = GPIO_SPEED_FAST;
-	GPIOBtn.GPIO_PinConfig.GPIO_PinPuPdControl = GPIO_NO_PUPD;
+	GPIOBtn.GPIO_PinConfig.GPIO_PinPuPdControl = GPIO_PIN_PU;
 
 	GPIO_PeriClockControl(GPIOC, ENABLE);
 
@@ -74,17 +74,19 @@ int main(void)
 
 	while(1)
 	{
-		if(GPIO_ReadFromInputPin(GPIOC, GPIO_PIN_NO_13) == BIN_PRESSED)
+		if(!(GPIO_ReadFromInputPin(GPIOC, GPIO_PIN_NO_13) == BIN_PRESSED))
 		{
 			GPIO_WriteToOutputPin(GPIOA, GPIO_PIN_NO_10, 0);
 			USART_SendData(&USART2Handle, (uint8_t*)msg2, strlen(msg2));
+			for (uint32_t i = 0; i < 500000; i++);
 		}
 		else
 		{
 			GPIO_WriteToOutputPin(GPIOA, GPIO_PIN_NO_10, 1);
 			USART_SendData(&USART2Handle, (uint8_t*)msg1, strlen(msg1));
+			for (uint32_t i = 0; i < 500000; i++);
 		}
-	}
 
-	return 0;
+		//while(!(GPIO_ReadFromInputPin(GPIOA, GPIO_PIN_NO_10) & BIN_PRESSED));
+	}
 }

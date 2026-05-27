@@ -11,14 +11,16 @@
 #include "stm32f446xx_gpio_driver.h"
 #include "stm32f446xx_usart_driver.h"
 
-#define HIGH 			1
-#define BIN_PRESSED		HIGH
+#define LOW 				0
+#define BIN_NT_PRESSED		LOW
+#define HIGH 				1
+#define BIN_PRESSED			HIGH
 
 int main(void)
 {
 	GPIO_Handle_t	GPIOLed, GPIOBtn;
-	GPIO_Handle_t 	USARTPins;
-	USART_Handle_t 	USART2Handle;
+	GPIO_Handle_t USARTPins;
+	USART_Handle_t USART2Handle;
 
 	// LED GPIO Configuration
 	GPIOLed.pGPIOx = GPIOA;
@@ -77,13 +79,15 @@ int main(void)
 		if(GPIO_ReadFromInputPin(GPIOC, GPIO_PIN_NO_13) == BIN_PRESSED)
 		{
 			GPIO_WriteToOutputPin(GPIOA, GPIO_PIN_NO_10, 0);
-			USART_SendData(&USART2Handle, (uint8_t*)msg2, strlen(msg2));
+			USART_SendData(&USART2Handle, msg2, strlen((char*)msg2));
 		}
-		else
+
+		if(GPIO_ReadFromInputPin(GPIOC, GPIO_PIN_NO_13) == BIN_NT_PRESSED)
 		{
 			GPIO_WriteToOutputPin(GPIOA, GPIO_PIN_NO_10, 1);
-			USART_SendData(&USART2Handle, (uint8_t*)msg1, strlen(msg1));
+			USART_SendData(&USART2Handle, msg1, strlen((char*)msg1));
 		}
+
 	}
 
 	return 0;
