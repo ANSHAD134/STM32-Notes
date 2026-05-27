@@ -29,9 +29,9 @@ int main(void)
 	GPIOLed.GPIO_PinConfig.GPIO_PinOPType = GPIO_OP_TYPE_PP;
 	GPIOLed.GPIO_PinConfig.GPIO_PinPuPdControl = GPIO_NO_PUPD;
 
-	GPIO_Init(&GPIOLed);
-
 	GPIO_PeriClockControl(GPIOA, ENABLE);
+
+	GPIO_Init(&GPIOLed);
 
 	// Button GPIO Configuration
 	GPIOBtn.pGPIOx = GPIOC;
@@ -40,9 +40,9 @@ int main(void)
 	GPIOBtn.GPIO_PinConfig.GPIO_PinSpeed = GPIO_SPEED_FAST;
 	GPIOBtn.GPIO_PinConfig.GPIO_PinPuPdControl = GPIO_NO_PUPD;
 
-	GPIO_Init(&GPIOBtn);
-
 	GPIO_PeriClockControl(GPIOC, ENABLE);
+
+	GPIO_Init(&GPIOBtn);
 
 	// UART Pin Configuration
 	USARTPins.pGPIOx = GPIOA;
@@ -53,9 +53,9 @@ int main(void)
 	USARTPins.GPIO_PinConfig.GPIO_PinSpeed = GPIO_SPEED_FAST;
 	USARTPins.GPIO_PinConfig.GPIO_PinAltFunMode = 7;
 
-	GPIO_Init(&USARTPins);
-
 	GPIO_PeriClockControl(GPIOA, ENABLE);
+
+	GPIO_Init(&USARTPins);
 
 	// UART Initialization
 	USART2Handle.pUSARTx = USART2;
@@ -66,11 +66,13 @@ int main(void)
 	USART2Handle.USART_Config.USART_WordLength = USART_WORDLEN_8BITS;
 	USART2Handle.USART_Config.USART_ParityControl = USART_PARITY_DISABLE;
 
-	USART_Init(&USART2Handle);
-
 	USART_PeriClockControl(USART2, ENABLE);
 
-	USART_PeripheralControl(USART2, ENABLE);
+	USART_Init(&USART2Handle);
+
+	USART2_GPIOInit();
+
+	USART2_Init();
 
 	char msg1[] = "Button not pressed\r\n";
 	char msg2[] = "Button pressed\r\n";
@@ -79,20 +81,15 @@ int main(void)
 	{
 		if(GPIO_ReadFromInputPin(GPIOC, GPIO_PIN_NO_13) == BIN)
 		{
-			for(uint32_t i = 0; i < 200000; i++);
-
-			if(GPIO_ReadFromInputPin(GPIOC, GPIO_PIN_NO_13) == BIN)
-			{
-				GPIO_WriteToOutputPin(GPIOA, GPIO_PIN_NO_10, 0);
-				USART_SendData(&USART2Handle, (uint8_t*)msg2, strlen(msg2));
-			}
+			GPIO_WriteToOutputPin(GPIOA, GPIO_PIN_NO_10, 0);
+			USART_SendData(&USART2Handle, (uint8_t*)msg2, strlen(msg2));
 		}
-			else
-			{
-				GPIO_WriteToOutputPin(GPIOA, GPIO_PIN_NO_10, 1);
-				USART_SendData(&USART2Handle, (uint8_t*)msg1, strlen(msg1));
-			}
+		else
+		{
+			GPIO_WriteToOutputPin(GPIOA, GPIO_PIN_NO_10, 1);
+			USART_SendData(&USART2Handle, (uint8_t*)msg1, strlen(msg1));
 		}
+	}
 
 	return 0;
 }
