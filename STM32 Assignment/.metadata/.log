@@ -1735,3 +1735,12 @@ java.lang.Exception: localhost:61234: Connection timed out.
 </COMMAND>
 
 
+!SESSION 2026-05-30 19:23:36.043 -----------------------------------------------
+eclipse.buildId=Version 2.0.0
+java.version=21.0.8
+java.vendor=Eclipse Adoptium
+BootLoader constants: OS=win32, ARCH=x86_64, WS=win32, NL=en_IN
+Command-line arguments:  -os win32 -ws win32 -arch x86_64
+
+!ENTRY com.st.stm32cube.ide.mcu.informationcenter 1 1 2026-05-30 19:24:23.345
+!MESSAGE Log4j2 initialized with config file C:\Users\HP\Documents\C Programming\STM32\STM32 Assignment\.metadata\.log4j2.xml
