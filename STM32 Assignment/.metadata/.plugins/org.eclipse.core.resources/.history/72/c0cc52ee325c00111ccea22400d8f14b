@@ -81,7 +81,7 @@ int main(void)
 	{
 		uint8_t state = GPIO_ReadFromInputPin(GPIOA, GPIO_PIN_NO_8);
 
-		if((state == BUTTON_PRESSED) && (prevState == BUTTON_RELEASED))
+		if((state == BUTTON_PRESSED) && (prevState != BUTTON_RELEASED))
 		{
 			for(uint32_t i = 0; i < 200000; i++);
 
