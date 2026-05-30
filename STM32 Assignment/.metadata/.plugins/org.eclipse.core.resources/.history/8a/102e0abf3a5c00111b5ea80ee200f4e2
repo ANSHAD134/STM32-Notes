@@ -43,6 +43,8 @@ void UART_Init(void)
 	USART2Handle.USART_Config.USART_WordLength = USART_WORDLEN_8BITS;
 	USART2Handle.USART_Config.USART_ParityControl = USART_PARITY_DISABLE;
 
+	USART_PeriClockControl(USART2, ENABLE);
+
 	USART_Init(&USART2Handle);
 }
 
@@ -55,8 +57,7 @@ void I2C_GPIOInit(void)
 
 int main(void)
 {
-	UART_GPIOInit();
-	UART_Init();
+
 
 	USART_PeripheralControl(USART2, ENABLE);
 
