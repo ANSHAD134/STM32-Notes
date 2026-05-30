@@ -73,7 +73,6 @@ int main(void)
 	USART_PeripheralControl(USART2, ENABLE);
 
 	uint8_t prevState = BUTTON_RELEASED;
-	uint8_t ledState = 0;
 
 	char msg1[] = "Button pressed\r\n";
 	char msg2[] = "Button not pressed\r\n";
@@ -84,24 +83,20 @@ int main(void)
 
 		if((state == BUTTON_PRESSED) && (prevState == BUTTON_RELEASED))
 		{
-			for(uint32_t i = 0; i < 100000; i++);
+			for(uint32_t i = 0; i < 200000; i++);
 
 			if(GPIO_ReadFromInputPin(GPIOC, GPIO_PIN_NO_13) == BUTTON_PRESSED)
 			{
-				ledState = !ledState;
-
-				if(ledState)
-				{
-					GPIO_WriteToOutputPin(GPIOA, GPIO_PIN_NO_10, 1);
-					USART_SendData(&USART2Handle, (uint8_t*)msg1, strlen(msg1));
-				}
-				else
-				{
-					GPIO_WriteToOutputPin(GPIOA, GPIO_PIN_NO_10, 0);
-					USART_SendData(&USART2Handle, (uint8_t*)msg2, strlen(msg2));
-				}
-		    }
+				GPIO_WriteToOutputPin(GPIOA, GPIO_PIN_NO_10, 0);
+				USART_SendData(&USART2Handle, (uint8_t*)msg1, strlen(msg1));
+			}
 		}
+
+		if((state == BUTTON_RELEASED) && (prevState == BUTTON_PRESSED))
+		    {
+		        GPIO_WriteToOutputPin(GPIOA, GPIO_PIN_NO_10, 1);
+		        USART_SendData(&USART2Handle, (uint8_t*)msg2, strlen(msg2));
+		    }
 
 		    prevState = state;
 	}

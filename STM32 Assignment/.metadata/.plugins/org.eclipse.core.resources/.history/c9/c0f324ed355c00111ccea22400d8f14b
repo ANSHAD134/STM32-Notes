@@ -84,7 +84,7 @@ int main(void)
 
 		if((state == BUTTON_PRESSED) && (prevState == BUTTON_RELEASED))
 		{
-			for(uint32_t i = 0; i < 100000; i++);
+			for(uint32_t i = 0; i < 200000; i++);
 
 			if(GPIO_ReadFromInputPin(GPIOC, GPIO_PIN_NO_13) == BUTTON_PRESSED)
 			{
