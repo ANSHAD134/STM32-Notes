@@ -19,6 +19,5 @@ void BMP280_Init(I2C_Handle_t *pI2CHandle)
 	for(uint32_t i = 0; i < 500000; i++);						// Wait sensor to power up
 
 
-
 }
 
