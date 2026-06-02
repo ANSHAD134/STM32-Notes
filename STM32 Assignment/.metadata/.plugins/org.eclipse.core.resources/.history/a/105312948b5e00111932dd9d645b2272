@@ -10,6 +10,7 @@
 #include "bmp280.h"
 
 // Calibration variables from BMP280
+
 uint16_t dig_T1;
 int16_t dig_T2, dig_T3;
 int32_t t_fine;
