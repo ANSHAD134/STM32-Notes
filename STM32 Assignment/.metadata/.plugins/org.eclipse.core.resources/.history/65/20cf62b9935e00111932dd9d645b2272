@@ -23,7 +23,7 @@ void BMP280_Init(I2C_Handle_t *pI2CHandle)
 
 	uint8_t config[2];
 
-	BMP280_readCalibration(pI2CHandle);							// Read all calibration values
+	BMP280_readCalibration(&I2C1Handle);						// Read all calibration values
 
 	config[0] = 0xF4;											// CTRL_MEAS register
 	config[1] = 0x23;											// Temp Configuration

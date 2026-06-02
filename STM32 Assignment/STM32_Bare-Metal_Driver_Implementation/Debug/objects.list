@@ -3,6 +3,7 @@
 "./Drivers/Src/stm32f446xx_rcc_driver.o"
 "./Drivers/Src/stm32f446xx_spi_driver.o"
 "./Drivers/Src/stm32f446xx_usart_driver.o"
+"./Src/bmp280.o"
 "./Src/main_i2c.o"
 "./Src/syscalls.o"
 "./Src/sysmem.o"

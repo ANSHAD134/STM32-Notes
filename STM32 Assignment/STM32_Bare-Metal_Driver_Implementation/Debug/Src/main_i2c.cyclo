@@ -1,5 +1,5 @@
-../Src/main_i2c.c:19:6:UART_GPIOInit	1
-../Src/main_i2c.c:36:6:UART_Init	1
-../Src/main_i2c.c:49:6:I2C1_GPIOInit	1
-../Src/main_i2c.c:71:6:I2C1_Init	1
-../Src/main_i2c.c:80:5:main	1
+../Src/main_i2c.c:21:6:UART_GPIOInit	1
+../Src/main_i2c.c:38:6:UART_Init	1
+../Src/main_i2c.c:51:6:I2C1_GPIOInit	1
+../Src/main_i2c.c:73:6:I2C1_Init	1
+../Src/main_i2c.c:84:5:main	2

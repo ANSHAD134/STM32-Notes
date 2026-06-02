@@ -1,0 +1,4 @@
+../Src/bmp280.c:20:6:BMP280_Init	2
+../Src/bmp280.c:34:10:BMP280_Read16	1
+../Src/bmp280.c:45:6:BMP280_readCalibration	1
+../Src/bmp280.c:53:7:BMP280_ReadTemperature	1

@@ -61,7 +61,7 @@ main-build: STM32_Bare-Metal_Driver_Implementation.elf secondary-outputs
 
 # Tool invocations
 STM32_Bare-Metal_Driver_Implementation.elf STM32_Bare-Metal_Driver_Implementation.map: $(OBJS) $(USER_OBJS) C:\Users\HP\Documents\C\ Programming\STM32\STM32\ Assignment\STM32_Bare-Metal_Driver_Implementation\STM32F446RETX_FLASH.ld makefile objects.list $(OPTIONAL_TOOL_DEPS)
-	arm-none-eabi-gcc -o "STM32_Bare-Metal_Driver_Implementation.elf" @"objects.list" $(USER_OBJS) $(LIBS) -mcpu=cortex-m4 -T"C:\Users\HP\Documents\C Programming\STM32\STM32 Assignment\STM32_Bare-Metal_Driver_Implementation\STM32F446RETX_FLASH.ld" --specs=nosys.specs -Wl,-Map="STM32_Bare-Metal_Driver_Implementation.map" -Wl,--gc-sections -static --specs=nano.specs -mfloat-abi=soft -mthumb -Wl,--start-group -lc -lm -Wl,--end-group
+	arm-none-eabi-gcc -o "STM32_Bare-Metal_Driver_Implementation.elf" @"objects.list" $(USER_OBJS) $(LIBS) -mcpu=cortex-m4 -T"C:\Users\HP\Documents\C Programming\STM32\STM32 Assignment\STM32_Bare-Metal_Driver_Implementation\STM32F446RETX_FLASH.ld" --specs=nosys.specs -Wl,-Map="STM32_Bare-Metal_Driver_Implementation.map" -Wl,--gc-sections -static --specs=nano.specs -mfloat-abi=soft -mthumb -u _printf_float -u _scanf_float -Wl,--start-group -lc -lm -Wl,--end-group
 	@echo 'Finished building target: $@'
 	@echo ' '
 
