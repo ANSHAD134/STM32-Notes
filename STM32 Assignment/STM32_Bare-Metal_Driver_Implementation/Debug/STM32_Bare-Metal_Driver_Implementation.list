@@ -4695,18 +4695,18 @@ void I2C1_GPIOInit(void)
  8002538:	4809      	ldr	r0, [pc, #36]	@ (8002560 <I2C1_GPIOInit+0x48>)
  800253a:	f7fe fe7f 	bl	800123c <GPIO_PeriClockControl>
 
-	// SCL - PB6
-	I2CPins.GPIO_PinConfig.GPIO_PinNumber = GPIO_PIN_NO_6;
- 800253e:	2306      	movs	r3, #6
+	// SCL - PB8
+	I2CPins.GPIO_PinConfig.GPIO_PinNumber = GPIO_PIN_NO_8;
+ 800253e:	2308      	movs	r3, #8
  8002540:	723b      	strb	r3, [r7, #8]
 	GPIO_Init(&I2CPins);
  8002542:	1d3b      	adds	r3, r7, #4
  8002544:	4618      	mov	r0, r3
  8002546:	f7fe ff49 	bl	80013dc <GPIO_Init>
 
-	// SDA - PB7
-	I2CPins.GPIO_PinConfig.GPIO_PinNumber = GPIO_PIN_NO_7;
- 800254a:	2307      	movs	r3, #7
+	// SDA - PB9
+	I2CPins.GPIO_PinConfig.GPIO_PinNumber = GPIO_PIN_NO_9;
+ 800254a:	2309      	movs	r3, #9
  800254c:	723b      	strb	r3, [r7, #8]
 	GPIO_Init(&I2CPins);
  800254e:	1d3b      	adds	r3, r7, #4

@@ -1,10 +1,17 @@
-20:43:52 **** Incremental Build of configuration Debug for project STM32_Bare-Metal_Driver_Implementation ****
+21:02:36 **** Incremental Build of configuration Debug for project STM32_Bare-Metal_Driver_Implementation ****
 make -j4 all 
+arm-none-eabi-gcc "../Src/main_i2c.c" -mcpu=cortex-m4 -std=gnu11 -g3 -DDEBUG -DSTM32 -DSTM32F4 -DSTM32F446RETx -DNUCLEO_F446RE -c -I../Inc -I"C:/Users/HP/Documents/C Programming/STM32/STM32 Assignment/STM32_Bare-Metal_Driver_Implementation/Drivers/Inc" -I"C:/Users/HP/Documents/C Programming/STM32/STM32 Assignment/STM32_Bare-Metal_Driver_Implementation/Drivers/Src" -I"C:/Users/HP/Documents/C Programming/STM32/STM32 Assignment/STM32_Bare-Metal_Driver_Implementation/Drivers" -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Src/main_i2c.d" -MT"Src/main_i2c.o" --specs=nano.specs -mfloat-abi=soft -mthumb -o "Src/main_i2c.o"
+arm-none-eabi-gcc -o "STM32_Bare-Metal_Driver_Implementation.elf" @"objects.list"   -mcpu=cortex-m4 -T"C:\Users\HP\Documents\C Programming\STM32\STM32 Assignment\STM32_Bare-Metal_Driver_Implementation\STM32F446RETX_FLASH.ld" --specs=nosys.specs -Wl,-Map="STM32_Bare-Metal_Driver_Implementation.map" -Wl,--gc-sections -static --specs=nano.specs -mfloat-abi=soft -mthumb -u _printf_float -u _scanf_float -Wl,--start-group -lc -lm -Wl,--end-group
+Finished building target: STM32_Bare-Metal_Driver_Implementation.elf
+ 
 arm-none-eabi-size  STM32_Bare-Metal_Driver_Implementation.elf 
+arm-none-eabi-objdump -h -S STM32_Bare-Metal_Driver_Implementation.elf  > "STM32_Bare-Metal_Driver_Implementation.list"
    text	   data	    bss	    dec	    hex	filename
   29412	    476	   2012	  31900	   7c9c	STM32_Bare-Metal_Driver_Implementation.elf
 Finished building: default.size.stdout
  
+Finished building: STM32_Bare-Metal_Driver_Implementation.list
+ 
 
-20:43:53 Build Finished. 0 errors, 0 warnings. (took 971ms)
+21:02:37 Build Finished. 0 errors, 0 warnings. (took 835ms)
 
