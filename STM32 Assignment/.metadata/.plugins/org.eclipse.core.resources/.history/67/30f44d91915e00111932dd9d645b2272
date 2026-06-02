@@ -31,22 +31,11 @@ void BMP280_Init(I2C_Handle_t *pI2CHandle)
 	I2C_MasterSendData(pI2CHandle, config, 2, BMP280_ADDR, I2C_DISABLE_SR);
 }
 
-uint16_t BMP280_Read16(I2C_Handle_t *pI2CHandle, uint8_t reg)
+void BMP280_readCalibration(pI2CHandle)
 {
-	uint8_t data[2];
-
-	I2C_MasterSendData(pI2CHandle, &reg, 1, BMP280_ADDR, I2C_ENABLE_SR);
-
-	I2C_MasterReceiveData(pI2CHandle, data, 2, BMP280_ADDR, I2C_DISABLE_SR);
-
-	return ((uint16_t)data[1] << 8) | data[0];
-}
-
-void BMP280_readCalibration(I2C_Handle_t *pI2CHandle)
-{
-	dig_T1 = BMP280_Read16(pI2CHandle, 0x88);					// Temperature 1
-	dig_T2 = (int16_t)BMP280_Read16(pI2CHandle, 0x8A);			// Temperature 2
-	dig_T3 = (int16_t)BMP280_Read16(pI2CHandle, 0x8C);			// Temperature 3
+	dig_T1 = 0x88;												// Temperature 1
+	dig_T2 = 0x8A;												// Temperature 2
+	dig_T3 = 0x8C;												// Temperature 3
 }
 
 
