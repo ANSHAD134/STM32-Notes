@@ -14,9 +14,4 @@
 #define BMP280_TEMP_LSB_REG		0xFB
 #define BMP280_TEMP_XLSB_REG	0xFC
 
-void BMP280_Init(I2C_Handle_t *pI2CHandle);
-void BMP280_readCalibration(I2C_Handle_t *pI2CHandle);
-uint16_t BMP280_Read16(I2C_Handle_t *pI2CHandle, uint8_t reg);
-float BMP280_ReadTemperature(I2C_Handle_t *pI2CHandle);
-
 #endif /* BMP280_H_ */
