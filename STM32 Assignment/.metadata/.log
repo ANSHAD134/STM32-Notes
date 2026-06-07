@@ -2913,3 +2913,47 @@ Command-line arguments:  -os win32 -ws win32 -arch x86_64
 </COMMAND>
 
 
+!SESSION 2026-06-07 19:35:32.707 -----------------------------------------------
+eclipse.buildId=Version 2.0.0
+java.version=21.0.8
+java.vendor=Eclipse Adoptium
+BootLoader constants: OS=win32, ARCH=x86_64, WS=win32, NL=en_IN
+Command-line arguments:  -os win32 -ws win32 -arch x86_64
+
+!ENTRY com.st.stm32cube.ide.mcu.informationcenter 1 1 2026-06-07 19:36:13.004
+!MESSAGE Log4j2 initialized with config file C:\Users\HP\Documents\C Programming\STM32\STM32 Assignment\.metadata\.log4j2.xml
+
+!ENTRY com.st.stm32cube.ide.mcu.ide 1 1 2026-06-07 19:36:25.897
+!MESSAGE Started RMI Server, listening on port 41337
+
+!ENTRY com.st.stm32cube.ide.mpu.remote.serial 1 1 2026-06-07 19:36:27.163
+!MESSAGE Executed command cmd.exe /c ""C:\WINDOWS\System32\wbem\wmic.exe" path Win32_PNPEntity WHERE "Name LIKE '%(COM%'" get Name,Manufacturer /format:rawxml":
+<COMMAND SEQUENCENUM="1" ISSUEDFROM="DESKTOP-614QREO" STARTTIME="06-07-2026T19:36:26" EVERYCOUNT="0">
+<REQUEST><COMMANDLINE>  path Win32_PNPEntity WHERE "Name LIKE '%(COM%'" get Name,Manufacturer /format:rawxml</COMMANDLINE>
+<COMMANDLINECOMPONENTS><NODELIST><NODE>DESKTOP-614QREO</NODE>
+</NODELIST>
+</COMMANDLINECOMPONENTS>
+<CONTEXT><NAMESPACE>root\cimv2</NAMESPACE>
+<ROLE>root\cli</ROLE>
+<IMPLEVEL>IMPERSONATE</IMPLEVEL>
+<AUTHLEVEL>PKTPRIVACY</AUTHLEVEL>
+<LOCALE>ms_809</LOCALE>
+<PRIVILEGES>ENABLE</PRIVILEGES>
+<TRACE>OFF</TRACE>
+<RECORD>N/A</RECORD>
+<INTERACTIVE>OFF</INTERACTIVE>
+<FAILFAST>OFF</FAILFAST>
+<OUTPUT>STDOUT</OUTPUT>
+<APPEND>STDOUT</APPEND>
+<USER>N/A</USER>
+<AGGREGATE>ON</AGGREGATE>
+</CONTEXT>
+</REQUEST>
+<RESULTS NODE="DESKTOP-614QREO">
+<ERROR><DESCRIPTION>No Instance(s) Available.
+</DESCRIPTION>
+</ERROR>
+</RESULTS>
+</COMMAND>
+
+
