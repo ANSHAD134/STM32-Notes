@@ -1,0 +1,44 @@
+/*
+ * fonts.h
+ *
+ *  Created on: 07-Jun-2026
+ *      Author: HP
+ */
+
+#ifndef FONTS_H
+#define FONTS_H
+
+#include <stdint.h>
+
+/*
+ * Font structure
+ */
+typedef struct
+{
+	uint8_t FontWidth;
+	uint8_t FontHeight;
+	const uint16_t *data;
+}FontDef_t;
+
+/*
+ * Structure to store string dimensions
+ */
+typedef struct
+{
+	uint16_t Length;
+	uint16_t Height;
+}FONTS_SIZE_t;
+
+/*
+ * Supported fonts
+ */
+extern FontDef_t Font_7x10;
+extern FontDef_t Font_11x18;
+extern FontDef_t Font_16x26;
+
+/*
+ * APIs supported by this library
+ */
+char* FONTS_GetStringSize(char *str, FONTS_SIZE_t *SizeStruct, FontDef_t *Font);
+
+#endif
