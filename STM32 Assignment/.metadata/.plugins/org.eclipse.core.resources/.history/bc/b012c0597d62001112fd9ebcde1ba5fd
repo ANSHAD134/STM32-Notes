@@ -50,8 +50,6 @@ void SPI2_Init(void)
 	SPI2Handle.SPIConfig.SPI_CPOL = SPI_CPOL_LOW;
 	SPI2Handle.SPIConfig.SPI_CPHA = SPI_CPHA_LOW;
 	SPI2Handle.SPIConfig.SPI_SSM = SPI_SSM_EN;
-
-	SPI_Init(&SPI2Handle);
 }
 
 int main(void)
