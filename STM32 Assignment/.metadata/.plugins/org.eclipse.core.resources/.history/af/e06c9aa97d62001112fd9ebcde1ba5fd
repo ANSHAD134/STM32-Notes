@@ -56,26 +56,6 @@ void SPI2_Init(void)
 
 int main(void)
 {
-	// Initialize GPIO pins for SPI2
-	SPI2_GPIOInit();
-
-	// Initialize SPI2 peripheral
-	SPI2_Init();
-
-	// Set SSI to avoid MODF error
-	SPI_SSIConfig(SPI2, ENABLE);
-
-	// Enable SPI2 peripheral
-	SPI_PeripheralControl(SPI2, ENABLE);
-
-	// Send data
-	SPI_SendData(SPI2, (uint8_t*)data, strlen(data));
-
-	// Wait for SPI to complete
-	while (SPI_GetFlagStatus(SPI2, SPI_BSY_FLAG));
-
-	// Disable SPI
-	SPI_PeripheralControl(SPI2, DISABLE);
 
 
 	while(1)
