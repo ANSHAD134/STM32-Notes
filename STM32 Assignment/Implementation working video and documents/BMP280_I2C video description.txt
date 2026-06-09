@@ -1,0 +1,19 @@
+Video Link: https://github.com/ANSHAD134/STM32-Notes/tree/main/STM32%20Assignment/Implementation%20working%20video%20and%20documents
+
+Demonstration Description:
+
+▪️0:00–0:15: Direct register definitions and setup in bmp280.h config structures, containing variables for compensation constants (dig_T1 through dig_T3).
+
+▪️0:15–0:25: Walkthrough of the BMP280_Read_RawTemperature handling architecture to acquire sensor conversion constants using raw input parameters.
+
+▪️0:25–0:39: Calibration processing function implementation that calculates raw values into dynamic real-world Celsius parameters via driver calculation loops.
+
+▪️0:39–0:50: Configuration of internal MCU standard functions within main.c, establishing operational criteria for I2C data handles, system initialization steps, and setup routines.
+
+▪️0:50–1:08: Launch of execution sequence to program the physical target board, highlighting successful code generation and flash upload operations.
+
+▪️1:08–1:20: Continuous loop testing utilizing Tera Term serial logger interface, actively measuring and listing environmental air temperatures.
+
+▪️1:20–1:40: Live observation of system temperature variations, capturing rising data trends on the screen as proximity human body heat or thermal exposure changes.
+
+▪️1:40–2:01: System recovery demonstration showing standard loop cooling curves and consistent ambient measurement logs on terminal outputs.
