@@ -1,0 +1,9 @@
+Video Link: https://github.com/ANSHAD134/STM32-Notes/tree/main/STM32%20Assignment/Implementation%20working%20video%20and%20documents
+
+Demonstration Description:
+
+▪️0:00 – 0:08 : Project introduction and hardware setup using STM32F446RE development board.
+▪️0:08 – 0:15 : GPIO peripheral initialization through custom GPIO driver APIs.
+▪️0:15 – 0:30 : LED control using GPIO driver functions.
+▪️0:30 – 0:42 : Successful LED ON/OFF operation demonstrating GPIO output functionality.
+▪️0:42 – 0:46 : Verification of GPIO driver working correctly and project completion.
