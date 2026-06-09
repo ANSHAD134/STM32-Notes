@@ -1,0 +1,9 @@
+Video Link: https://github.com/ANSHAD134/STM32-Notes/tree/main/STM32%20Assignment/Implementation%20working%20video%20and%20documents
+
+Demonstration Description:
+
+▪️0:00–0:15: Code walkthrough of main.c showing peripheral initialization, GPIO configurations, and the main while(1) polling loop in STM32CubeIDE.
+
+▪️0:15–0:21: Setup of the hardware interface showing the STM32 Nucleo board connected to a breadboard, alongside the Tera Term serial console layout.
+
+▪️0:21–0:42: Real-time demonstration of the user button toggling the green GPIO LED and transmitting "button pressed" / "button not pressed" data packets over the USART peripheral.
