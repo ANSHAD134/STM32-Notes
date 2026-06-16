@@ -1,0 +1,5 @@
+../Core/Src/console.c:33:5:console_init	2
+../Core/Src/console.c:56:6:receive_command	4
+../Core/Src/console.c:82:6:process_command	13
+../Core/Src/console.c:154:13:uart_send_str	2
+../Core/Src/console.c:162:6:respond_command	10
