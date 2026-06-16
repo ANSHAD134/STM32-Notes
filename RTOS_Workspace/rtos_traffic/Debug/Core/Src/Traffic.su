@@ -1,2 +1,0 @@
-../Core/Src/Traffic.c:26:6:traffic_init	4	static
-../Core/Src/Traffic.c:36:6:run_traffic_ctrl	16	static
