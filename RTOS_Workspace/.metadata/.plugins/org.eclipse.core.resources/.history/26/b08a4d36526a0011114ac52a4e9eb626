@@ -272,39 +272,23 @@ static void MX_GPIO_Init(void)
 }
 
 /* USER CODE BEGIN 4 */
-static void led_green_Handler(void * pvParameters)
+static void task1_handler(void * pvParameters)
 {
 	while(1)
 	{
-		printf("Task1\n");
-		HAL_GPIO_TogglePin(GREEN_LED_GPIO_Port, GREEN_LED_Pin);
-		HAL_Delay(1000);
+		printf("%s\n", (char*) pvParameters);
 		taskYIELD();
 	}
 }
 
-static void led_red_Handler(void * pvParameters)
+static void task2_handler(void * pvParameters)
 {
 	while(1)
 	{
-		printf("Task1\n");
-		HAL_GPIO_TogglePin(RED_LED_GPIO_Port, RED_LED_Pin);
-		HAL_Delay(1000);
+		printf("%s\n", (char*) pvParameters);
 		taskYIELD();
 	}
 }
-
-static void led_blue_Handler(void * pvParameters)
-{
-	while(1)
-	{
-		printf("Task1\n");
-		HAL_GPIO_TogglePin(BLUE_LED_GPIO_Port, BLUE_LED_Pin);
-		HAL_Delay(1000);
-		taskYIELD();
-	}
-}
-
 
 /* USER CODE END 4 */
 
