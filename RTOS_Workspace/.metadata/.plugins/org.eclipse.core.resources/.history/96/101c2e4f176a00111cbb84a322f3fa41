@@ -21,8 +21,6 @@
 
 /* Private includes ----------------------------------------------------------*/
 /* USER CODE BEGIN Includes */
-#include "FreeRTOS.h"
-#include "task.h"
 
 /* USER CODE END Includes */
 
@@ -69,8 +67,7 @@ int main(void)
 {
 
   /* USER CODE BEGIN 1 */
-	TaskHandle_t taks1_Handle;
-	TaskHandle_t taks2_Handle;
+
   /* USER CODE END 1 */
 
   /* MCU Configuration--------------------------------------------------------*/
