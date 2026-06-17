@@ -96,12 +96,12 @@ int main(void)
   MX_USART2_UART_Init();
   /* USER CODE BEGIN 2 */
   xReturned = xTaskCreate(
-		  	  	  	  task1_handler,       /* Function that implements the task. */
-                     "TASK1",          /* Text name for the task. */
-                     100,      /* Stack size in words, not bytes. */
-					 "Hello from Task1",    /* Parameter passed into the task. */
-                     2,/* Priority at which the task is created. */
-                     &taks1_Handle );      /* Used to pass out the created task's
+                     vTaskCode,       /* Function that implements the task. */
+                     "NAME",          /* Text name for the task. */
+                     STACK_SIZE,      /* Stack size in words, not bytes. */
+                     ( void * ) 1,    /* Parameter passed into the task. */
+                     tskIDLE_PRIORITY,/* Priority at which the task is created. */
+                     &xHandle );      /* Used to pass out the created task's
 
   /* USER CODE END 2 */
 
