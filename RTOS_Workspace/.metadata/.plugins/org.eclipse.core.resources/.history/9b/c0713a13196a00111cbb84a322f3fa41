@@ -230,18 +230,12 @@ static void MX_GPIO_Init(void)
 /* USER CODE BEGIN 4 */
 static void task1_handler(void * pvParameters)
 {
-	while(1)
-	{
-		printf("%s", (char*) pvParameters);
-	}
+	printf("%s", (char*) pvParameters);
 }
 
 static void task2_handler(void * pvParameters)
 {
-	while(1)
-	{
-		printf("%s", (char*) pvParameters);
-	}
+	printf("%s", (char*) pvParameters);
 }
 
 /* USER CODE END 4 */
