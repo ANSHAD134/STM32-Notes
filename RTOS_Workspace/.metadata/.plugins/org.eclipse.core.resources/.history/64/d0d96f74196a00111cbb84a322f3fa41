@@ -72,7 +72,6 @@ int main(void)
   /* USER CODE BEGIN 1 */
 	TaskHandle_t taks1_Handle;
 	TaskHandle_t taks2_Handle;
-	BaseType_t xReturned;
   /* USER CODE END 1 */
 
   /* MCU Configuration--------------------------------------------------------*/
