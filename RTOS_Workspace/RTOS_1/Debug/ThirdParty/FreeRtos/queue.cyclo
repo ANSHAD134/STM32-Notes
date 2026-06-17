@@ -1,4 +1,4 @@
-../ThirdParty/FreeRtos/queue.c:264:12:xQueueGenericReset	5
+../ThirdParty/FreeRtos/queue.c:264:12:xQueueGenericReset	4
 ../ThirdParty/FreeRtos/queue.c:382:19:xQueueGenericCreate	7
 ../ThirdParty/FreeRtos/queue.c:444:13:prvInitialiseNewQueue	2
 ../ThirdParty/FreeRtos/queue.c:492:17:prvInitialiseMutex	2
@@ -6,12 +6,12 @@
 ../ThirdParty/FreeRtos/queue.c:616:16:xQueueGiveMutexRecursive	4
 ../ThirdParty/FreeRtos/queue.c:671:16:xQueueTakeMutexRecursive	4
 ../ThirdParty/FreeRtos/queue.c:744:19:xQueueCreateCountingSemaphore	4
-../ThirdParty/FreeRtos/queue.c:771:12:xQueueGenericSend	23
+../ThirdParty/FreeRtos/queue.c:771:12:xQueueGenericSend	21
 ../ThirdParty/FreeRtos/queue.c:983:12:xQueueGenericSendFromISR	15
 ../ThirdParty/FreeRtos/queue.c:1150:12:xQueueGiveFromISR	12
-../ThirdParty/FreeRtos/queue.c:1318:12:xQueueReceive	19
-../ThirdParty/FreeRtos/queue.c:1461:12:xQueueSemaphoreTake	21
-../ThirdParty/FreeRtos/queue.c:1680:12:xQueuePeek	19
+../ThirdParty/FreeRtos/queue.c:1318:12:xQueueReceive	18
+../ThirdParty/FreeRtos/queue.c:1461:12:xQueueSemaphoreTake	20
+../ThirdParty/FreeRtos/queue.c:1680:12:xQueuePeek	18
 ../ThirdParty/FreeRtos/queue.c:1831:12:xQueueReceiveFromISR	11
 ../ThirdParty/FreeRtos/queue.c:1926:12:xQueuePeekFromISR	7
 ../ThirdParty/FreeRtos/queue.c:1981:13:uxQueueMessagesWaiting	2
