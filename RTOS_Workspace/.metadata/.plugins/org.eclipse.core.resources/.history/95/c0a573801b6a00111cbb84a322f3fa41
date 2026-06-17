@@ -18,10 +18,10 @@
 /* USER CODE END Header */
 /* Includes ------------------------------------------------------------------*/
 #include "main.h"
+#include "stdio.h"
 
 /* Private includes ----------------------------------------------------------*/
 /* USER CODE BEGIN Includes */
-#include <stdio.h>
 #include "FreeRTOS.h"
 #include "task.h"
 
@@ -104,7 +104,7 @@ int main(void)
                      2,/* Priority at which the task is created. */
                      &taks1_Handle );      /* Used to pass out the created task's */
 
-	configASSERT(xReturned == pdPASS);
+	configASSERT(status == pdPASS);
 
 	xReturned = xTaskCreate(
 			  	  	  	  task2_handler,       /* Function that implements the task. */
@@ -114,7 +114,7 @@ int main(void)
 	                     2,/* Priority at which the task is created. */
 	                     &taks2_Handle );      /* Used to pass out the created task's */
 
-	configASSERT(xReturned == pdPASS);
+	configASSERT(status == pdPASS);
 
 	vTaskStartScheduler();
   /* USER CODE END 2 */
