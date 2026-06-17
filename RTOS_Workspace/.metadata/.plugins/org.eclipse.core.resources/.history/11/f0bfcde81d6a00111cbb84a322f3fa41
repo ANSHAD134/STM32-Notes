@@ -97,22 +97,22 @@ int main(void)
   MX_USART2_UART_Init();
   /* USER CODE BEGIN 2 */
   xReturned = xTaskCreate(
-		  	  	  	  task1_handler,       		/* Function that implements the task. */
-					  "TASK1",          		/* Text name for the task. */
-					  100,      				/* Stack size in words, not bytes. */
-					  "Hello from Task1",    	/* Parameter passed into the task. */
-					  2,						/* Priority at which the task is created. */
-					  &taks1_Handle );      	/* Used to pass out the created task's */
+		  	  	  	  task1_handler,       /* Function that implements the task. */
+                     "TASK1",          /* Text name for the task. */
+                     100,      /* Stack size in words, not bytes. */
+					 "Hello from Task1",    /* Parameter passed into the task. */
+                     2,/* Priority at which the task is created. */
+                     &taks1_Handle );      /* Used to pass out the created task's */
 
 	configASSERT(xReturned == pdPASS);
 
 	xReturned = xTaskCreate(
-			  	  	  task2_handler,       		/* Function that implements the task. */
-	                  "TASK2",          		/* Text name for the task. */
-	                  100,     				 	/* Stack size in words, not bytes. */
-					  "Hello from Task2",    	/* Parameter passed into the task. */
-	                  2,						/* Priority at which the task is created. */
-	                  &taks2_Handle );      	/* Used to pass out the created task's */
+			  	  	  	  task2_handler,       /* Function that implements the task. */
+	                     "TASK2",          /* Text name for the task. */
+	                     100,      /* Stack size in words, not bytes. */
+						 "Hello from Task2",    /* Parameter passed into the task. */
+	                     2,/* Priority at which the task is created. */
+	                     &taks2_Handle );      /* Used to pass out the created task's */
 
 	configASSERT(xReturned == pdPASS);
 
@@ -254,7 +254,7 @@ static void task1_handler(void * pvParameters)
 {
 	while(1)
 	{
-		printf("%s\n", (char*) pvParameters);
+		printf("%s", (char*) pvParameters);
 	}
 }
 
@@ -262,7 +262,7 @@ static void task2_handler(void * pvParameters)
 {
 	while(1)
 	{
-		printf("%s\n", (char*) pvParameters);
+		printf("%s", (char*) pvParameters);
 	}
 }
 

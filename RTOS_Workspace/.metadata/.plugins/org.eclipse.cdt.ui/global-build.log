@@ -1,4 +1,4 @@
-12:44:32 **** Build of configuration Debug for project RTOS_1 ****
+12:56:58 **** Build of configuration Debug for project RTOS_1 ****
 make -j4 all 
 arm-none-eabi-gcc "../ThirdParty/FreeRtos/portable/MemMang/heap_4.c" -mcpu=cortex-m4 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32F446xx -c -I"C:/Users/HP/Documents/C Programming/STM32/RTOS_Workspace/RTOS_1/ThirdParty/FreeRtos/include" -I"C:/Users/HP/Documents/C Programming/STM32/RTOS_Workspace/RTOS_1/ThirdParty/FreeRtos" -I"C:/Users/HP/Documents/C Programming/STM32/RTOS_Workspace/RTOS_1/ThirdParty/FreeRtos/portable/GCC/ARM_CM4F" -I../Core/Inc -I../Drivers/STM32F4xx_HAL_Driver/Inc -I../Drivers/STM32F4xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32F4xx/Include -I../Drivers/CMSIS/Include -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"ThirdParty/FreeRtos/portable/MemMang/heap_4.d" -MT"ThirdParty/FreeRtos/portable/MemMang/heap_4.o" --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -o "ThirdParty/FreeRtos/portable/MemMang/heap_4.o"
 arm-none-eabi-gcc "../ThirdParty/FreeRtos/portable/GCC/ARM_CM4F/port.c" -mcpu=cortex-m4 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32F446xx -c -I"C:/Users/HP/Documents/C Programming/STM32/RTOS_Workspace/RTOS_1/ThirdParty/FreeRtos/include" -I"C:/Users/HP/Documents/C Programming/STM32/RTOS_Workspace/RTOS_1/ThirdParty/FreeRtos" -I"C:/Users/HP/Documents/C Programming/STM32/RTOS_Workspace/RTOS_1/ThirdParty/FreeRtos/portable/GCC/ARM_CM4F" -I../Core/Inc -I../Drivers/STM32F4xx_HAL_Driver/Inc -I../Drivers/STM32F4xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32F4xx/Include -I../Drivers/CMSIS/Include -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"ThirdParty/FreeRtos/portable/GCC/ARM_CM4F/port.d" -MT"ThirdParty/FreeRtos/portable/GCC/ARM_CM4F/port.o" --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -o "ThirdParty/FreeRtos/portable/GCC/ARM_CM4F/port.o"
@@ -39,8 +39,15 @@ Finished building target: RTOS_1.elf
 arm-none-eabi-size  RTOS_1.elf 
 arm-none-eabi-objdump -h -S RTOS_1.elf  > "RTOS_1.list"
    text	   data	    bss	    dec	    hex	filename
-  24444	    108	  79276	 103828	  19594	RTOS_1.elf
+  23008	    108	  79276	 102392	  18ff8	RTOS_1.elf
 Finished building: default.size.stdout
  
 Finished building: RTOS_1.list
+ 
+12:57:07 **** Incremental Build of configuration Debug for project RTOS_1 ****
+make -j4 all 
+arm-none-eabi-size  RTOS_1.elf 
+   text	   data	    bss	    dec	    hex	filename
+  23008	    108	  79276	 102392	  18ff8	RTOS_1.elf
+Finished building: default.size.stdout
  
