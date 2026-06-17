@@ -54,9 +54,8 @@ void SystemClock_Config(void);
 static void MX_GPIO_Init(void);
 static void MX_USART2_UART_Init(void);
 /* USER CODE BEGIN PFP */
-static void led_green_Handler(void * pvParameters);
-static void led_red_Handler(void * pvParameters);
-static void led_blue_Handler(void * pvParameters);
+static void task1_handler(void * pvParameters);
+static void task2_handler(void * pvParameters);
 /* USER CODE END PFP */
 
 /* Private user code ---------------------------------------------------------*/
@@ -74,7 +73,6 @@ int main(void)
   /* USER CODE BEGIN 1 */
 	TaskHandle_t taks1_Handle;
 	TaskHandle_t taks2_Handle;
-	TaskHandle_t taks3_Handle;
 	BaseType_t xReturned;
   /* USER CODE END 1 */
 
