@@ -1419,3 +1419,47 @@ Command-line arguments:  -os win32 -ws win32 -arch x86_64
 
 !ENTRY org.eclipse.cdt.core 1 0 2026-06-16 21:01:29.060
 !MESSAGE Indexed 'RTOS_1' (29 sources, 140 headers) in 5.59 sec: 13,945 declarations; 58,019 references; 1 unresolved inclusions; 200 syntax errors; 241 unresolved names (0.33%)
+!SESSION 2026-06-17 12:00:41.605 -----------------------------------------------
+eclipse.buildId=Version 2.0.0
+java.version=21.0.8
+java.vendor=Eclipse Adoptium
+BootLoader constants: OS=win32, ARCH=x86_64, WS=win32, NL=en_IN
+Command-line arguments:  -os win32 -ws win32 -arch x86_64
+
+!ENTRY com.st.stm32cube.ide.mcu.informationcenter 1 1 2026-06-17 12:01:16.934
+!MESSAGE Log4j2 initialized with config file C:\Users\HP\Documents\C Programming\STM32\RTOS_Workspace\.metadata\.log4j2.xml
+
+!ENTRY com.st.stm32cube.ide.mcu.ide 1 1 2026-06-17 12:01:30.690
+!MESSAGE Started RMI Server, listening on port 41337
+
+!ENTRY com.st.stm32cube.ide.mpu.remote.serial 1 1 2026-06-17 12:01:31.862
+!MESSAGE Executed command cmd.exe /c ""C:\WINDOWS\System32\wbem\wmic.exe" path Win32_PNPEntity WHERE "Name LIKE '%(COM%'" get Name,Manufacturer /format:rawxml":
+<COMMAND SEQUENCENUM="1" ISSUEDFROM="DESKTOP-614QREO" STARTTIME="06-17-2026T12:01:31" EVERYCOUNT="0">
+<REQUEST><COMMANDLINE>  path Win32_PNPEntity WHERE "Name LIKE '%(COM%'" get Name,Manufacturer /format:rawxml</COMMANDLINE>
+<COMMANDLINECOMPONENTS><NODELIST><NODE>DESKTOP-614QREO</NODE>
+</NODELIST>
+</COMMANDLINECOMPONENTS>
+<CONTEXT><NAMESPACE>root\cimv2</NAMESPACE>
+<ROLE>root\cli</ROLE>
+<IMPLEVEL>IMPERSONATE</IMPLEVEL>
+<AUTHLEVEL>PKTPRIVACY</AUTHLEVEL>
+<LOCALE>ms_809</LOCALE>
+<PRIVILEGES>ENABLE</PRIVILEGES>
+<TRACE>OFF</TRACE>
+<RECORD>N/A</RECORD>
+<INTERACTIVE>OFF</INTERACTIVE>
+<FAILFAST>OFF</FAILFAST>
+<OUTPUT>STDOUT</OUTPUT>
+<APPEND>STDOUT</APPEND>
+<USER>N/A</USER>
+<AGGREGATE>ON</AGGREGATE>
+</CONTEXT>
+</REQUEST>
+<RESULTS NODE="DESKTOP-614QREO">
+<ERROR><DESCRIPTION>No Instance(s) Available.
+</DESCRIPTION>
+</ERROR>
+</RESULTS>
+</COMMAND>
+
+
